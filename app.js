@@ -11,7 +11,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     if(e) throw e;
   });
 
-  let server = http.createServer(function (req, res) {
+  var server = http.createServer(function (req, res) {
     let url = req.url;
     if (url == '/') {
       res.statusCode = 200;
