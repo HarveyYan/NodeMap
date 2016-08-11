@@ -22,7 +22,7 @@ if (cluster.isMaster) {
 
   const workerCount = os.cpus().length;  //numOfCPUs, denpending on the environment
   console.log(`Starting ${workerCount} workers...`);
-  for (let i = 0; i < workerCount; i++) {
+  for (var i = 0; i < workerCount; i++) {
     cluster.fork();
   }
   if (production) {
