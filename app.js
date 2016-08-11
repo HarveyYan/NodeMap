@@ -54,13 +54,13 @@ fs.open("log.txt","a",0x0644, function(err, fd){
 
   server.listen(port,ip, function (err) {
     if (err)  console.log(err);
+    else console.log("listenting at: %j",server.address());
+
     fs.write(fd, `server on application ${process.pid} started, running at ip ${ip} port ${port}\r\n`,
         0,'utf8',function(e){
       if(e) throw e;
     });
   });
-
-  console.log("listenting at: %j",server.address());
 
   var connection_string = '127.0.0.1:27017/coordinates';
   var i= 0 ,j = 0;
