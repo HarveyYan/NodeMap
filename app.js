@@ -15,9 +15,15 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     if(e) throw e;
   });
 
+  app.use();
+
+  app.get('/about',(req,res)=>{
+    res.send('ISCAS Traffic Group presents!');
+  });
+
   app.get('/', function(req, res){
-    console.log("incoming requests");
-    res.send('hello world');
+    console.log("req: %j", req);
+    res.sendFile(__dirname+"/content/views/lines-bmap-effect.html");
   });
 
   var listener = app.listen(port,ip, function (err) {
