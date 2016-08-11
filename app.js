@@ -47,14 +47,17 @@ fs.open("log.txt","a",0x0644, function(err, fd){
 //console.log("env.NODE_PORT " + env.NODE_PORT);
 //console.log("env.NODE_IP "   + env.NODE_IP);
 
-  server.listen(env.NODE_PORT || 3000, env.NODE_IP || 'localhost', function () {
-    fs.write(fd, `server on application ${process.pid} started, running at ip ${env.NODE_IP} port ${env.NODE_PORT}\r\n`,
+  var port = "5938";
+  var ip = "192.168.100.20";
+
+  server.listen(port,ip, function () {
+    fs.write(fd, `server on application ${process.pid} started, running at ip ${ip} port ${port}\r\n`,
         0,'utf8',function(e){
       if(e) throw e;
     });
   });
 
-  console.log(`${server.address().address}, ${server.address().port}`);
+  console.log(`listenting at: ${server.address().address}, ${server.address().port}`);
 
   var connection_string = '127.0.0.1:27017/coordinates';
   var i= 0 ,j = 0;
