@@ -52,7 +52,8 @@ fs.open("log.txt","a",0x0644, function(err, fd){
   var port = "5938";
   var ip = "192.168.100.20";
 
-  server.listen(port,ip, function () {
+  server.listen(port,ip, function (err) {
+    if (err)  console.log(err);
     fs.write(fd, `server on application ${process.pid} started, running at ip ${ip} port ${port}\r\n`,
         0,'utf8',function(e){
       if(e) throw e;
