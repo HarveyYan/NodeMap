@@ -9,6 +9,10 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     if(e) throw e;
   });
 
+  fs.write(fd, `process content: ${process}, process.evn content ${env} \r\n`,'utf8',function(e){
+    if(e) throw e;
+  });
+
   var server = http.createServer(function (req, res) {
     var url = req.url;
     if (url == '/') {
