@@ -3,9 +3,10 @@ const http         = require('http'),
       os           = require('os'),
       path         = require('path'),
       env          = process.env,
-      MongoClient  = require('mongodb').MongoClient;
+      MongoClient  = require('mongodb').MongoClient,
+      express      = require('express');
 
-var   app          = require('express').express();
+var   app          = express();
 var   port         = "64154";
 var   ip           = "192.168.100.20";
 
