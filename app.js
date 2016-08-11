@@ -10,13 +10,13 @@ var   app          = express();
 var   port         = "64154";
 var   ip           = "192.168.100.20";
 
+app.use(express.static('content'));
+
 fs.open("log.txt","a",0x0644, function(err, fd){
   fs.write(fd, `application ${process.pid} initiated \r\n`,'utf8',function(e){
     if(e) throw e;
   });
-
-  app.use();
-
+  
   app.get('/about',(req,res)=>{
     res.send('ISCAS Traffic Group presents!');
   });

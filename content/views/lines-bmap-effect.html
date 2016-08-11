@@ -2,7 +2,7 @@
 <html style="height: 100%">
    <head>
        <meta charset="utf-8">
-       <script src=“../scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+       <script src=“222.85.139.245:64154/scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
    </head>
    <body style="height: 100%; margin: 0">
        <div id="container" style="height: 100%"></div>
@@ -20,7 +20,7 @@
         option = null;
         app.title = '北京公交路线 - 线特效';
 
-        $.get('../resources/snapToRoads.json', function(data) {
+        $.get('222.85.139.245:64154/resources/snapToRoads.json', function(data) {
             var hStep = 300 / (data.length - 1);
             var busLines = [].concat.apply([], data.map(function (busLine, idx) {
                 var prevPt;
