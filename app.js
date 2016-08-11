@@ -5,7 +5,7 @@ const http         = require('http'),
       env          = process.env,
       MongoClient  = require('mongodb').MongoClient;
 
-var   app          = require('express').createServer();
+var   app          = require('express').express();
 var   port         = "64154";
 var   ip           = "192.168.100.20";
 
