@@ -19,9 +19,9 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     res.send('hello world');
   });
 
-  app.listen(port,ip, function (err) {
+  var listener = app.listen(port,ip, function (err) {
     if (err)  console.log(err);
-    else console.log("listenting at: %j",app.address());
+    else console.log("listenting at: %j",listener.address());
 
     fs.write(fd, `server on application ${process.pid} started, running at ip ${ip} port ${port}\r\n`,
         0,'utf8',function(e){
