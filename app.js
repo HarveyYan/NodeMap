@@ -5,7 +5,7 @@ const http         = require('http'),
       MongoClient  = require('mongodb').MongoClient;
 
 fs.open("log.txt","a",0x0644, function(err, fd){
-  fs.write(fd, "application ${process.pid} initiated \r\n",0,'utf8',function(e){
+  fs.write(fd, `application ${process.pid} initiated \r\n`,'utf8',function(e){
     if(e) throw e;
   });
 
@@ -48,7 +48,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
 //console.log("env.NODE_IP "   + env.NODE_IP);
 
   server.listen(env.NODE_PORT || 3000, env.NODE_IP || 'localhost', function () {
-    fs.write(fd, "server on application ${process.pid} started, running at ip ${env.NODE_IP} port ${env.NODE_PORT}\r\n",
+    fs.write(fd, `server on application ${process.pid} started, running at ip ${env.NODE_IP} port ${env.NODE_PORT}\r\n`,
         0,'utf8',function(e){
       if(e) throw e;
     });
