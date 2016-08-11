@@ -1,5 +1,6 @@
 const http         = require('http'),
       fs           = require('fs'),
+      os           = require('os'),
       path         = require('path'),
       env          = process.env;
       MongoClient  = require('mongodb').MongoClient;
@@ -9,6 +10,9 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     if(e) throw e;
   });
 
+  var networkInterfaces = os.networkInterfaces();
+  console.log( networkInterfaces );
+
   var server = http.createServer(function (req, res) {
     var url = req.url;
     if (url == '/') {
@@ -16,6 +20,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
       res.setHeader('Content-Type', 'text/plain');
       res.end("Under Development");
     }
+
 
     // IMPORTANT: Your application HAS to respond to GET /health with status 200
     //            for OpenShift health monitoring
@@ -57,7 +62,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     });
   });
 
-  console.log(`listenting at: ${server.address().address}, ${server.address().port}`);
+  //console.log(`listenting at: ${server.address().address}, ${server.address().port}`);
 
   var connection_string = '127.0.0.1:27017/coordinates';
   var i= 0 ,j = 0;
