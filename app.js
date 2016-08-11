@@ -10,8 +10,8 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     if(e) throw e;
   });
 
-  var networkInterfaces = os.networkInterfaces();
-  console.log( networkInterfaces );
+  // var networkInterfaces = os.networkInterfaces();
+  // console.log( networkInterfaces );
 
   var server = http.createServer(function (req, res) {
     var url = req.url;
@@ -49,9 +49,6 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     // }
   });
 
-//console.log("env.NODE_PORT " + env.NODE_PORT);
-//console.log("env.NODE_IP "   + env.NODE_IP);
-
   var port = "5938";
   var ip = "192.168.100.20";
 
@@ -62,7 +59,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     });
   });
 
-  //console.log(`listenting at: ${server.address().address}, ${server.address().port}`);
+  console.log("listenting at: %j",server.address());
 
   var connection_string = '127.0.0.1:27017/coordinates';
   var i= 0 ,j = 0;
