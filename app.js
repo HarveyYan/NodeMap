@@ -91,13 +91,13 @@ fs.open("log.txt","a",0x0644, function(err, fd){
   //   });
   // });
 
-  var connection_string = '127.0.0.1:27017/coordinates';
-  var i= 0 ,j = 0;
-// the client db connection scope is wrapped in a callback:
-  MongoClient.connect('mongodb://'+connection_string, function(err, db) {
-    if(err) throw err;
-    var collection = db.collection('coordinates').insert({"lat": i, "lng": j});
-  })
+//   var connection_string = '127.0.0.1:27017/coordinates';
+//   var i= 0 ,j = 0;
+//   //the client db connection scope is wrapped in a callback:
+//   MongoClient.connect('mongodb://'+connection_string, function(err, db) {
+//     if(err) throw err;
+//     var collection = db.collection('coordinates').insert({"lat": i, "lng": j});
+//   })
 
 });
 

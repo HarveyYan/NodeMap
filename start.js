@@ -20,7 +20,7 @@ cluster.on('disconnect', function(worker) {
 })
 if (cluster.isMaster) {
 
-  const workerCount = os.cpus().length;  //numOfCPUs, denpending on the environment
+  const workerCount = 4;//os.cpus().length - 4;  //numOfCPUs, denpending on the environment
   console.log(`Starting ${workerCount} workers...`);
   for (var i = 0; i < workerCount; i++) {
     cluster.fork();
