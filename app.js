@@ -16,6 +16,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
   });
 
   app.get('/', function(req, res){
+    console.log("incoming requests");
     res.send('hello world');
   });
 
