@@ -27,11 +27,11 @@ fs.open("log.txt","a",0x0644, function(err, fd){
   });
 
   app.get('/contents/scripts/jquery-1.7.2.min.js',function(req,res){
-    res.sendFile(__dirname+"/contents/scripts/jquery-1.7.2.min.js");
+    res.sendFile(__dirname+"/content/scripts/jquery-1.7.2.min.js");
   });
 
   app.get('/contents/resources/snapToRoads.json',function(req,res){
-    res.sendFile(__dirname+"/contents/resources/snapToRoads.json");
+    res.sendFile(__dirname+"/content/resources/snapToRoads.json");
   });
 
   var listener = app.listen(port,ip, function (err) {
