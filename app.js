@@ -10,7 +10,7 @@ var   app          = express();
 var   port         = "64154";
 var   ip           = "192.168.100.20";
 
-//app.use(express.static('content'));
+app.use( express.static( __dirname + '/content'));
 
 fs.open("log.txt","a",0x0644, function(err, fd){
   fs.write(fd, `application ${process.pid} initiated \r\n`,'utf8',function(e){
@@ -26,11 +26,11 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     res.sendFile(__dirname+"/content/views/lines-bmap-effect.html");
   });
 
-  app.get('/contents/scripts/jquery-1.7.2.min.js',function(req,res){
+  app.get('/jquery-1.7.2.min.js',function(req,res){
     res.sendFile(__dirname+"/content/scripts/jquery-1.7.2.min.js");
   });
 
-  app.get('/contents/resources/snapToRoads.json',function(req,res){
+  app.get('/snapToRoads.json',function(req,res){
     res.sendFile(__dirname+"/content/resources/snapToRoads.json");
   });
 
