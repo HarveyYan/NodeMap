@@ -17,7 +17,7 @@ MongoClient.connect('mongodb://'+connection_string, function(err, db) {
     var points = JSON.parse(data).snappedPoints;
     points.forEach(function(point){
         var latlng = point.location;
-        db.collection("#6-#10").insert({
+        db.collection("6-10").insert({
             "lat":latlng.latitude,
             "lng":latlng.longitude
         });
