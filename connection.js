@@ -13,12 +13,14 @@ MongoClient.connect('mongodb://'+connection_string, function(err, db) {
     if(err) throw err;
 
     var data = fs.readFileSync(__dirname+"/roadsJSON/#6-#10.json","utf-8");
-    var points = data.snappedPoints;
 
+    var points = JSON.parse(data).snappedPoints;
     points.forEach(function(point){
+        var latlng = point.location;
         db.collection("#6-#10").insert({
-            "lat":point.location.latitude,
-            "lng":point.location.longitude
+            "lat":latlng.latitude,
+            "lng":latlng.longitude
         });
     });
+
 })
