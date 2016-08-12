@@ -47,8 +47,8 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     res.sendFile(__dirname+"/content/scripts/jquery-1.7.2.min.js");
   });
 
-  app.get('/#6-#10.json',function(req,res){
-    res.sendFile(__dirname+"/content/resources/#6-#10.json");
+  app.get('/6-10.json',function(req,res){
+    res.sendFile(__dirname+"/content/resources/6-10.json");
   });
 
   var listener = app.listen(port,ip, function (err) {

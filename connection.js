@@ -12,7 +12,7 @@ var connection_string = ip_addr+":"+port+"/"+"roads";
 MongoClient.connect('mongodb://'+connection_string, function(err, db) {
     if(err) throw err;
 
-    var data = fs.readFileSync(__dirname+"/roads_json_raw/#6-#10.json","utf-8");
+    var data = fs.readFileSync(__dirname+"/roads_json_raw/6-10.json","utf-8");
 
     var points = JSON.parse(data).snappedPoints;
     points.forEach(function(point){
