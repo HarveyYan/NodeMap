@@ -4,19 +4,36 @@ const http         = require('http'),
       path         = require('path'),
       env          = process.env,
       MongoClient  = require('mongodb').MongoClient,
+      bodyParser   = require('body-parser'),
       express      = require('express');
 
 var   app          = express();
 var   port         = "64154";
 var   ip           = "192.168.100.20";
 
-app.use( express.static( __dirname + '/content'));
+app.use(express.static( __dirname + '/content'));
 
 fs.open("log.txt","a",0x0644, function(err, fd){
   fs.write(fd, `application ${process.pid} initiated \r\n`,'utf8',function(e){
     if(e) throw e;
   });
-  
+
+  // parse application/x-www-form-urlencoded
+  app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+  app.use(bodyParser.json())
+
+// parse application/vnd.api+json as json
+  app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
+
+  app.use(function(req,res,next){
+    fs.write(fd,req.body,'utf8',function(e){
+      if (e) throw e;
+    });
+    next();
+  });
+
   app.get('/about',(req,res)=>{
     res.send('ISCAS Traffic Group presents!');
   });
