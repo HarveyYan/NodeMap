@@ -20,7 +20,7 @@
         option = null;
         app.title = '北京公交路线 - 线特效';
 
-        $.get('http://222.85.139.245:64154/snapToRoads.json', function(data) {
+        $.get('http://222.85.139.245:64154/#6-#10.json', function(data) {
             var hStep = 300 / (data.length - 1);
             var busLines = [].concat.apply([], data.map(function (busLine, idx) {
                 var prevPt;
