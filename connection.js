@@ -13,7 +13,7 @@ MongoClient.connect('mongodb://'+connection_string, function(err, db) {
     if(err) throw err;
 
     var data = fs.readFileSync(__dirname+"/roadsJSON/#6-#10.json","utf-8");
-    var points = JSON.snappedPoints;
+    var points = data.snappedPoints;
 
     points.forEach(function(point){
         db.collection("#6-#10").insert({
