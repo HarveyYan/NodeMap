@@ -14,17 +14,54 @@
     <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
     <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
     <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
-    <script type="text/javascript" src="http://222.85.139.245:64154/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/jquery-1.7.2.min.js"></script>
     <script type="text/javascript">
         var dom = document.getElementById("container");
         var myChart = echarts.init(dom);
-        var ratio = 5/600;
         var app = {};
+        var ratio = 5/600;
         option = null;
         myChart.showLoading();
 
-        $.get('http://222.85.139.245:64154/snapToRoads_2ways.json', function(data) {
+        $.get('http://127.0.0.1:8887/content/resources/snapToRoads.json', function(data) {
             myChart.hideLoading();
+            /*
+                        var itemStyle = {
+                            normal: {
+                                opacity: 0.8,
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowOffsetY: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        };
+
+                        var sizeFunction = function(x) {
+                            var y = Math.sqrt(x / 5e8) + 0.1;
+                            return y * 80;
+                        };
+                        var schema = [{
+                            name: 'Income',
+                            index: 0,
+                            text: '人均收入',
+                            unit: '美元'
+                        }, {
+                            name: 'LifeExpectancy',
+                            index: 1,
+                            text: '人均寿命',
+                            unit: '岁'
+                        }, {
+                            name: 'Population',
+                            index: 2,
+                            text: '总人口',
+                            unit: ''
+                        }, {
+                            name: 'Country',
+                            index: 3,
+                            text: '国家',
+                            unit: ''
+                        }];
+            */
             var busLines = [].concat.apply([], data.lines.map(function(busLine) {
                 var prevPt;
                 var points = [];
@@ -37,6 +74,9 @@
                 };
             }));
 
+            function changeColor(Lines,colors){
+
+            }
 
             option = {
                 baseOption: {
@@ -163,29 +203,21 @@
                         }
                     },
                     timeline: {
-                        axisType: 'category',
-                        orient: 'horizontal',
-                        autoPlay: false,
+                        axisType: 'time',
+                        orient: 'vertical',
+                        autoPlay: true,
                         inverse: true,
-                        playInterval: 1000 * 600 * ratio,
-                        left: 20,
-                        right: 20,
-                        top: 0,
-                        bottom: null,
-                        width: null,
-                        height: 55,
-                        inverse: false,
+                        playInterval: 1000*600*ratio,
+                        left: null,
+                        right: 0,
+                        top: 20,
+                        bottom: 20,
+                        width: 55,
+                        height: null,
                         label: {
-                            position: 'bottom',
                             normal: {
-                                interval: 1,
                                 textStyle: {
                                     color: '#999'
-                                },
-                                rotate: -60,
-                                formatter: function(value, index) {
-                                    var texts = [value.slice(-4, -2), value.slice(-2)];
-                                    return texts.join(':');
                                 }
                             },
                             emphasis: {
@@ -245,18 +277,11 @@
             for (var n = 0; n < data.timelines.length; n++) {
                 option.baseOption.timeline.data.push(data.timelines[n]);
 
+                console.log(busLines);
                 option.options.push({
                     title: {
                         show: true,
-                        left: null,
-                        right: 20,
-                        top: null,
-                        bottom: 20,
-                        text: (data.timelines[n].toString().slice(-4, -2) + ' : ' + data.timelines[n].toString().slice(-2)),
-                        textStyle: {
-                            color: '#fff'
-                        },
-                        subtext: (data.timelines[n].toString().slice(0, 4) + '年' + data.timelines[n].toString().slice(4, 6) + '月' + data.timelines[n].toString().slice(6, 8) + '日')
+                        'text': data.timelines[n] + ''
                     },
                     series: (function (busLines) {
 
@@ -266,9 +291,8 @@
                             polyline: true,
                             data: (function (busLines) {//busLines路分段
 
-                                var busLines_new = [];
+                                var busLines_new = [{}];
 
-                                console.log(busLines);
                                 for (var i = 0 ; i < busLines.length; i++){
                                     var lineStyle = {
                                         normal: {
@@ -278,7 +302,7 @@
                                     };
                                     lineStyle.normal.color = 'rgba(' + Math.round(Math.random() * 255) + ','
                                             + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',1);'
-                                    busLines_new[i]={};
+
                                     busLines_new[i].coords = busLines[i].coords;//0~xxx
                                     busLines_new[i].lineStyle = lineStyle;
                                 }
@@ -286,32 +310,39 @@
                                 return busLines_new;
                             })(busLines),
                             silent: true,
+                            lineStyle: {
+                                normal: {
+                                    opacity: 1,
+                                    width: 2
+                                }
+                            },
                             progressiveThreshold: 500,
                             progressive: 200
-                        }];
-                        //下面是加effect
-                        for (var i = 0; i < busLines.length; i++) {
-                            //每条道路速度不同
-                            var line = [];
-                            line.push(busLines[i]);
-                            //每条道路插入多次,代表多辆汽车
-                            for (var j = 0; j < data.series[n][i][1]; j++){
-                                var segment = {
-                                    type: 'lines',
-                                    coordinateSystem: 'bmap',
-                                    polyline: true,
-                                    data: line,
-                                    effect: {
-                                        constantSpeed: Math.round(data.series[n][i][2]) + Math.random()*5,
+                        },{
+                            type: 'lines',
+                            coordinateSystem: 'bmap',
+                            polyline: true,
+                            data: (function (busLines) {//busLines路分段
+
+                                var busLines_new = [{}];
+                                for (var i = 0; i< busLines.length; i++){
+                                    busLines_new[i].coords = busLines[i].coords;//0~xxx
+                                    busLines_new[i].effect = {
+                                        constantSpeed: Math.round(data.series[n][0][2]),
                                         show: true,
                                         trailLength: 0.1,
                                         symbolSize: 5
-                                    },
-                                    zlevel: 1
-                                };
-                                series.push(segment);
-                            }
-                        }
+                                    };
+                                }
+                                return busLines_new;
+                            })(busLines),
+                            effect: {
+                                show: true,
+                                trailLength: 0.1,
+                                symbolSize: 5
+                            },
+                            zlevel: 1
+                        }];
 
                         return series;
                     })(busLines)

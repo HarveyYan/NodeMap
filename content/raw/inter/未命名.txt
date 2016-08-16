@@ -1,0 +1,120 @@
+{
+            type: 'lines',
+            coordinateSystem: 'bmap',
+            polyline: true,
+            data: busLines,
+            silent: true,
+            lineStyle: {
+                normal: {
+                    // color: '#c23531',
+                    // color: 'rgb(200, 35, 45)',
+                    opacity: 0.2,
+                    width: 1
+                }
+            },
+            progressiveThreshold: 500,
+            progressive: 200
+        }, {
+            type: 'lines',
+            coordinateSystem: 'bmap',
+            polyline: true,
+            data: busLines,
+            lineStyle: {
+                normal: {
+                    width: 0
+                }
+            },
+            effect: {
+                constantSpeed: 20,
+                show: true,
+                trailLength: 0.1,
+                symbolSize: 1.5
+            },
+            zlevel: 1
+        }
+
+
+
+//
+//
+//                            var loop = tuple[1];//几个点
+//                            var busLines_new = [{}];
+//
+//                            var lineStyle = {
+//                                normal:{
+//                                    opacity: 1,
+//                                    width: 2
+//                                }
+//                            };
+//                            lineStyle.normal.color = 'rgba(' + Math.round(Math.random()*255) + ','
+//                                    + Math.round(Math.random()*255) + ',' + Math.round(Math.random()*255) + ',1);'
+//
+//                            busLines_new[0].coords = busLines[0].coords;
+//                            busLines_new[0].lineStyle = lineStyle;
+//                            //console.log(busLines_new);
+//                            return busLines_new;
+//
+//                        })(busLines)
+
+
+                        /*{//这里更新道路颜色
+                        type: 'lines',
+                        coordinateSystem: 'bmap',
+                        polyline: true,
+                        data: (function(busLines){//busLines路分段
+
+                            var busLines_new = [{}];
+
+                            var lineStyle = {
+                                normal:{
+                                    opacity: 1,
+                                    width: 2
+                                }
+                            };
+                            lineStyle.normal.color = 'rgba(' + Math.round(Math.random()*255) + ','
+                                    + Math.round(Math.random()*255) + ',' + Math.round(Math.random()*255) + ',1);'
+
+                            busLines_new[0].coords = busLines[0].coords;
+                            busLines_new[0].lineStyle = lineStyle;
+                            //console.log(busLines_new);
+                            return busLines_new;
+
+                        })(busLines),
+                        silent: true,
+                        progressiveThreshold: 500,
+                        progressive: 200
+                    }, {//这里更新速度,和点的数量
+                        type: 'lines',
+                        coordinateSystem: 'bmap',
+                        polyline: true,
+                        data: (function(busLines){//busLines路分段
+
+                            var busLines_new = [{}];
+
+                            var tuple = data.series[n][0];//第0条路
+                            var loop = tuple[1];//几个点
+                            var effect = {
+                                show: true,
+                                trailLength: 0.1,
+                                symbolSize: 3
+                            };
+                            effect.constantSpeed = tuple[2];
+
+                            busLines_new[0].coords = busLines[0].coords;
+                            busLines_new[0].effect = effect;
+                            console.log(busLines_new);
+                            return busLines_new;
+                        })(busLines),
+                        effect:{
+                            show: true,
+                            trailLength: 0.1,
+                            symbolSize: 3,
+                            constantSpeed: 10
+                        },
+                        lineStyle: {
+                            normal: {
+                                width: 0
+                            }
+                        },
+                        zlevel: 1
+                    }*/
