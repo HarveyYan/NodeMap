@@ -22,11 +22,6 @@
         var app = {};
         option = null;
         myChart.showLoading();
-        var color = {
-            'green':'rgba(0,255,0,1)',
-            'yellow':'rgba(255,255,0,1)',
-            'red':'rgba(255,0,0,1)'
-        };
 
         $.get('http://222.85.139.245:64154/snapToRoads_2ways.json', function(data) {
             myChart.hideLoading();
@@ -297,9 +292,14 @@
                                             width: 2
                                         }
                                     };
-                                    console.log(data.series[n][i][3]);
-                                    console.log(color[data.series[n][i][3]]);
-                                    lineStyle.normal.color = color[data.series[n][i][3]];
+
+                                    if (data.series[n][i][3] == 'red')
+                                        lineStyle.normal.color = 'rgba(255,0,0,1)';
+                                    else if (data.series[n][i][3] == 'green')
+                                        lineStyle.normal.color = 'rgba(0,255,0,1)';
+                                    else if (data.series[n][i][3] == 'yellow')
+                                        lineStyle.normal.color = 'rgba(255,255,0,1)';
+
                                     busLines_new[i]={};
                                     busLines_new[i].coords = busLines[i].coords;//0~xxx
                                     busLines_new[i].lineStyle = lineStyle;
