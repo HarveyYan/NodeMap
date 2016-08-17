@@ -340,7 +340,7 @@
                 // 添加百度地图插件
                 var bmap = myChart.getModel().getComponent('bmap').getBMap();
                 bmap.addControl(new BMap.MapTypeControl());
-                bmap.addControl(new NavigationControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT, type: BMAP_NAVIGATION_CONTROL_ZOOM}));
+                bmap.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT, type: BMAP_NAVIGATION_CONTROL_ZOOM}));
             }
         });
 
