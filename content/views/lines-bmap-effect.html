@@ -194,7 +194,7 @@
                                 }
                             }
                         },
-                        symbol: 'none',
+                        symbol: 'pin',
                         lineStyle: {
                             color: '#555'
                         },
@@ -218,7 +218,17 @@
                         data: []
                     },
                     backgroundColor: '#404a59',
-
+                    tooltip: {
+                        padding: 5,
+                        backgroundColor: '#222',
+                        borderColor: '#777',
+                        borderWidth: 1,
+                        formatter: function(obj) {
+                            var value = obj.name;
+                            var texts = [value.slice(-4, -2), value.slice(-2)];
+                            return texts.join(':');
+                        }
+                    },
                     series: [{
                         type: 'lines',
                         coordinateSystem: 'bmap',
