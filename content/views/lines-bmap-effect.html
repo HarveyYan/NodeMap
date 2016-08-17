@@ -259,12 +259,6 @@
                 options: []
             };
 
-            if (!app.inNode) {
-                // 添加百度地图插件
-                var bmap = myChart.getModel().getComponent('bmap').getBMap();
-                bmap.addControl(new BMap.MapTypeControl());
-            }
-
             for (var n = 0; n < data.timelines.length; n++) {
                 option.baseOption.timeline.data.push(data.timelines[n]);
 
@@ -341,6 +335,12 @@
             }
 
             myChart.setOption(option);
+
+            if (!app.inNode) {
+                // 添加百度地图插件
+                var bmap = myChart.getModel().getComponent('bmap').getBMap();
+                bmap.addControl(new BMap.MapTypeControl());
+            }
         });
 
         if (option && typeof option === "object") {
