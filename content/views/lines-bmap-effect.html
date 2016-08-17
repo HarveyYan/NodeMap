@@ -341,6 +341,7 @@
                 var bmap = myChart.getModel().getComponent('bmap').getBMap();
                 bmap.addControl(new BMap.MapTypeControl());
                 bmap.addControl(new BMap.ScaleControl());
+                bmap.addControl(new NavigationControl());
             }
         });
 
