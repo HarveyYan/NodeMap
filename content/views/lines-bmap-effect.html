@@ -235,8 +235,25 @@
                         },
                         progressiveThreshold: 500,
                         progressive: 200
+                    },{
+                        type: 'lines',
+                        coordinateSystem: 'bmap',
+                        polyline: true,
+                        data: busLines,
+                        lineStyle: {
+                            normal: {
+                                width: 0
+                            }
+                        },
+                        effect: {
+                            constantSpeed: 0,
+                            show: true,
+                            trailLength: 0.1,
+                            symbolSize: 1.5
+                        },
+                        zlevel: 1
                     }],
-                    animationDurationUpdate: 1000,
+                    animationDurationUpdate: 500,
                     animationEasingUpdate: 'quinticInOut'
                 },
                 options: []
@@ -304,7 +321,7 @@
                                         constantSpeed: Math.round(data.series[n][i][2]) + Math.random()*5,
                                         show: true,
                                         trailLength: 0.1,
-                                        symbolSize: 5
+                                        symbolSize: 2
                                     },
                                     zlevel: 1
                                 };
