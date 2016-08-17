@@ -165,9 +165,9 @@
                     timeline: {
                         axisType: 'category',
                         orient: 'horizontal',
-                        autoPlay: false,
+                        autoPlay: true,
                         inverse: true,
-                        playInterval: 1000 * 600 * ratio,
+                        playInterval: Math.round(1000 * 600 * ratio),
                         left: 20,
                         right: 20,
                         top: 0,
@@ -268,7 +268,6 @@
 
                                 var busLines_new = [];
 
-                                console.log(busLines);
                                 for (var i = 0 ; i < busLines.length; i++){
                                     var lineStyle = {
                                         normal: {
