@@ -1,5 +1,5 @@
 # NodeMap
-A ISCAS initiative to illustrate historic/ontime traffic patterns in GuiYang city.
+An ISCAS initiative to illustrate historic/ontime traffic patterns in GuiYang city.
 
 It's based on express@node.js and, mongodb, an interactive, scalable database systems.
 
