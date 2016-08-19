@@ -352,7 +352,7 @@
                             line.push(busLines[i]);
 
                             //每条道路插入多次,代表多辆汽车
-                            for (var j = 0; j < Math.round(data.series[n][i][1]/10); j++) {
+                            for (var j = 0; j < Math.round(data.series[n][i][1]/*/10*/); j++) {
                                 series.push({
                                     type: 'lines',
                                     coordinateSystem: 'bmap',
@@ -368,8 +368,8 @@
                                     silent: true
                                 });
                             }
-                            if (Math.round(data.series[n][i][1]/10) < 20){
-                                for (var j = Math.round(data.series[n][i][1]/10); j < 20; j++){
+                            if (Math.round(data.series[n][i][1]/*/10*/) < 20){
+                                for (var j = Math.round(data.series[n][i][1]/*/10*/); j < 20; j++){
                                     series.push({
                                         type: 'lines',
                                         coordinateSystem: 'bmap',
