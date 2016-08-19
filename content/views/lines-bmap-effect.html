@@ -345,7 +345,7 @@
 
                             //每条道路插入多次,代表多辆汽车
                             for (var j = 0; j < data.series[n][i][1]; j++) {
-                                var segment = {
+                                series.push({
                                     type: 'lines',
                                     coordinateSystem: 'bmap',
                                     polyline: true,
@@ -358,12 +358,10 @@
                                     },
                                     zlevel: 1,
                                     silent: true
-                                };
-                                series.push(segment);
+                                });
                             }
-
-                            if (data.series[n][i][1] == 0) {
-                                for (var m = 0; m < 150; m++) {
+                            if (data.series[n][i][1] < 200){
+                                for (var j = data.series[n][i][1]; j < 200; j++){
                                     series.push({
                                         type: 'lines',
                                         coordinateSystem: 'bmap',
@@ -379,6 +377,23 @@
                                     });
                                 }
                             }
+//                            if (data.series[n][i][1] == 0) {
+//                                for (var m = 0; m < 150; m++) {
+//                                    series.push({
+//                                        type: 'lines',
+//                                        coordinateSystem: 'bmap',
+//                                        polyline: true,
+//                                        data: line,
+//                                        effect: {
+//                                            constantSpeed: 0,
+//                                            show: true,
+//                                            trailLength: 0,
+//                                            symbolSize: 0
+//                                        },
+//                                        zlevel: 1
+//                                    });
+//                                }
+//                            }
                         }
 
                         return series;
