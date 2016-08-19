@@ -59,8 +59,8 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     res.sendFile(__dirname+"/content/scripts/echarts/dist/extension/bmap.min.js");
   });
 
-  app.get('/snapToRoads_2ways.json',function(req,res){
-    res.sendFile(__dirname+"/content/resources/snapToRoads_2ways.json");
+  app.get('/snapToRoads.json',function(req,res){
+    res.sendFile(__dirname+"/content/resources/snapToRoads.json");
   });
 
   var listener = app.listen(port,ip, function (err) {
