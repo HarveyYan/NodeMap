@@ -170,8 +170,8 @@
                         playInterval: Math.round(1000 * 600 * ratio),
                         left: 20,
                         right: 20,
-                        top: 0,
-                        bottom: null,
+                        top: null,
+                        bottom: 0,
                         width: null,
                         height: 55,
                         inverse: false,
@@ -182,7 +182,7 @@
                                 textStyle: {
                                     color: '#999'
                                 },
-                                rotate: -60,
+                                rotate: 60,
                                 formatter: function(value, index) {
                                     var texts = [value.slice(-4, -2), value.slice(-2)];
                                     return texts.join(':');
@@ -262,9 +262,10 @@
                             symbolSize: 1.5
                         },
                         zlevel: 1
-                    }],
-                    animationDurationUpdate: 500,
+                    }]/*,
+                    animationDurationUpdate: 100,
                     animationEasingUpdate: 'quinticInOut'
+                    */
                 },
                 options: []
             };
@@ -275,10 +276,10 @@
                 option.options.push({
                     title: {
                         show: true,
-                        left: null,
-                        right: 20,
-                        top: null,
-                        bottom: 20,
+                        left: 20,
+                        right: null,
+                        top: 20,
+                        bottom: null,
                         text: (data.timelines[n].toString().slice(-4, -2) + ' : ' + data.timelines[n].toString().slice(-2)),
                         textStyle: {
                             color: '#fff'
