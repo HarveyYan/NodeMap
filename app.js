@@ -43,8 +43,20 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     res.sendFile(__dirname+"/content/views/lines-bmap-effect.html");
   });
 
-  app.get('/jquery-1.7.2.min.js',function(req,res){
-    res.sendFile(__dirname+"/content/scripts/jquery-1.7.2.min.js");
+  app.get('/jquery-3.1.0.min.js',function(req,res){
+    res.sendFile(__dirname+"/content/scripts/jquery-3.1.0.min.js");
+  });
+
+  app.get('/echarts.min.js',function(req,res){
+    res.sendFile(__dirname+"/content/scripts/echarts/dist/echarts.min.js");
+  });
+
+  app.get('/dataTool.min.js',function(req,res){
+    res.sendFile(__dirname+"/content/scripts/echarts/dist/extension/dataTool.min.js");
+  });
+
+  app.get('/bmap.min.js',function(req,res){
+    res.sendFile(__dirname+"/content/scripts/echarts/dist/extension/bmap.min.js");
   });
 
   app.get('/snapToRoads_2ways.json',function(req,res){

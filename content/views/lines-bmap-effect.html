@@ -8,23 +8,30 @@
 
 <body style="height: 100%; margin: 0">
     <div id="container" style="height: 100%"></div>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://222.85.139.245:64154/echarts.min.js"></script>
+    <script type="text/javascript" src="http://222.85.139.245:64154/dataTool.min.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
-    <script type="text/javascript" src="http://222.85.139.245:64154/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="http://222.85.139.245:64154/bmap.min.js"></script>
+    <script type="text/javascript" src="http://222.85.139.245:64154/jquery-3.1.0.min.js"></script>
     <script type="text/javascript">
         var dom = document.getElementById("container");
         var myChart = echarts.init(dom);
-        var ratio = 5/600;
+        var ratio = 5 / 600;
         var app = {};
         option = null;
         myChart.showLoading();
 
         $.get('http://222.85.139.245:64154/snapToRoads_2ways.json', function(data) {
             myChart.hideLoading();
+            var schema = [{
+                index: 0,
+                text: '通过车辆',
+                unit: '辆'
+            }, {
+                index: 1,
+                text: '平均车速',
+                unit: 'km/h'
+            }];
             var busLines = [].concat.apply([], data.lines.map(function(busLine) {
                 var prevPt;
                 var points = [];
@@ -176,9 +183,9 @@
                         height: 55,
                         inverse: false,
                         label: {
-                            position: 'bottom',
+                            position: 10,
                             normal: {
-                                interval: 1,
+                                //interval: 1,
                                 textStyle: {
                                     color: '#999'
                                 },
@@ -198,8 +205,8 @@
                                 }
                             }
                         },
-                        symbol: 'pin',
-                        symbolSize: 15,
+                        symbol: 'diamond',
+                        symbolSize: 10,
                         lineStyle: {
                             color: '#555'
                         },
@@ -223,17 +230,6 @@
                         data: []
                     },
                     backgroundColor: '#404a59',
-                    tooltip: {
-                        padding: 5,
-                        backgroundColor: '#222',
-                        borderColor: '#777',
-                        borderWidth: 1,
-                        formatter: function(obj) {
-                            var value = obj.name;
-                            var texts = [value.slice(-4, -2), value.slice(-2)];
-                            return texts.join(':');
-                        }
-                    },
                     series: [{
                         type: 'lines',
                         coordinateSystem: 'bmap',
@@ -242,24 +238,17 @@
                         silent: true,
                         lineStyle: {
                             normal: {
-                                // color: '#c23531',
-                                // color: 'rgb(200, 35, 45)',
                                 opacity: 0.2,
                                 width: 1
                             }
                         },
                         progressiveThreshold: 500,
                         progressive: 200
-                    },{
+                    }, {
                         type: 'lines',
                         coordinateSystem: 'bmap',
                         polyline: true,
                         data: busLines,
-                        lineStyle: {
-                            normal: {
-                                width: 0
-                            }
-                        },
                         effect: {
                             constantSpeed: 0,
                             show: true,
@@ -283,26 +272,42 @@
                         right: null,
                         top: 20,
                         bottom: null,
-                        text: (data.timelines[n].toString().slice(-4, -2) + ' : ' + data.timelines[n].toString().slice(-2)),
+                        text: ('   ' + data.timelines[n].toString().slice(-4, -2) + ' : ' + data.timelines[n].toString().slice(-2)),
                         textStyle: {
                             color: '#fff'
                         },
                         subtext: (data.timelines[n].toString().slice(0, 4) + '年' + data.timelines[n].toString().slice(4, 6) + '月' + data.timelines[n].toString().slice(6, 8) + '日')
                     },
-                    series: (function (busLines) {
+                    tooltip: {
+                        padding: 5,
+                        backgroundColor: '#222',
+                        borderColor: '#777',
+                        borderWidth: 1,
+                        formatter: function(obj) {
+                            if (obj.componentType === "timeline") {
+                                var value = obj.name;
+                                var texts = [value.slice(-4, -2), value.slice(-2)];
+                                return texts.join(':');
+                            } else if (obj.componentSubType === "lines") {
+                                return obj.name;
+                            }
+                        }
+                    },
+                    series: (function(busLines) {
 
                         var series = [{
                             type: 'lines',
                             coordinateSystem: 'bmap',
                             polyline: true,
-                            data: (function (busLines) {//busLines路分段
+                            data: (function(busLines) { //busLines路分段
 
                                 var busLines_new = [];
 
-                                for (var i = 0 ; i < busLines.length; i++){
+                                for (var i = 0; i < busLines.length; i++) {
+                                    var name = schema[0].text + '：' + data.series[n][i][1] + schema[0].unit + '<br>' + schema[1].text + '：' + data.series[n][i][2] + schema[1].unit;
                                     var lineStyle = {
                                         normal: {
-                                            opacity: 1,
+                                            opacity: 0.2,
                                             width: 2
                                         }
                                     };
@@ -318,38 +323,61 @@
                                     //        + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',1)';
 
 
-                                    busLines_new[i]={};
-                                    busLines_new[i].coords = busLines[i].coords;//0~xxx
+                                    busLines_new[i] = {};
+                                    busLines_new[i].name = name;
+                                    busLines_new[i].coords = busLines[i].coords; //0~xxx
                                     busLines_new[i].lineStyle = lineStyle;
                                 }
 
                                 return busLines_new;
                             })(busLines),
-                            silent: true,
+                            zlevel: 2,
+                            silent: false,
                             progressiveThreshold: 500,
                             progressive: 200
                         }];
                         //下面是加effect
                         for (var i = 0; i < busLines.length; i++) {
+
                             //每条道路速度不同
                             var line = [];
                             line.push(busLines[i]);
+
                             //每条道路插入多次,代表多辆汽车
-                            for (var j = 0; j < data.series[n][i][1]; j++){
+                            for (var j = 0; j < data.series[n][i][1]; j++) {
                                 var segment = {
                                     type: 'lines',
                                     coordinateSystem: 'bmap',
                                     polyline: true,
                                     data: line,
                                     effect: {
-                                        constantSpeed: Math.round(data.series[n][i][2]) + Math.random()*5,
+                                        constantSpeed: Math.round(data.series[n][i][2]) + Math.random() * 5,
                                         show: true,
                                         trailLength: 0,
                                         symbolSize: 3
                                     },
-                                    zlevel: 1
+                                    zlevel: 1,
+                                    silent: true
                                 };
                                 series.push(segment);
+                            }
+
+                            if (data.series[n][i][1] == 0) {
+                                for (var m = 0; m < 150; m++) {
+                                    series.push({
+                                        type: 'lines',
+                                        coordinateSystem: 'bmap',
+                                        polyline: true,
+                                        data: line,
+                                        effect: {
+                                            constantSpeed: 0,
+                                            show: true,
+                                            trailLength: 0,
+                                            symbolSize: 0
+                                        },
+                                        zlevel: 1
+                                    });
+                                }
                             }
                         }
 
@@ -358,19 +386,60 @@
                 });
             }
 
-            myChart.setOption(option);
+            myChart.setOption(option, true);
 
             if (!app.inNode) {
                 // 添加百度地图插件
                 var bmap = myChart.getModel().getComponent('bmap').getBMap();
                 bmap.addControl(new BMap.MapTypeControl());
-                bmap.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT, type: BMAP_NAVIGATION_CONTROL_ZOOM}));
+                bmap.addControl(new BMap.NavigationControl({
+                    anchor: BMAP_ANCHOR_BOTTOM_LEFT,
+                    type: BMAP_NAVIGATION_CONTROL_ZOOM
+                }));
             }
         });
 
-        if (option && typeof option === "object") {
-            myChart.setOption(option, true);
-        }
+        //        if (option && typeof option === "object") {
+        //            myChart.setOption(option, true);
+        //        }
+
+        //myChart.on('timelinechanged', function(busLines) {
+        //    var op = myChart.getOption();
+        //console.log(op);
+        //            op.series=[{
+        //                type: 'lines',
+        //                coordinateSystem: 'bmap',
+        //                polyline: true,
+        //                data: busLines,
+        //                silent: true,
+        //                lineStyle: {
+        //                    normal: {
+        //                        opacity: 0.2,
+        //                        width: 1
+        //                    }
+        //                },
+        //                progressiveThreshold: 500,
+        //                progressive: 200
+        //            },{
+        //                type: 'lines',
+        //                coordinateSystem: 'bmap',
+        //                polyline: true,
+        //                data: busLines,
+        //                lineStyle: {
+        //                    normal: {
+        //                        width: 0
+        //                    }
+        //                },
+        //                effect: {
+        //                    constantSpeed: 0,
+        //                    show: true,
+        //                    trailLength: 0,
+        //                    symbolSize: 1.5
+        //                },
+        //                zlevel: 1
+        //            }];
+        //            myChart.setOption(op,true);
+        //});
     </script>
 </body>
 
