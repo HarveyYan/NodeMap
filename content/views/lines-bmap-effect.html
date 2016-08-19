@@ -242,8 +242,8 @@
                                 width: 1
                             }
                         },
-                        progressiveThreshold: 500,
-                        progressive: 200
+                        progressiveThreshold: 50,
+                        progressive: 100
                     }, {
                         type: 'lines',
                         coordinateSystem: 'bmap',
@@ -308,7 +308,7 @@
                                     var lineStyle = {
                                         normal: {
                                             opacity: 0.2,
-                                            width: 2,
+                                            width: 1,
                                             curveness: 1
                                         }
                                     };
@@ -355,7 +355,7 @@
                                         constantSpeed: Math.round(data.series[n][i][2]) + Math.random() * 5,
                                         show: true,
                                         trailLength: 0,
-                                        symbolSize: 3
+                                        symbolSize: 1.5
                                     },
                                     zlevel: 1,
                                     silent: true
