@@ -182,9 +182,13 @@
                                 textStyle: {
                                     color: '#999'
                                 },
-                                rotate: 60,
+                                //rotate: 60,
                                 formatter: function(value, index) {
                                     var texts = [value.slice(-4, -2), value.slice(-2)];
+                                    if (index % 3 == 1 || index % 3 == 2) {
+                                        texts.shift();
+                                        texts.shift();
+                                    }
                                     return texts.join(':');
                                 }
                             },
@@ -195,6 +199,7 @@
                             }
                         },
                         symbol: 'pin',
+                        symbolSize: 15,
                         lineStyle: {
                             color: '#555'
                         },
@@ -262,10 +267,8 @@
                             symbolSize: 1.5
                         },
                         zlevel: 1
-                    }]/*,
-                    animationDurationUpdate: 100,
-                    animationEasingUpdate: 'quinticInOut'
-                    */
+                    }],
+                    animationDurationUpdate: 0
                 },
                 options: []
             };
