@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>动态交通图</title>
+    <title>Guiyang Traffic Pattern</title>
 </head>
 
 <body style="height: 100%; margin: 0">
@@ -37,7 +37,7 @@
                 var points = [];
                 for (var i = 0; i < busLine.length; i += 2) {
                     var pt = [busLine[i], busLine[i + 1]];
-                    points.push([pt[1] / 1e4, pt[0] / 1e4]);
+                    points.push([pt[1], pt[0]]);
                 }
                 return {
                     coords: points
