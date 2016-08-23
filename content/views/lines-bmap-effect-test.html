@@ -8,11 +8,11 @@
 
 <body style="height: 100%; margin: 0">
     <div id="container" style="height: 100%"></div>
-    <script type="text/javascript" src="http://222.85.139.245:64154/echarts.min.js"></script>
-    <script type="text/javascript" src="http://222.85.139.245:64154/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/echarts/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/echarts/dist/extension/dataTool.min.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
-    <script type="text/javascript" src="http://222.85.139.245:64154/bmap.min.js"></script>
-    <script type="text/javascript" src="http://222.85.139.245:64154/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/echarts/dist/extension/bmap.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/jquery-3.1.0.min.js"></script>
     <script type="text/javascript">
         var dom = document.getElementById("container");
         var myChart = echarts.init(dom);
@@ -22,7 +22,7 @@
         option = null;
         myChart.showLoading();
 
-        $.get('http://222.85.139.245:64154/snapToRoads.json', function(data) {
+        $.get('http://127.0.0.1:8887/content/resources/snapToRoads.json', function(data) {
             myChart.hideLoading();
             var schema = [{
                 index: 0,
