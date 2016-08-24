@@ -20,6 +20,8 @@
         var app = {};
         var manual = false;
         var identifier=0;
+        var counter = 0;
+        var limitOfCars = 20;
         option = null;
         myChart.showLoading();
 
@@ -52,7 +54,7 @@
                     bmap: {
                         center: [106.646914, 26.635041],
                         zoom: 14,
-                        roam: true,
+                        roam: false,
                         mapStyle: {
                             'styleJson': [{
                                 'featureType': 'water',
@@ -280,7 +282,7 @@
 
             fillOptions(0);
 
-            myChart.setOption(option, true);
+            myChart.setOption(option);
 
             if (!app.inNode) {
                 // 添加百度地图插件
@@ -375,7 +377,7 @@
                                     line.push(busLines[i]);
 
                                     //每条道路插入多次,代表多辆汽车
-                                    for (var j = 0; j < Math.round(data.series[n][i][1]); j++) {
+                                    for (var j = 0; j < (data.series[n][i][1] < limitOfCars ? data.series[n][i][1] : limitOfCars); j++) {
                                         series.push({
                                             type: 'lines',
                                             coordinateSystem: 'bmap',
@@ -392,8 +394,8 @@
                                             silent: true
                                         });
                                     }
-                                    if (Math.round(data.series[n][i][1]) < 20) {
-                                        for (var j = Math.round(data.series[n][i][1]); j < 20; j++) {
+                                    if (data.series[n][i][1] < limitOfCars) {
+                                        for (var j = data.series[n][i][1]; j < limitOfCars; j++) {
                                             series.push({
                                                 type: 'lines',
                                                 coordinateSystem: 'bmap',
@@ -443,44 +445,56 @@
                 }
             }
 
-            myChart.on('timelinechanged', function(param) {
-                if (manual){
-                    manual = false;
-                    return;
-                }
-                myChart.clear();
-                identifier = param.currentIndex;
-                fillOptions(identifier);
+            bindEvent();
 
-                manual = true; //人为dispatch_action,故不激发event
+            function bindEvent(){
+                myChart.on('timelinechanged', function(param) {
+                    //console.log(manual);
+                    if (manual){
+                        manual = false;
+                        return;
+                    }
 
-                myChart.setOption(option,true);
-                myChart.dispatchAction({
-                    type: 'timelineChange',
-                    // 时间点的 index
-                    currentIndex: identifier
+                    identifier = param.currentIndex;
+                    counter++;
+                    if (counter >= 3){
+                        counter = 0;
+
+                        setTimeout(function(){
+                            console.log("echarts refresh");
+
+                            myChart.dispose();
+                            delete dom;
+                            myChart = echarts.init(document.getElementById("container"));
+
+                            bindEvent();
+
+                            fillOptions(identifier);
+                            manual = true;
+                            myChart.setOption(option,true);
+                            myChart.dispatchAction({
+                                type: 'timelineChange',
+                                // 时间点的 index
+                                currentIndex: identifier
+                            });
+                        },1000);
+                        return;
+                    }
+                    //console.log("normal update");
+                    fillOptions(identifier);
+
+                    manual = true; //人为dispatch_action,故不激发event
+
+                    myChart.setOption(option);
+                    myChart.dispatchAction({
+                        type: 'timelineChange',
+                        // 时间点的 index
+                        currentIndex: identifier
+                    });
                 });
-            });
-
-            //定时10分钟刷新,清理内存
-            setTimeout(function(){
-                console.log("echarts refresh");
-
-                myChart.dispose();
-                myChart = echarts.init(document.getElementById("container"));
-
-                fillOptions(identifier);
-                manual = true;
-                myChart.setOption(option,true);
-                myChart.dispatchAction({
-                    type: 'timelineChange',
-                    // 时间点的 index
-                    currentIndex: identifier
-                });
-            },1000*60*10);
-
-
+            }
         });
+
 
     </script>
 </body>
