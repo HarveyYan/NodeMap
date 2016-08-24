@@ -462,9 +462,9 @@
             });
         });
 
-        //定时10分钟刷新,清理内存
+        //定时5分钟刷新,清理内存
         setInterval(function(){
-            console.log("echarts refresh");
+            console.log("echarts refresh, at: " + (new Date()).toLocaleTimeString());
 
             myChart.dispose();
             myChart = echarts.init(document.getElementById("container"));
@@ -477,7 +477,7 @@
                 // 时间点的 index
                 currentIndex: identifier
             });
-        },1000*60*10);
+        },1000*60*5);
 
 
     });
