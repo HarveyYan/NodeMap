@@ -448,7 +448,7 @@
                 manual = false;
                 return;
             }
-            myChart.clear();
+            //myChart.clear();
             identifier = param.currentIndex;
             fillOptions(identifier);
 
@@ -463,7 +463,7 @@
         });
 
         //定时10分钟刷新,清理内存
-        setTimeout(function(){
+        setInterval(function(){
             console.log("echarts refresh");
 
             myChart.dispose();
