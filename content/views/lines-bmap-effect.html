@@ -8,6 +8,10 @@
 
 <body style="height: 100%; margin: 0">
 <div id="container" style="height: 100%"></div>
+<link rel="stylesheet" href="http://127.0.0.1:8887/content/mdl/material.min.css">
+<script src="http://127.0.0.1:8887/content/mdl/material.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 <script type="text/javascript" src="http://222.85.139.245:64154/echarts.min.js"></script>
 <script type="text/javascript" src="http://222.85.139.245:64154/dataTool.min.js"></script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
@@ -25,7 +29,7 @@
     option = null;
     myChart.showLoading();
 
-    $.get('http://222.85.139.245:64154/snapToRoads.json', function(data) {
+    $.get('http://222.85.139.245:64154/2016-03-12.json', function(data) {
         myChart.hideLoading();
         var schema = [{
             index: 0,
@@ -336,7 +340,7 @@
                                     var busLines_new = [];
 
                                     for (var i = 0; i < busLines.length; i++) {
-                                        var name = schema[0].text + '：' + data.series[n][i][1] + schema[0].unit + '<br>' + schema[1].text + '：' + data.series[n][i][2] + schema[1].unit;
+                                        var name = schema[0].text + '：' + data.series[n][i][0] + schema[0].unit + '<br>' + schema[1].text + '：' + data.series[n][i][1] + schema[1].unit;
                                         var lineStyle = {
                                             normal: {
                                                 opacity: 0.2,
@@ -345,11 +349,11 @@
                                             }
                                         };
 
-                                        if (data.series[n][i][3] == "red")
+                                        if (data.series[n][i][2] == "red")
                                             lineStyle.normal.color = 'rgba(255,0,0,1)';
-                                        else if (data.series[n][i][3] == "green")
+                                        else if (data.series[n][i][2] == "green")
                                             lineStyle.normal.color = 'rgba(0,255,0,1)';
-                                        else if (data.series[n][i][3] == "yellow")
+                                        else if (data.series[n][i][2] == "yellow")
                                             lineStyle.normal.color = 'rgba(255,255,0,1)';
 
                                         //lineStyle.normal.color = 'rgba(' + Math.round(Math.random() * 255) + ','
@@ -377,14 +381,14 @@
                                 line.push(busLines[i]);
 
                                 //每条道路插入多次,代表多辆汽车
-                                for (var j = 0; j < (data.series[n][i][1] < limitOfCars ? data.series[n][i][1] : limitOfCars); j++) {
+                                for (var j = 0; j < (data.series[n][i][0] < limitOfCars ? data.series[n][i][0] : limitOfCars); j++) {
                                     series.push({
                                         type: 'lines',
                                         coordinateSystem: 'bmap',
                                         polyline: true,
                                         data: line,
                                         effect: {
-                                            constantSpeed: Math.round(data.series[n][i][2]) + Math.random() * 5,
+                                            constantSpeed: Math.round(data.series[n][i][1]) + Math.random() * 5,
                                             show: true,
                                             trailLength: 0,
                                             symbolSize: 3,
@@ -394,8 +398,8 @@
                                         silent: true
                                     });
                                 }
-                                if (data.series[n][i][1] < limitOfCars) {
-                                    for (var j = data.series[n][i][1]; j < limitOfCars; j++) {
+                                if (data.series[n][i][0] < limitOfCars) {
+                                    for (var j = data.series[n][i][0]; j < limitOfCars; j++) {
                                         series.push({
                                             type: 'lines',
                                             coordinateSystem: 'bmap',
