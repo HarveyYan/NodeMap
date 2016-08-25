@@ -364,7 +364,6 @@
 
         function fillOptions(identifier) {
             option.options.length = 0;
-            option.options = [];
             for (var n = 0; n < data.timelines.length; n++) {
                 var timelineString = data.timelines[n].toString();
                 option.options.push({
@@ -411,19 +410,25 @@
                                         var lineStyle = {
                                             normal: {
                                                 opacity: 0.2,
-                                                width: 2,
+                                                width: 1.5,
                                                 curvness: 1
                                             }
                                         };
 
-                                        if (data.series[n][i][2] == 3)
-                                            lineStyle.normal.color = 'rgba(255,0,0,1)';
-                                        else if (data.series[n][i][2] == 1)
-                                            lineStyle.normal.color = 'rgba(0,255,0,1)';
-                                        else if (data.series[n][i][2] == 2)
-                                            lineStyle.normal.color = 'rgba(255,255,0,1)';
-                                        else if (data.series[n][i][2] == 4)
-                                            lineStyle.normal.color = 'rgba(144,144,144,1)';
+                                        switch (data.series[n][i][2]) {
+                                            case 1: //绿色
+                                                lineStyle.normal.color = 'green';
+                                                break;
+                                            case 2: //黄色
+                                                lineStyle.normal.color = 'yellow';
+                                                break;
+                                            case 3: //红色
+                                                lineStyle.normal.color = 'red';
+                                                break;
+                                            case 4: //灰色
+                                                lineStyle.normal.color = 'gray';
+                                                break;
+                                        }
 
                                         busLines_new[i] = {};
                                         busLines_new[i].name = name;
@@ -457,7 +462,7 @@
                                                 constantSpeed: Math.round(data.series[n][i][1]*118/1000) + Math.random() * 10,
                                                 show: true,
                                                 trailLength: 0,
-                                                symbolSize: 3,
+                                                symbolSize: 2,
                                                 animation: false
                                             },
                                             zlevel: 1,
@@ -491,46 +496,13 @@
             }
         }
 
-        bindEvent();
 
-        function bindEvent(){
-            myChart.on('timelinechanged', function(param) {
-                //console.log(manual);
-                if (manual){
-                    manual = false;
-                    return;
-                }
+        myChart.on('timelinechanged', function(param) {
+            identifier = param.currentIndex;
+            fillOptions(identifier);
+            myChart.setOption(option);
+        });
 
-                identifier = param.currentIndex;
-                counter++;
-                if (counter >= 5){
-                    counter = 0;
-
-                    setTimeout(function(){
-                        console.log("echarts refresh");
-
-                        myChart.dispose();
-                        delete dom;
-                        myChart = echarts.init(document.getElementById("main_map"));
-
-                        bindEvent();
-
-                        fillOptions(identifier);
-                        manual = true;
-                        myChart.setOption(option);
-                        myChart.dispatchAction({
-                            type: 'timelineChange',
-                            // 时间点的 index
-                            currentIndex: identifier
-                        });
-                    },1000);
-                    return;
-                }
-
-                fillOptions(identifier);
-                myChart.setOption(option);
-            });
-        }
     });
 
 

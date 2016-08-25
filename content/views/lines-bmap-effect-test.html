@@ -555,16 +555,49 @@
                     //console.log("normal update");
                     fillOptions(identifier);
 
-                    manual = true; //人为dispatch_action,故不激发event
+                    //manual = true; //人为dispatch_action,故不激发event
 
                     myChart.setOption(option);
-                    myChart.dispatchAction({
-                        type: 'timelineChange',
-                        // 时间点的 index
-                        currentIndex: identifier
-                    });
+//                    myChart.dispatchAction({
+//                        type: 'timelineChange',
+//                        // 时间点的 index
+//                        currentIndex: identifier
+//                    });
                 });
             }
+
+            //        bindEvent();
+//        function bindEvent(){
+//            myChart.on('timelinechanged', function(param) {
+//                if (manual){
+//                    manual = false;
+//                    return;
+//                }
+//                identifier = param.currentIndex;
+//                counter++;
+//                if (counter >= 5){
+//                    counter = 0;
+//                    setTimeout(function(){
+//                        console.log("echarts refresh");
+//                        myChart.dispose();
+//                        delete dom;
+//                        myChart = echarts.init(document.getElementById("main_map"));
+//                        bindEvent();
+//                        fillOptions(identifier);
+//                        manual = true;
+//                        myChart.setOption(option);
+//                        myChart.dispatchAction({
+//                            type: 'timelineChange',
+//                            // 时间点的 index
+//                            currentIndex: identifier
+//                        });
+//                    },1000);
+//                    return;
+//                }
+//                fillOptions(identifier);
+//                myChart.setOption(option);
+//            });
+//        }
         });
 
 

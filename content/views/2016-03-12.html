@@ -108,11 +108,10 @@
     var dom = document.getElementById('main_map');
     dom.style.height = (screen.height-100) + "px";
     var myChart = echarts.init(dom);
-    var ratio = 20 / 600;
+    var ratio = 60 / 600;
     var app = {};
     var manual = false;
     var identifier=0;
-    var counter = 0;
     var limitOfCars = 50;
     option = null;
     myChart.showLoading();
@@ -421,7 +420,7 @@
                                         var name = schema[0].text + '：' + data.series[n][i][0] + schema[0].unit + '<br>' + schema[1].text + '：' + data.series[n][i][1] + schema[1].unit;
                                         var lineStyle = {
                                             normal: {
-                                                opacity: 0.5,
+                                                opacity: 0.2,
                                                 width: 1.5,
                                                 curvness: 1
                                             }
@@ -474,7 +473,7 @@
                                                 constantSpeed: Math.round(data.series[n][i][1]*118/1000) + Math.random() * 10,
                                                 show: true,
                                                 trailLength: 0,
-                                                symbolSize: 3,
+                                                symbolSize: 2,
                                                 animation: false
                                             },
                                             zlevel: 1,
@@ -514,46 +513,6 @@
             fillOptions(identifier);
             myChart.setOption(option);
         });
-
-//        bindEvent();
-//
-//        function bindEvent(){
-//            myChart.on('timelinechanged', function(param) {
-//                if (manual){
-//                    manual = false;
-//                    return;
-//                }
-//
-//                identifier = param.currentIndex;
-//                counter++;
-//                if (counter >= 5){
-//                    counter = 0;
-//
-//                    setTimeout(function(){
-//                        console.log("echarts refresh");
-//
-//                        myChart.dispose();
-//                        delete dom;
-//                        myChart = echarts.init(document.getElementById("main_map"));
-//
-//                        bindEvent();
-//
-//                        fillOptions(identifier);
-//                        manual = true;
-//                        myChart.setOption(option);
-//                        myChart.dispatchAction({
-//                            type: 'timelineChange',
-//                            // 时间点的 index
-//                            currentIndex: identifier
-//                        });
-//                    },1000);
-//                    return;
-//                }
-//
-//                fillOptions(identifier);
-//                myChart.setOption(option);
-//            });
-//        }
 
     });
 
