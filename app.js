@@ -55,6 +55,10 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     res.sendFile(__dirname+"/content/views/css/material.cyan-light_blue.min.css");
   });
 
+  app.get('/2fcrYFNaTjcS6g4U3t-Y5RV6cRhDpPC5P4GCEJpqGoc.woff',function(req,res){
+    res.sendFile(__dirname+"/content/views/css/2fcrYFNaTjcS6g4U3t-Y5RV6cRhDpPC5P4GCEJpqGoc.woff");
+  });
+
   app.get('/MaterialIcons.css',function(req,res){
     res.sendFile(__dirname+"/content/views/css/MaterialIcons.css");
   });
