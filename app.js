@@ -55,8 +55,8 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     res.sendFile(__dirname+"/content/views/css/material.cyan-light_blue.min.css");
   });
 
-  app.get('/Material+Icons',function(req,res){
-    res.send(__dirname+"/content/views/css/Material+Icons");
+  app.get('/MaterialIcons',function(req,res){
+    res.send(__dirname+"/content/views/css/MaterialIcons");
   });
 
   app.get('/user.jpg',function(req,res){
