@@ -61,20 +61,20 @@
             </div>
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-12</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-13</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-14</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-15</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-16</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-17</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-18</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-19</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-20</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-21</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-22</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-23</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-24</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-25</a>
+            <a class="mdl-navigation__link" href="2016-03-12"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-12</a>
+            <a class="mdl-navigation__link" href="2016-03-13"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-13</a>
+            <a class="mdl-navigation__link" href="2016-03-14"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-14</a>
+            <a class="mdl-navigation__link" href="2016-03-15"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-15</a>
+            <a class="mdl-navigation__link" href="2016-03-16"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-16</a>
+            <a class="mdl-navigation__link" href="2016-03-17"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-17</a>
+            <a class="mdl-navigation__link" href="2016-03-18"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-18</a>
+            <a class="mdl-navigation__link" href="2016-03-19"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-19</a>
+            <a class="mdl-navigation__link" href="2016-03-20"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-20</a>
+            <a class="mdl-navigation__link" href="2016-03-21"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-21</a>
+            <a class="mdl-navigation__link" href="2016-03-22"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-22</a>
+            <a class="mdl-navigation__link" href="2016-03-23"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-23</a>
+            <a class="mdl-navigation__link" href="2016-03-24"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-24</a>
+            <a class="mdl-navigation__link" href="2016-03-25"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-25</a>
             <div class="mdl-layout-spacer"></div>
         </nav>
     </div>
@@ -465,7 +465,7 @@
                                             polyline: true,
                                             data: line,
                                             effect: {
-                                                constantSpeed: Math.round(data.series[n][i][1]) + Math.random() * 5,
+                                                constantSpeed: Math.round(data.series[n][i][1]*118/2000) + Math.random() * 10,
                                                 show: true,
                                                 trailLength: 0,
                                                 symbolSize: 3,
