@@ -535,60 +535,60 @@
         }
 
 
-//        myChart.on('timelinechanged', function(param) {
-//            identifier = param.currentIndex;
-//            fillOptions(identifier);
-//            myChart.setOption(option);
-//        });
+        myChart.on('timelinechanged', function(param) {
+            identifier = param.currentIndex;
+            fillOptions(identifier);
+            myChart.setOption(option);
+        });
 
-        bindEvent();
-
-        function bindEvent(){
-            myChart.on('timelinechanged', function(param) {
-                //console.log(manual);
-//                if (manual){
-//                    manual = false;
+//        bindEvent();
+//
+//        function bindEvent(){
+//            myChart.on('timelinechanged', function(param) {
+//                //console.log(manual);
+////                if (manual){
+////                    manual = false;
+////                    return;
+////                }
+//
+//                identifier = param.currentIndex;
+//                counter++;
+//                if (counter >= 3){
+//                    counter = 0;
+//
+//                    setTimeout(function(){
+//                        console.log("echarts refresh");
+//
+//                        myChart.dispose();
+//                        delete dom;
+//                        myChart = echarts.init(document.getElementById("main_map"));
+//
+//                        bindEvent();
+//
+//                        fillOptions(identifier);
+////                        manual = true;
+//                        myChart.setOption(option,true);
+////                        myChart.dispatchAction({
+////                            type: 'timelineChange',
+////                            // 时间点的 index
+////                            currentIndex: identifier
+////                        });
+//                    },1000);
 //                    return;
 //                }
-
-                identifier = param.currentIndex;
-                counter++;
-                if (counter >= 3){
-                    counter = 0;
-
-                    setTimeout(function(){
-                        console.log("echarts refresh");
-
-                        myChart.dispose();
-                        delete dom;
-                        myChart = echarts.init(document.getElementById("main_map"));
-
-                        bindEvent();
-
-                        fillOptions(identifier);
-//                        manual = true;
-                        myChart.setOption(option,true);
-//                        myChart.dispatchAction({
-//                            type: 'timelineChange',
-//                            // 时间点的 index
-//                            currentIndex: identifier
-//                        });
-                    },1000);
-                    return;
-                }
-                //console.log("normal update");
-                fillOptions(identifier);
-
-//                manual = true; //人为dispatch_action,故不激发event
-
-                myChart.setOption(option);
-//                myChart.dispatchAction({
-//                    type: 'timelineChange',
-//                    // 时间点的 index
-//                    currentIndex: identifier
-//                });
-            });
-        }
+//                //console.log("normal update");
+//                fillOptions(identifier);
+//
+////                manual = true; //人为dispatch_action,故不激发event
+//
+//                myChart.setOption(option);
+////                myChart.dispatchAction({
+////                    type: 'timelineChange',
+////                    // 时间点的 index
+////                    currentIndex: identifier
+////                });
+//            });
+//        }
     });
 
 
