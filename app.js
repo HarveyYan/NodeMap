@@ -51,6 +51,14 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     res.sendFile(__dirname+"/content/views/css/styles.css");
   });
 
+  app.get('/material.cyan-light_blue.min.css',function(req,res){
+    res.sendFile(__dirname+"/content/views/css/material.cyan-light_blue.min.css");
+  });
+
+  app.get('/Material+Icons',function(req,res){
+    res.sendFile(__dirname+"/content/views/css/Material+Icons");
+  });
+
   app.get('/user.jpg',function(req,res){
     res.sendFile(__dirname+"/content/views/images/user.jpg");
   });
@@ -58,6 +66,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
   app.get('/echarts.min.js',function(req,res){
     res.sendFile(__dirname+"/content/scripts/echarts/dist/echarts.min.js");
   });
+
 
   app.get('/dataTool.min.js',function(req,res){
     res.sendFile(__dirname+"/content/scripts/echarts/dist/extension/dataTool.min.js");
