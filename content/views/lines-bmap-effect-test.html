@@ -81,7 +81,7 @@
 
         <main class="mdl-layout__content mdl-color--grey-100">
             <div class="mdl-grid demo-content">
-                <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" id="main_map" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
+                <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" id="main_map" style="height: 500px ;border:1px solid #ccc;padding:10px;"></div>
             </div>
         </main>
 
@@ -95,6 +95,7 @@
     <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/jquery-3.1.0.min.js"></script>
     <script type="text/javascript">
         var dom = document.getElementById('main_map');
+        dom.style.height = (screen.height-100) + "px";
         var myChart = echarts.init(dom);
         var ratio = 60 / 600;
         var app = {};
