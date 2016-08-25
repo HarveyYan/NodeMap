@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="css/styles.css">
 
 </head>
-
 <body>
+
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 
         <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
@@ -37,8 +37,9 @@
                     <i class="material-icons">more_vert</i>
                 </button>
                 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-                    <li class="mdl-menu__item" onclick="alert('ISCAS Intern Group Presents');">About</li>
-                    <li class="mdl-menu__item" onclick="alert('With special thanks to echarts of Baidu and, Google maps api, Snap To Roads feature and material design lite of Google');">Acknowledgements</li>
+                    <li class="mdl-menu__item" onclick="alert('ISCAS Interns Group Presents');">About</li>
+                    <li class="mdl-menu__item" onclick="alert('With special thanks to echarts of Baidu and, Google Maps API, Snap To Roads feature and material design lite of Google');">Acknowledgements</li>
+                    <a class="mdl-menu__item" href="https://github.com/HarveyYan/NodeMap">Github</a>
                 </ul>
             </div>
         </header>
@@ -47,16 +48,15 @@
             <header class="demo-drawer-header">
                 <img src="images/user.jpg" class="demo-avatar">
                 <div class="demo-avatar-dropdown">
-                    <span></span>
+                    <span>Contact</span>
                     <div class="mdl-layout-spacer"></div>
                     <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                         <i class="material-icons" role="presentation">arrow_drop_down</i>
                         <span class="visuallyhidden">Accounts</span>
                     </button>
                     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-                        <li class="mdl-menu__item">hello@example.com</li>
-                        <li class="mdl-menu__item">info@example.com</li>
-                        <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
+                        <li class="mdl-menu__item">developers@someplace.com</li>
+                        <li class="mdl-menu__item">info@someplace.com</li>
                     </ul>
                 </div>
             </header>
@@ -94,9 +94,7 @@
     <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/echarts/dist/extension/bmap.min.js"></script>
     <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/jquery-3.1.0.min.js"></script>
     <script type="text/javascript">
-        console.log("are we here?");
         var dom = document.getElementById('main_map');
-        console.log(dom);
         var myChart = echarts.init(dom);
         var ratio = 60 / 600;
         var app = {};
@@ -109,7 +107,6 @@
 
         $.get('http://127.0.0.1:8887/content/snaptoroads/2016-03-12.json', function(data) {
             myChart.hideLoading();
-            console.log("here");
             var schema = [{
                 index: 0,
                 text: '通过车辆',
@@ -137,7 +134,7 @@
                     bmap: {
                         center: [106.646914, 26.635041],
                         zoom: 14,
-                        roam: false,
+                        roam: true,
                         mapStyle: {
                             'styleJson': [{
                                 'featureType': 'water',
