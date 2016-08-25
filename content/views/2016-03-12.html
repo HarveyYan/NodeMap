@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Traffic Pattern</title>
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.cyan-light_blue.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+    <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout-title">GuiYang Traffic Pattern</span>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+                    <i class="material-icons">search</i>
+                </label>
+                <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input" type="text" id="search">
+                    <label class="mdl-textfield__label" for="search">Enter your query...</label>
+                </div>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+                <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+                <li class="mdl-menu__item" onclick="alert('ISCAS Intern Group Presents');">About</li>
+                <li class="mdl-menu__item" onclick="alert('With special thanks to echarts of Baidu and, Google maps api, Snap To Roads feature and material design lite of Google');">Acknowledgements</li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+        <header class="demo-drawer-header">
+            <img src="user.jpg" class="demo-avatar">
+            <div class="demo-avatar-dropdown">
+                <span></span>
+                <div class="mdl-layout-spacer"></div>
+                <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                    <i class="material-icons" role="presentation">arrow_drop_down</i>
+                    <span class="visuallyhidden">Accounts</span>
+                </button>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+                    <li class="mdl-menu__item">hello@example.com</li>
+                    <li class="mdl-menu__item">info@example.com</li>
+                    <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
+                </ul>
+            </div>
+        </header>
+        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+            <a class="mdl-navigation__link" href="2016-03-12.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-12</a>
+            <a class="mdl-navigation__link" href="2016-03-13.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-13</a>
+            <a class="mdl-navigation__link" href="2016-03-14.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-14</a>
+            <a class="mdl-navigation__link" href="2016-03-15.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-15</a>
+            <a class="mdl-navigation__link" href="2016-03-16.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-16</a>
+            <a class="mdl-navigation__link" href="2016-03-17.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-17</a>
+            <a class="mdl-navigation__link" href="2016-03-18.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-18</a>
+            <a class="mdl-navigation__link" href="2016-03-19.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-19</a>
+            <a class="mdl-navigation__link" href="2016-03-20.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-20</a>
+            <a class="mdl-navigation__link" href="2016-03-21.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-21</a>
+            <a class="mdl-navigation__link" href="2016-03-22.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-22</a>
+            <a class="mdl-navigation__link" href="2016-03-23.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-23</a>
+            <a class="mdl-navigation__link" href="2016-03-24.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-24</a>
+            <a class="mdl-navigation__link" href="2016-03-25.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-25</a>
+            <div class="mdl-layout-spacer"></div>
+        </nav>
+    </div>
+
+    <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid demo-content">
+            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" id="main_map" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
+        </div>
+    </main>
+
+</div>
+<script src="../mdl/material.min.js"></script>
+<script type="text/javascript" src="../scripts/echarts/dist/echarts.min.js"></script>
+<script type="text/javascript" src="../scripts/echarts/dist/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+<script type="text/javascript" src="../scripts/echarts/dist/extension/bmap.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery-3.1.0.min.js"></script>
+<script type="text/javascript">
+    var dom = document.getElementById('main_map');
+    console.log(dom);
+    var myChart = echarts.init(dom);
+    var ratio = 60 / 600;
+    var app = {};
+    var manual = false;
+    var identifier=0;
+    var counter = 0;
+    var limitOfCars = 20;
+    option = null;
+    myChart.showLoading();
+
+    $.get('http://222.85.139.245:64154/2016-03-12.json', function(data) {
+        myChart.hideLoading();
+        console.log("here");
+        var schema = [{
+            index: 0,
+            text: '通过车辆',
+            unit: '辆'
+        }, {
+            index: 1,
+            text: '平均车速',
+            unit: 'km/h'
+        }];
+        var busLines = [].concat.apply([], data.lines.map(function(busLine) {
+            var prevPt;
+            var points = [];
+            for (var i = 0; i < busLine.length; i += 2) {
+                var pt = [busLine[i], busLine[i + 1]];
+                points.push([pt[1], pt[0]]);
+            }
+            return {
+                coords: points
+            };
+        }));
+
+
+        option = {
+            baseOption: {
+                bmap: {
+                    center: [106.646914, 26.635041],
+                    zoom: 14,
+                    roam: false,
+                    mapStyle: {
+                        'styleJson': [{
+                            'featureType': 'water',
+                            'elementType': 'all',
+                            'stylers': {
+                                'color': '#031628'
+                            }
+                        }, {
+                            'featureType': 'land',
+                            'elementType': 'geometry',
+                            'stylers': {
+                                'color': '#000102'
+                            }
+                        }, {
+                            'featureType': 'highway',
+                            'elementType': 'geometry.fill',
+                            'stylers': {
+                                'color': '#000000'
+                            }
+                        }, {
+                            'featureType': 'highway',
+                            'elementType': 'geometry.stroke',
+                            'stylers': {
+                                'color': '#0b3d51'
+                            }
+                        }, {
+                            'featureType': 'highway',
+                            'elementType': 'labels',
+                            'stylers': {
+                                'visibility': 'off'
+                            }
+                        }, {
+                            'featureType': 'arterial',
+                            'elementType': 'geometry.fill',
+                            'stylers': {
+                                'color': '#000000'
+                            }
+                        }, {
+                            'featureType': 'arterial',
+                            'elementType': 'geometry.stroke',
+                            'stylers': {
+                                'color': '#0b3d51'
+                            }
+                        }, {
+                            'featureType': 'local',
+                            'elementType': 'geometry',
+                            'stylers': {
+                                'color': '#000000'
+                            }
+                        }, {
+                            'featureType': 'railway',
+                            'elementType': 'geometry.fill',
+                            'stylers': {
+                                'color': '#000000'
+                            }
+                        }, {
+                            'featureType': 'railway',
+                            'elementType': 'geometry.stroke',
+                            'stylers': {
+                                'color': '#08304b'
+                            }
+                        }, {
+                            'featureType': 'subway',
+                            'elementType': 'geometry',
+                            'stylers': {
+                                'lightness': -70
+                            }
+                        }, {
+                            'featureType': 'building',
+                            'elementType': 'geometry.fill',
+                            'stylers': {
+                                'color': '#000000'
+                            }
+                        }, {
+                            'featureType': 'all',
+                            'elementType': 'labels.text.fill',
+                            'stylers': {
+                                'color': '#857f7f'
+                            }
+                        }, {
+                            'featureType': 'all',
+                            'elementType': 'labels.text.stroke',
+                            'stylers': {
+                                'color': '#000000'
+                            }
+                        }, {
+                            'featureType': 'building',
+                            'elementType': 'geometry',
+                            'stylers': {
+                                'color': '#022338'
+                            }
+                        }, {
+                            'featureType': 'green',
+                            'elementType': 'geometry',
+                            'stylers': {
+                                'color': '#062032'
+                            }
+                        }, {
+                            'featureType': 'boundary',
+                            'elementType': 'all',
+                            'stylers': {
+                                'color': '#465b6c'
+                            }
+                        }, {
+                            'featureType': 'manmade',
+                            'elementType': 'all',
+                            'stylers': {
+                                'color': '#022338'
+                            }
+                        }, {
+                            'featureType': 'label',
+                            'elementType': 'all',
+                            'stylers': {
+                                'visibility': 'off'
+                            }
+                        }]
+                    }
+                },
+                timeline: {
+                    axisType: 'category',
+                    orient: 'horizontal',
+                    autoPlay: true,
+                    inverse: true,
+                    playInterval: Math.round(1000 * 600 * ratio),
+                    left: 20,
+                    right: 20,
+                    top: null,
+                    bottom: 0,
+                    width: null,
+                    height: 55,
+                    inverse: false,
+                    label: {
+                        position: 10,
+                        normal: {
+                            //interval: 1,
+                            textStyle: {
+                                color: '#999'
+                            },
+                            //rotate: 60,
+                            formatter: function(value, index) {
+                                var texts = [value.slice(-4, -2), value.slice(-2)];
+                                if (index % 3 == 1 || index % 3 == 2) {
+                                    texts.shift();
+                                    texts.shift();
+                                }
+                                return texts.join(':');
+                            }
+                        },
+                        emphasis: {
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    symbol: 'diamond',
+                    symbolSize: 10,
+                    lineStyle: {
+                        color: '#555'
+                    },
+                    checkpointStyle: {
+                        color: '#bbb',
+                        borderColor: '#777',
+                        borderWidth: 2
+                    },
+                    controlStyle: {
+                        showNextBtn: true,
+                        showPrevBtn: true,
+                        normal: {
+                            color: '#666',
+                            borderColor: '#666'
+                        },
+                        emphasis: {
+                            color: '#aaa',
+                            borderColor: '#aaa'
+                        }
+                    },
+                    data: []
+                },
+                backgroundColor: '#404a59',
+                series: [{
+                    type: 'lines',
+                    coordinateSystem: 'bmap',
+                    polyline: true,
+                    data: busLines,
+                    silent: true,
+                    lineStyle: {
+                        normal: {
+                            opacity: 0.2,
+                            width: 1
+                        }
+                    },
+                    progressiveThreshold: 500,
+                    progressive: 200
+                }, {
+                    type: 'lines',
+                    coordinateSystem: 'bmap',
+                    polyline: true,
+                    data: busLines,
+                    effect: {
+                        constantSpeed: 0,
+                        show: true,
+                        trailLength: 0,
+                        symbolSize: 1.5
+                    },
+                    zlevel: 1
+                }],
+                animationDurationUpdate: 0,
+                animation: false
+            },
+            options: []
+        };
+
+        for (var n = 0; n < data.timelines.length; n++) {
+            //timeline显示data
+            if (n % 6 === 0) {
+                var time = {
+                    value: data.timelines[n],
+                    symbol: "emptyDiamond"
+                }
+                option.baseOption.timeline.data.push(time);
+            } else {
+                option.baseOption.timeline.data.push(data.timelines[n]);
+            }
+        }
+
+        fillOptions(0);
+
+        myChart.setOption(option);
+
+        if (!app.inNode) {
+            // 添加百度地图插件
+            var bmap = myChart.getModel().getComponent('bmap').getBMap();
+            bmap.addControl(new BMap.MapTypeControl());
+            bmap.addControl(new BMap.NavigationControl({
+                anchor: BMAP_ANCHOR_TOP_RIGHT,
+                type: BMAP_NAVIGATION_CONTROL_ZOOM
+            }));
+        }
+
+        function fillOptions(identifier){
+            option.options = [];
+            for (var n = 0; n < data.timelines.length; n++) {
+                option.options.push({
+                    title: {
+                        show: true,
+                        left: 20,
+                        right: null,
+                        top: 20,
+                        bottom: null,
+                        text: ('   ' + data.timelines[n].toString().slice(-4, -2) + ' : ' + data.timelines[n].toString().slice(-2)),
+                        textStyle: {
+                            color: '#fff'
+                        },
+                        subtext: (data.timelines[n].toString().slice(0, 4) + '年' + data.timelines[n].toString().slice(4, 6) + '月' + data.timelines[n].toString().slice(6, 8) + '日')
+                    },
+                    tooltip: {
+                        padding: 5,
+                        backgroundColor: '#222',
+                        borderColor: '#777',
+                        borderWidth: 1,
+                        formatter: function(obj) {
+                            if (obj.componentType === "timeline") {
+                                var value = obj.name;
+                                var texts = [value.slice(-4, -2), value.slice(-2)];
+                                return texts.join(':');
+                            } else if (obj.componentSubType === "lines") {
+                                return obj.name;
+                            }
+                        }
+                    },
+                    series: (function(busLines) {
+                        if (n == identifier) {
+                            var series = [{
+                                type: 'lines',
+                                coordinateSystem: 'bmap',
+                                polyline: true,
+                                data: (function (busLines) { //busLines路分段
+
+                                    var busLines_new = [];
+
+                                    for (var i = 0; i < busLines.length; i++) {
+                                        var name = schema[0].text + '：' + data.series[n][i][0] + schema[0].unit + '<br>' + schema[1].text + '：' + data.series[n][i][1] + schema[1].unit;
+                                        var lineStyle = {
+                                            normal: {
+                                                opacity: 0.2,
+                                                width: 2,
+                                                curvness: 1
+                                            }
+                                        };
+
+                                        if (data.series[n][i][2] == "red")
+                                            lineStyle.normal.color = 'rgba(255,0,0,1)';
+                                        else if (data.series[n][i][2] == "green")
+                                            lineStyle.normal.color = 'rgba(0,255,0,1)';
+                                        else if (data.series[n][i][2] == "yellow")
+                                            lineStyle.normal.color = 'rgba(255,255,0,1)';
+
+                                        //lineStyle.normal.color = 'rgba(' + Math.round(Math.random() * 255) + ','
+                                        //        + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',1)';
+
+
+                                        busLines_new[i] = {};
+                                        busLines_new[i].name = name;
+                                        busLines_new[i].coords = busLines[i].coords; //0~xxx
+                                        busLines_new[i].lineStyle = lineStyle;
+                                    }
+
+                                    return busLines_new;
+                                })(busLines),
+                                zlevel: 2,
+                                silent: false,
+                                progressiveThreshold: 500,
+                                progressive: 200
+                            }];
+                            //下面是加effect
+                            for (var i = 0; i < busLines.length; i++) {
+
+                                //每条道路速度不同
+                                var line = [];
+                                line.push(busLines[i]);
+
+                                //每条道路插入多次,代表多辆汽车
+                                for (var j = 0; j < (data.series[n][i][0] < limitOfCars ? data.series[n][i][0] : limitOfCars); j++) {
+                                    series.push({
+                                        type: 'lines',
+                                        coordinateSystem: 'bmap',
+                                        polyline: true,
+                                        data: line,
+                                        effect: {
+                                            constantSpeed: Math.round(data.series[n][i][1]) + Math.random() * 5,
+                                            show: true,
+                                            trailLength: 0,
+                                            symbolSize: 3,
+                                            animation: false
+                                        },
+                                        zlevel: 1,
+                                        silent: true
+                                    });
+                                }
+                                if (data.series[n][i][0] < limitOfCars) {
+                                    for (var j = data.series[n][i][0]; j < limitOfCars; j++) {
+                                        series.push({
+                                            type: 'lines',
+                                            coordinateSystem: 'bmap',
+                                            polyline: true,
+                                            data: line,
+                                            effect: {
+                                                constantSpeed: 0,
+                                                show: true,
+                                                trailLength: 0,
+                                                symbolSize: 0,
+                                                animation: false
+                                            },
+                                            zlevel: 1
+                                        });
+                                    }
+                                }
+                            }
+                        }else{
+                            var series = [{
+                                type: 'lines',
+                                coordinateSystem: 'bmap',
+                                polyline: true,
+                                data: null,
+                                zlevel: 2,
+                                silent: false,
+                                progressiveThreshold: 500,
+                                progressive: 200
+                            },{
+                                type: 'lines',
+                                coordinateSystem: 'bmap',
+                                polyline: true,
+                                data: line,
+                                effect: {
+                                    constantSpeed: 0,
+                                    show: true,
+                                    trailLength: 0,
+                                    symbolSize: 3,
+                                    animation: false
+                                },
+                                zlevel: 1,
+                                silent: true
+                            }]
+                        }
+                        return series;
+                    })(busLines)
+                });
+            }
+        }
+
+        bindEvent();
+
+        function bindEvent(){
+            myChart.on('timelinechanged', function(param) {
+                //console.log(manual);
+                if (manual){
+                    manual = false;
+                    return;
+                }
+
+                identifier = param.currentIndex;
+                counter++;
+                if (counter >= 3){
+                    counter = 0;
+
+                    setTimeout(function(){
+                        console.log("echarts refresh");
+
+                        myChart.dispose();
+                        delete dom;
+                        myChart = echarts.init(document.getElementById("main_map"));
+
+                        bindEvent();
+
+                        fillOptions(identifier);
+                        manual = true;
+                        myChart.setOption(option,true);
+                        myChart.dispatchAction({
+                            type: 'timelineChange',
+                            // 时间点的 index
+                            currentIndex: identifier
+                        });
+                    },1000);
+                    return;
+                }
+                //console.log("normal update");
+                fillOptions(identifier);
+
+                manual = true; //人为dispatch_action,故不激发event
+
+                myChart.setOption(option);
+                myChart.dispatchAction({
+                    type: 'timelineChange',
+                    // 时间点的 index
+                    currentIndex: identifier
+                });
+            });
+        }
+    });
+
+
+</script>
+</body>
+
+</html>

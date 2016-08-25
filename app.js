@@ -40,7 +40,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
 
   app.get('/', function(req, res){
     console.log("req: %j", req);
-    res.sendFile(__dirname+"/content/views/lines-bmap-effect.html");
+    res.sendFile(__dirname+"/content/views/2016-03-12.html");
   });
 
   app.get('/jquery-3.1.0.min.js',function(req,res){
@@ -69,6 +69,10 @@ fs.open("log.txt","a",0x0644, function(err, fd){
 
   app.get('/:year-:month-:day.json',function(req,res){
     res.sendFile(__dirname+"/content/snaptoroads/"+req.params.year+"-"+req.params.month+"-"+req.params.day+".json");
+  });
+
+  app.get('/:year-:month-:day.html',function(req,res){
+    res.sendFile(__dirname+"/content/views/"+req.params.year+"-"+req.params.month+"-"+req.params.day+".html");
   });
 
   var listener = app.listen(port,ip, function (err) {
