@@ -105,7 +105,7 @@
     option = null;
     myChart.showLoading();
 
-    $.get('http://222.85.139.245:64154/2016-03-21.json', function(data) {
+    $.get('http://127.0.0.1:8887/content/snaptoroads/2016-03-21.json', function(data) {
         myChart.hideLoading();
         var schema = [{
             index: 0,
@@ -116,6 +116,7 @@
             text: '平均车速',
             unit: 'km/h'
         }];
+        //道路点集转换为道路集
         var busLines = [].concat.apply([], data.lines.map(function(busLine) {
             var prevPt;
             var points = [];
@@ -127,7 +128,6 @@
                 coords: points
             };
         }));
-
 
         option = {
             baseOption: {
@@ -322,7 +322,7 @@
                     silent: true,
                     lineStyle: {
                         normal: {
-                            opacity: 0.2,
+                            opacity: 0.5,
                             width: 1
                         }
                     },
@@ -347,8 +347,8 @@
             options: []
         };
 
+        //timeline美化
         for (var n = 0; n < data.timelines.length; n++) {
-            //timeline显示data
             if (n % 6 === 0) {
                 var time = {
                     value: data.timelines[n],
@@ -374,9 +374,10 @@
             }));
         }
 
-        function fillOptions(identifier){
+        function fillOptions(identifier) {
             option.options = [];
             for (var n = 0; n < data.timelines.length; n++) {
+                var timelineString = data.timelines[n].toString();
                 option.options.push({
                     title: {
                         show: true,
@@ -384,11 +385,11 @@
                         right: null,
                         top: 20,
                         bottom: null,
-                        text: ('   ' + data.timelines[n].toString().slice(-4, -2) + ' : ' + data.timelines[n].toString().slice(-2)),
+                        text: ('   ' + timelineString.slice(-4, -2) + ' : ' + timelineString.slice(-2)),
                         textStyle: {
                             color: '#fff'
                         },
-                        subtext: (data.timelines[n].toString().slice(0, 4) + '年' + data.timelines[n].toString().slice(4, 6) + '月' + data.timelines[n].toString().slice(6, 8) + '日')
+                        subtext: (timelineString.slice(0, 4) + '年' + timelineString.slice(4, 6) + '月' + timelineString.slice(6, 8) + '日')
                     },
                     tooltip: {
                         padding: 5,
@@ -406,12 +407,13 @@
                         }
                     },
                     series: (function(busLines) {
+                        //判断是否当前时间
                         if (n == identifier) {
                             var series = [{
                                 type: 'lines',
                                 coordinateSystem: 'bmap',
                                 polyline: true,
-                                data: (function (busLines) { //busLines路分段
+                                data: (function(busLines) { //busLines路分段
 
                                     var busLines_new = [];
 
@@ -425,16 +427,14 @@
                                             }
                                         };
 
-                                        if (data.series[n][i][2] == "red")
+                                        if (data.series[n][i][2] == 3)
                                             lineStyle.normal.color = 'rgba(255,0,0,1)';
-                                        else if (data.series[n][i][2] == "green")
+                                        else if (data.series[n][i][2] == 1)
                                             lineStyle.normal.color = 'rgba(0,255,0,1)';
-                                        else if (data.series[n][i][2] == "yellow")
+                                        else if (data.series[n][i][2] == 2)
                                             lineStyle.normal.color = 'rgba(255,255,0,1)';
-
-                                        //lineStyle.normal.color = 'rgba(' + Math.round(Math.random() * 255) + ','
-                                        //        + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',1)';
-
+                                        else if (data.series[n][i][2] == 4)
+                                            lineStyle.normal.color = 'rgba(144,144,144,1)';
 
                                         busLines_new[i] = {};
                                         busLines_new[i].name = name;
@@ -446,8 +446,8 @@
                                 })(busLines),
                                 zlevel: 2,
                                 silent: false,
-                                progressiveThreshold: 500,
-                                progressive: 200
+                                progressiveThreshold: 50,
+                                progressive: 20
                             }];
                             //下面是加effect
                             for (var i = 0; i < busLines.length; i++) {
@@ -455,27 +455,27 @@
                                 //每条道路速度不同
                                 var line = [];
                                 line.push(busLines[i]);
-
+                                var numberOfCars = (data.series[n][i][0] < limitOfCars ? data.series[n][i][0] : limitOfCars);
                                 //每条道路插入多次,代表多辆汽车
-                                for (var j = 0; j < (data.series[n][i][0] < limitOfCars ? data.series[n][i][0] : limitOfCars); j++) {
-                                    series.push({
-                                        type: 'lines',
-                                        coordinateSystem: 'bmap',
-                                        polyline: true,
-                                        data: line,
-                                        effect: {
-                                            constantSpeed: Math.round(data.series[n][i][1]) + Math.random() * 5,
-                                            show: true,
-                                            trailLength: 0,
-                                            symbolSize: 3,
-                                            animation: false
-                                        },
-                                        zlevel: 1,
-                                        silent: true
-                                    });
-                                }
-                                if (data.series[n][i][0] < limitOfCars) {
-                                    for (var j = data.series[n][i][0]; j < limitOfCars; j++) {
+                                for (var j = 0; j < limitOfCars; j++) {
+                                    if (j < numberOfCars) {
+                                        series.push({
+                                            type: 'lines',
+                                            coordinateSystem: 'bmap',
+                                            polyline: true,
+                                            data: line,
+                                            effect: {
+                                                constantSpeed: Math.round(data.series[n][i][1]) + Math.random() * 5,
+                                                show: true,
+                                                trailLength: 0,
+                                                symbolSize: 3,
+                                                animation: false
+                                            },
+                                            zlevel: 1,
+                                            silent: true
+                                        });
+                                    } else {
+                                        //清除多余的点
                                         series.push({
                                             type: 'lines',
                                             coordinateSystem: 'bmap',
@@ -493,7 +493,7 @@
                                     }
                                 }
                             }
-                        }else{
+                        } else {
                             var series = [{
                                 type: 'lines',
                                 coordinateSystem: 'bmap',
@@ -501,23 +501,14 @@
                                 data: null,
                                 zlevel: 2,
                                 silent: false,
-                                progressiveThreshold: 500,
-                                progressive: 200
-                            },{
+                            }, {
                                 type: 'lines',
                                 coordinateSystem: 'bmap',
                                 polyline: true,
-                                data: line,
-                                effect: {
-                                    constantSpeed: 0,
-                                    show: true,
-                                    trailLength: 0,
-                                    symbolSize: 3,
-                                    animation: false
-                                },
+                                data: null,
                                 zlevel: 1,
                                 silent: true
-                            }]
+                            }];
                         }
                         return series;
                     })(busLines)
