@@ -96,11 +96,10 @@
     var dom = document.getElementById('main_map');
     dom.style.height = (screen.height-100) + "px";
     var myChart = echarts.init(dom);
-    var ratio = 20 / 600;
+    var ratio = 60 / 600;
     var app = {};
     var manual = false;
     var identifier=0;
-    var counter = 0;
     var limitOfCars = 50;
     option = null;
     myChart.showLoading();
@@ -409,7 +408,7 @@
                                         var name = schema[0].text + '：' + data.series[n][i][0] + schema[0].unit + '<br>' + schema[1].text + '：' + data.series[n][i][1] + schema[1].unit;
                                         var lineStyle = {
                                             normal: {
-                                                opacity: 0.2,
+                                                opacity: 0.4,
                                                 width: 1.5,
                                                 curvness: 1
                                             }
