@@ -96,12 +96,12 @@
     var dom = document.getElementById('main_map');
     dom.style.height = (screen.height-100) + "px";
     var myChart = echarts.init(dom);
-    var ratio = 60 / 600;
+    var ratio = 20 / 600;
     var app = {};
     var manual = false;
     var identifier=0;
     var counter = 0;
-    var limitOfCars = 20;
+    var limitOfCars = 50;
     option = null;
     myChart.showLoading();
 
@@ -318,28 +318,16 @@
                     type: 'lines',
                     coordinateSystem: 'bmap',
                     polyline: true,
-                    data: busLines,
-                    silent: true,
-                    lineStyle: {
-                        normal: {
-                            opacity: 0.5,
-                            width: 1
-                        }
-                    },
-                    progressiveThreshold: 500,
-                    progressive: 200
+                    data: null,
+                    zlevel: 2,
+                    silent: false,
                 }, {
                     type: 'lines',
                     coordinateSystem: 'bmap',
                     polyline: true,
-                    data: busLines,
-                    effect: {
-                        constantSpeed: 0,
-                        show: true,
-                        trailLength: 0,
-                        symbolSize: 1.5
-                    },
-                    zlevel: 1
+                    data: null,
+                    zlevel: 1,
+                    silent: true
                 }],
                 animationDurationUpdate: 0,
                 animation: false
@@ -375,6 +363,7 @@
         }
 
         function fillOptions(identifier) {
+            option.options.length = 0;
             option.options = [];
             for (var n = 0; n < data.timelines.length; n++) {
                 var timelineString = data.timelines[n].toString();
@@ -494,21 +483,7 @@
                                 }
                             }
                         } else {
-                            var series = [{
-                                type: 'lines',
-                                coordinateSystem: 'bmap',
-                                polyline: true,
-                                data: null,
-                                zlevel: 2,
-                                silent: false,
-                            }, {
-                                type: 'lines',
-                                coordinateSystem: 'bmap',
-                                polyline: true,
-                                data: null,
-                                zlevel: 1,
-                                silent: true
-                            }];
+                            var series = [];
                         }
                         return series;
                     })(busLines)
@@ -528,7 +503,7 @@
 
                 identifier = param.currentIndex;
                 counter++;
-                if (counter >= 3){
+                if (counter >= 5){
                     counter = 0;
 
                     setTimeout(function(){
@@ -542,7 +517,7 @@
 
                         fillOptions(identifier);
                         manual = true;
-                        myChart.setOption(option,true);
+                        myChart.setOption(option);
                         myChart.dispatchAction({
                             type: 'timelineChange',
                             // 时间点的 index
@@ -551,17 +526,9 @@
                     },1000);
                     return;
                 }
-                //console.log("normal update");
+
                 fillOptions(identifier);
-
-                manual = true; //人为dispatch_action,故不激发event
-
                 myChart.setOption(option);
-                myChart.dispatchAction({
-                    type: 'timelineChange',
-                    // 时间点的 index
-                    currentIndex: identifier
-                });
             });
         }
     });
