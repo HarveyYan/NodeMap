@@ -56,7 +56,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
   });
 
   app.get('/MaterialIcons',function(req,res){
-    res.send(__dirname+"/content/views/css/MaterialIcons");
+    res.sendFile(__dirname+"/content/views/css/MaterialIcons");
   });
 
   app.get('/user.jpg',function(req,res){
