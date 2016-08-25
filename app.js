@@ -51,6 +51,10 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     res.sendFile(__dirname+"/content/views/css/styles.css");
   });
 
+  app.get('/user.jpg',function(req,res){
+    res.sendFile(__dirname+"/content/views/images/user.jpg");
+  });
+
   app.get('/echarts.min.js',function(req,res){
     res.sendFile(__dirname+"/content/scripts/echarts/dist/echarts.min.js");
   });
