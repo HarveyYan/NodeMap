@@ -330,28 +330,16 @@
                     type: 'lines',
                     coordinateSystem: 'bmap',
                     polyline: true,
-                    data: busLines,
-                    silent: true,
-                    lineStyle: {
-                        normal: {
-                            opacity: 0.5,
-                            width: 1
-                        }
-                    },
-                    progressiveThreshold: 500,
-                    progressive: 200
+                    data: null,
+                    zlevel: 2,
+                    silent: false,
                 }, {
                     type: 'lines',
                     coordinateSystem: 'bmap',
                     polyline: true,
-                    data: busLines,
-                    effect: {
-                        constantSpeed: 0,
-                        show: true,
-                        trailLength: 0,
-                        symbolSize: 1
-                    },
-                    zlevel: 1
+                    data: null,
+                    zlevel: 1,
+                    silent: true
                 }],
                 animationDurationUpdate: 0,
                 animation: false
@@ -512,21 +500,7 @@
                                 }
                             }
                         } else {
-                            var series = [{
-                                type: 'lines',
-                                coordinateSystem: 'bmap',
-                                polyline: true,
-                                data: null,
-                                zlevel: 2,
-                                silent: false,
-                            }, {
-                                type: 'lines',
-                                coordinateSystem: 'bmap',
-                                polyline: true,
-                                data: null,
-                                zlevel: 1,
-                                silent: true
-                            }];
+                            var series = [];
                         }
                         return series;
                     })(busLines)
@@ -535,51 +509,51 @@
         }
 
 
-//        myChart.on('timelinechanged', function(param) {
-//            identifier = param.currentIndex;
-//            fillOptions(identifier);
-//            myChart.setOption(option);
-//        });
+        myChart.on('timelinechanged', function(param) {
+            identifier = param.currentIndex;
+            fillOptions(identifier);
+            myChart.setOption(option);
+        });
 
-        bindEvent();
-
-        function bindEvent(){
-            myChart.on('timelinechanged', function(param) {
-                if (manual){
-                    manual = false;
-                    return;
-                }
-
-                identifier = param.currentIndex;
-                counter++;
-                if (counter >= 5){
-                    counter = 0;
-
-                    setTimeout(function(){
-                        console.log("echarts refresh");
-
-                        myChart.dispose();
-                        delete dom;
-                        myChart = echarts.init(document.getElementById("main_map"));
-
-                        bindEvent();
-
-                        fillOptions(identifier);
-                        manual = true;
-                        myChart.setOption(option);
-                        myChart.dispatchAction({
-                            type: 'timelineChange',
-                            // 时间点的 index
-                            currentIndex: identifier
-                        });
-                    },1000);
-                    return;
-                }
-
-                fillOptions(identifier);
-                myChart.setOption(option);
-            });
-        }
+//        bindEvent();
+//
+//        function bindEvent(){
+//            myChart.on('timelinechanged', function(param) {
+//                if (manual){
+//                    manual = false;
+//                    return;
+//                }
+//
+//                identifier = param.currentIndex;
+//                counter++;
+//                if (counter >= 5){
+//                    counter = 0;
+//
+//                    setTimeout(function(){
+//                        console.log("echarts refresh");
+//
+//                        myChart.dispose();
+//                        delete dom;
+//                        myChart = echarts.init(document.getElementById("main_map"));
+//
+//                        bindEvent();
+//
+//                        fillOptions(identifier);
+//                        manual = true;
+//                        myChart.setOption(option);
+//                        myChart.dispatchAction({
+//                            type: 'timelineChange',
+//                            // 时间点的 index
+//                            currentIndex: identifier
+//                        });
+//                    },1000);
+//                    return;
+//                }
+//
+//                fillOptions(identifier);
+//                myChart.setOption(option);
+//            });
+//        }
 
     });
 
