@@ -2,15 +2,91 @@
 <html style="height: 100%">
 
 <head>
+
     <meta charset="utf-8">
-    <title>Guiyang Traffic Pattern</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Traffic Pattern</title>
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.cyan-light_blue.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
 </head>
 
-<body style="height: 100%; margin: 0">
-    <div id="container" style="height: 100%"></div>
-    <link rel="stylesheet" href="http://127.0.0.1:8887/content/mdl/material.min.css">
+<body>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+        <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">GuiYang Traffic Pattern</span>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+                        <i class="material-icons">search</i>
+                    </label>
+                    <div class="mdl-textfield__expandable-holder">
+                        <input class="mdl-textfield__input" type="text" id="search">
+                        <label class="mdl-textfield__label" for="search">Enter your query...</label>
+                    </div>
+                </div>
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+                    <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+                    <li class="mdl-menu__item" onclick="alert('ISCAS Intern Group Presents');">About</li>
+                    <li class="mdl-menu__item" onclick="alert('With special thanks to echarts of Baidu and, Google maps api, Snap To Roads feature and material design lite of Google');">Acknowledgements</li>
+                </ul>
+            </div>
+        </header>
+
+        <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+            <header class="demo-drawer-header">
+                <img src="images/user.jpg" class="demo-avatar">
+                <div class="demo-avatar-dropdown">
+                    <span></span>
+                    <div class="mdl-layout-spacer"></div>
+                    <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                        <i class="material-icons" role="presentation">arrow_drop_down</i>
+                        <span class="visuallyhidden">Accounts</span>
+                    </button>
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+                        <li class="mdl-menu__item">hello@example.com</li>
+                        <li class="mdl-menu__item">info@example.com</li>
+                        <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
+                    </ul>
+                </div>
+            </header>
+            <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-12</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-13</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-14</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-15</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-16</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-17</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-18</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-19</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-20</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-21</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-22</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-23</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-24</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-25</a>
+                <div class="mdl-layout-spacer"></div>
+            </nav>
+        </div>
+
+        <main class="mdl-layout__content mdl-color--grey-100">
+            <div class="mdl-grid demo-content">
+                <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" id="main_map" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
+            </div>
+        </main>
+
+    </div>
     <script src="http://127.0.0.1:8887/content/mdl/material.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/echarts/dist/echarts.min.js"></script>
     <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/echarts/dist/extension/dataTool.min.js"></script>
@@ -18,7 +94,9 @@
     <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/echarts/dist/extension/bmap.min.js"></script>
     <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/jquery-3.1.0.min.js"></script>
     <script type="text/javascript">
-        var dom = document.getElementById("container");
+        console.log("are we here?");
+        var dom = document.getElementById('main_map');
+        console.log(dom);
         var myChart = echarts.init(dom);
         var ratio = 60 / 600;
         var app = {};
@@ -31,6 +109,7 @@
 
         $.get('http://127.0.0.1:8887/content/snaptoroads/2016-03-12.json', function(data) {
             myChart.hideLoading();
+            console.log("here");
             var schema = [{
                 index: 0,
                 text: '通过车辆',
@@ -469,7 +548,7 @@
 
                             myChart.dispose();
                             delete dom;
-                            myChart = echarts.init(document.getElementById("container"));
+                            myChart = echarts.init(document.getElementById("main_map"));
 
                             bindEvent();
 
