@@ -108,7 +108,7 @@
     var dom = document.getElementById('main_map');
     dom.style.height = (screen.height-100) + "px";
     var myChart = echarts.init(dom);
-    var ratio = 60 / 600;
+    var ratio = 20 / 600;
     var app = {};
     var manual = false;
     var identifier=0;
@@ -483,7 +483,7 @@
                                             polyline: true,
                                             data: line,
                                             effect: {
-                                                constantSpeed: Math.round(data.series[n][i][1]*118/2000) + Math.random() * 10,
+                                                constantSpeed: Math.round(data.series[n][i][1]*118/1000) + Math.random() * 10,
                                                 show: true,
                                                 trailLength: 0,
                                                 symbolSize: 3,
