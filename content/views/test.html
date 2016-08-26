@@ -143,6 +143,7 @@
                         data: data.timelines.map(function(timelines) {
                             var value = timelines.toString();
                             var texts = [value.slice(-4, -2), value.slice(-2)];
+                            console.log(texts.join(':'));
                             return texts.join(':');
                         })
                     }],
