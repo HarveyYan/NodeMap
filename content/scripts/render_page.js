@@ -7,6 +7,8 @@
     var carsColorChart=echarts.init(document.getElementById('carsColor_chart'));
     // document.getElementById('carsColor_chart').style.height = (screen.height/2) + "px";
     // document.getElementById('roadColor_chart').style.height = (screen.height/2) + "px";
+    var eachSpeedAndNumber = document.getElementById('eachSpeedAndNumber_chart');
+    var eachSpdAndNumChart = echarts.init(eachSpeedAndNumber);
 
     var ratio = 60 / 600;
     var app = {};
@@ -19,7 +21,10 @@
     var lastScript = scripts[scripts.length-1];
 
     spdAndNumChart.showLoading();
-    myChart.showLoading();
+    eachSpdAndNumChart.showLoading();
+    myChart.showLoading('default', {
+        text: '加载中..'
+    });
 
     $.get('http://222.85.139.245:64154/'+lastScript.getAttribute('res'), function(data) {
         (function setSpdAndNum(data) {
@@ -97,6 +102,71 @@
             }
             spdAndNumChart.setOption(option);
         }(data));
+
+        (function setEachSpdAndNum(data) {
+            eachSpdAndNumChart.hideLoading();
+            var eachOption = {
+
+                tooltip: {
+                    trigger: 'axis',
+                },
+                dataZoom: [{
+                    show: true,
+                    realtime: true,
+                    start: 65,
+                    end: 85
+                }, {
+                    type: 'inside',
+                    realtime: true,
+                    start: 65,
+                    end: 85
+                }],
+                xAxis: {
+                    type: 'category',
+                    data: data.timelines.map(function(timelines) {
+                        var value = timelines.toString();
+                        var texts = [value.slice(-4, -2), value.slice(-2)];
+                        return texts.join(':');
+                    })
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '通过车辆',
+                    axisLabel: {
+                        formatter: '{value} 辆'
+                    }
+                },
+                legend: {
+                    data: (function() {
+                        var arr = [];
+                        for (var i = 0; i < data.lines.length; i++) {
+                            arr.push('line' + i);
+                        }
+                        return arr;
+                    }())
+                },
+                series: (function(data) {
+                    var series = [];
+                    for (var i = 0; i < data.lines.length; i++) {
+                        series.push({
+                            name: 'line' + i,
+                            type: 'bar',
+                            stack: '车辆数',
+                            data: (function() {
+                                var arr = [];
+                                for (var j = 0; j < data.timelines.length; j++) {
+                                    arr.push(data.series[j][i][0]);
+                                }
+                                return arr;
+                            }())
+                        });
+                    }
+                    return series;
+                }(data))
+            }
+            eachSpdAndNumChart.setOption(eachOption);
+        }(data));
+
         myChart.hideLoading();
         var schema = [{
             index: 0,
