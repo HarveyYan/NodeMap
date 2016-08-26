@@ -1,6 +1,8 @@
     var dom = document.getElementById('main_map');
+    var speedAndNumber = document.getElementById('speedAndNumber_chart');
     dom.style.height = (screen.height-100) + "px";
     var myChart = echarts.init(dom);
+    var spdAndNumChart = echarts.init(speedAndNumber);
     var ratio = 60 / 600;
     var app = {};
     var manual = false;
@@ -11,9 +13,88 @@
     var scripts = document.getElementsByTagName('script');
     var lastScript = scripts[scripts.length-1];
 
+    spdAndNumChart.showLoading();
     myChart.showLoading();
 
     $.get('http://222.85.139.245:64154/'+lastScript.getAttribute('res'), function(data) {
+        (function setSpdAndNum(data) {
+            spdAndNumChart.hideLoading();
+            option = {
+                grid: {
+                    bottom: 80
+                },
+                toolbox: {
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        animation: false
+                    }
+                },
+                dataZoom: [{
+                    show: true,
+                    realtime: true,
+                    start: 65,
+                    end: 85
+                }, {
+                    type: 'inside',
+                    realtime: true,
+                    start: 65,
+                    end: 85
+                }],
+                xAxis: [{
+                    type: 'category',
+                    data: data.timelines.map(function(timelines) {
+                        var list = [];
+                        var value = timelines.toString();
+                        var texts = [value.slice(-4, -2), value.slice(-2)];
+                        return texts.join(':');
+                    })
+                }],
+                yAxis: [{
+                    type: 'value',
+                    name: '总通过车辆',
+                    axisLabel: {
+                        formatter: '{value} 辆'
+                    }
+                }, {
+                    type: 'value',
+                    name: '平均速度',
+                    min: 25,
+                    axisLabel: {
+                        formatter: '{value} km/h'
+                    }
+                }],
+                legend: {
+                    data: ['平均车速', '总通过车辆']
+                },
+                series: [{
+                    name: '总通过车辆',
+                    type: 'bar',
+                    animation: false,
+                    data: data.totalNumber,
+                }, {
+                    name: '平均车速',
+                    type: 'line',
+                    animation: false,
+                    lineStyle: {
+                        normal: {
+                            width: 2
+                        }
+                    },
+                    yAxisIndex: 1,
+                    data: data.averageSpeed,
+                }]
+            }
+            spdAndNumChart.setOption(option);
+        }(data));
         myChart.hideLoading();
         var schema = [{
             index: 0,

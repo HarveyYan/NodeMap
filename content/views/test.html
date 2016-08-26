@@ -21,10 +21,10 @@
     <meta name="msapplication-TileColor" content="#3372DF">
 
 
-    <link rel="stylesheet" href="RobotoFonts.css">
-    <link rel="stylesheet" href="MaterialIcons.css">
-    <link rel="stylesheet" href="material.cyan-light_blue.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/RobotoFonts.css">
+    <link rel="stylesheet" href="css/MaterialIcons.css">
+    <link rel="stylesheet" href="css/material.cyan-light_blue.min.css">
+    <link rel="stylesheet" href="css/styles.css">
 
 </head>
 
@@ -105,7 +105,7 @@
         spdAndNumChart.showLoading();
         myChart.showLoading();
 
-        $.get('2016-03-12.json', function(data) {
+        $.get('../snaptoroads/2016-03-12.json', function(data) {
             (function setSpdAndNum(data) {
                 spdAndNumChart.hideLoading();
                 option = {
@@ -144,8 +144,7 @@
                             var list = [];
                             var value = timelines.toString();
                             var texts = [value.slice(-4, -2), value.slice(-2)];
-                            list.push(texts.join(':'));
-                            return list;
+                            return texts.join(':');
                         })
                     }],
                     yAxis: [{
@@ -157,9 +156,7 @@
                     }, {
                         type: 'value',
                         name: '平均速度',
-                        min: 0,
-                        max: 25,
-                        interval: 5,
+                        min: 25,
                         axisLabel: {
                             formatter: '{value} km/h'
                         }
@@ -176,9 +173,6 @@
                         name: '平均车速',
                         type: 'line',
                         animation: false,
-                        areaStyle: {
-                            normal: {}
-                        },
                         lineStyle: {
                             normal: {
                                 width: 2
