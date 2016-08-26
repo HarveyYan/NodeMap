@@ -7,7 +7,7 @@
     var app = {};
     var manual = false;
     var identifier=0;
-    var limitOfCars = 50;
+    var limitOfCars = 20;
     option = null;
 
     var scripts = document.getElementsByTagName('script');
@@ -120,7 +120,7 @@
                 bmap: {
                     center: [106.646914, 26.635041],
                     zoom: 14,
-                    roam: false,
+                    roam: move,
                     mapStyle: {
                         'styleJson': [{
                             'featureType': 'water',
