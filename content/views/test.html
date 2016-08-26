@@ -5,37 +5,35 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Traffic Pattern</title>
 
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.cyan-light_blue.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+
+    <link rel="stylesheet" href="RobotoFonts.css">
+    <link rel="stylesheet" href="MaterialIcons.css">
+    <link rel="stylesheet" href="material.cyan-light_blue.min.css">
+    <link rel="stylesheet" href="styles.css">
 
 </head>
-<body>
 
+<body>
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 
         <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
             <div class="mdl-layout__header-row">
                 <span class="mdl-layout-title">GuiYang Traffic Pattern</span>
-                <div class="mdl-layout-spacer"></div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-                        <i class="material-icons">search</i>
-                    </label>
-                    <div class="mdl-textfield__expandable-holder">
-                        <input class="mdl-textfield__input" type="text" id="search">
-                        <label class="mdl-textfield__label" for="search">Enter your query...</label>
-                    </div>
-                </div>
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-                    <i class="material-icons">more_vert</i>
-                </button>
                 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
                     <li class="mdl-menu__item" onclick="alert('ISCAS Interns Group Presents');">About</li>
                     <li class="mdl-menu__item" onclick="alert('With special thanks to echarts of Baidu and, Google Maps API, Snap To Roads feature and material design lite of Google');">Acknowledgements</li>
@@ -46,14 +44,13 @@
 
         <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
             <header class="demo-drawer-header">
-                <img src="images/user.jpg" class="demo-avatar">
                 <div class="demo-avatar-dropdown">
                     <span>Contact</span>
                     <div class="mdl-layout-spacer"></div>
                     <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                        <i class="material-icons" role="presentation">arrow_drop_down</i>
-                        <span class="visuallyhidden">Accounts</span>
-                    </button>
+                    <i class="material-icons" role="presentation">arrow_drop_down</i>
+                    <span class="visuallyhidden">Accounts</span>
+                </button>
                     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
                         <li class="mdl-menu__item">developers@someplace.com</li>
                         <li class="mdl-menu__item">info@someplace.com</li>
@@ -61,52 +58,136 @@
                 </div>
             </header>
             <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-12</a>
-                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-13</a>
-                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-14</a>
-                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-15</a>
-                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-16</a>
-                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-17</a>
-                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-18</a>
-                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-19</a>
-                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-20</a>
-                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-21</a>
-                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-22</a>
-                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-23</a>
-                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-24</a>
-                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-25</a>
+                <a class="mdl-navigation__link" href="2016-03-12"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-12</a>
+                <a class="mdl-navigation__link" href="2016-03-13"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-13</a>
+                <a class="mdl-navigation__link" href="2016-03-14"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-14</a>
+                <a class="mdl-navigation__link" href="2016-03-15"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-15</a>
+                <a class="mdl-navigation__link" href="2016-03-16"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-16</a>
+                <a class="mdl-navigation__link" href="2016-03-17"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-17</a>
+                <a class="mdl-navigation__link" href="2016-03-18"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-18</a>
+                <a class="mdl-navigation__link" href="2016-03-19"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-19</a>
+                <a class="mdl-navigation__link" href="2016-03-20"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-20</a>
+                <a class="mdl-navigation__link" href="2016-03-21"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-21</a>
+                <a class="mdl-navigation__link" href="2016-03-22"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-22</a>
+                <a class="mdl-navigation__link" href="2016-03-23"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-23</a>
+                <a class="mdl-navigation__link" href="2016-03-24"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-24</a>
+                <a class="mdl-navigation__link" href="2016-03-25"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>2016-03-25</a>
                 <div class="mdl-layout-spacer"></div>
             </nav>
         </div>
 
         <main class="mdl-layout__content mdl-color--grey-100">
             <div class="mdl-grid demo-content">
-                <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" id="main_map" style="height: 500px ;border:1px solid #ccc;padding:10px;"></div>
+                <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" id="main_map" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
+                <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" id="speedAndNumber_chart" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
             </div>
         </main>
 
     </div>
-    <script src="http://127.0.0.1:8887/content/mdl/material.min.js"></script>
-
-    <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/echarts/dist/echarts.min.js"></script>
-    <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/echarts/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="../mdl/material.min.js"></script>
+    <script type="text/javascript" src="../scripts/echarts/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="../scripts/echarts/dist/extension/dataTool.min.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
-    <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/echarts/dist/extension/bmap.min.js"></script>
-    <script type="text/javascript" src="http://127.0.0.1:8887/content/scripts/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="../scripts/echarts/dist/extension/bmap.min.js"></script>
+    <script type="text/javascript" src="../scripts/jquery-3.1.0.min.js"></script>
     <script type="text/javascript">
-        var dom = document.getElementById('main_map');
-        dom.style.height = (screen.height-100) + "px";
-        var myChart = echarts.init(dom);
+        var main = document.getElementById('main_map');
+        var speedAndNumber = document.getElementById('speedAndNumber_chart');
+        main.style.height = (screen.height - 100) + "px";
+        var myChart = echarts.init(main);
+        var spdAndNumChart = echarts.init(speedAndNumber);
         var ratio = 60 / 600;
         var app = {};
         var manual = false;
-        var identifier=0;
-        var counter = 0;
-        var limitOfCars = 20;
+        var identifier = 0;
+        var limitOfCars = 50;
         option = null;
+        spdAndNumChart.showLoading();
         myChart.showLoading();
 
-        $.get('http://127.0.0.1:8887/content/snaptoroads/2016-03-12.json', function(data) {
+        $.get('http://localhost:8000/2016-03-12.json', function(data) {
+            (function setSpdAndNum(data) {
+                spdAndNumChart.hideLoading();
+                option = {
+                    grid: {
+                        bottom: 80
+                    },
+                    toolbox: {
+                        feature: {
+                            dataZoom: {
+                                yAxisIndex: 'none'
+                            },
+                            restore: {},
+                            saveAsImage: {}
+                        }
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            animation: false
+                        }
+                    },
+                    dataZoom: [{
+                        show: true,
+                        realtime: true,
+                        start: 65,
+                        end: 85
+                    }, {
+                        type: 'inside',
+                        realtime: true,
+                        start: 65,
+                        end: 85
+                    }],
+                    xAxis: [{
+                        type: 'category',
+                        data: data.timelines.map(function(timelines) {
+                            var value = timelines.toString();
+                            var texts = [value.slice(-4, -2), value.slice(-2)];
+                            return texts.join(':');
+                        })
+                    }],
+                    yAxis: [{
+                        type: 'value',
+                        name: '总通过车辆',
+                        axisLabel: {
+                            formatter: '{value} 辆'
+                        }
+                    }, {
+                        type: 'value',
+                        name: '平均速度',
+                        min: 0,
+                        max: 25,
+                        interval: 5,
+                        axisLabel: {
+                            formatter: '{value} km/h'
+                        }
+                    }],
+                    legend: {
+                        data: ['平均车速', '总通过车辆']
+                    },
+                    series: [{
+                        name: '总通过车辆',
+                        type: 'bar',
+                        animation: false,
+                        data: data.totalNumber,
+                    }, {
+                        name: '平均车速',
+                        type: 'line',
+                        animation: false,
+                        areaStyle: {
+                            normal: {}
+                        },
+                        lineStyle: {
+                            normal: {
+                                width: 2
+                            }
+                        },
+                        yAxisIndex: 1,
+                        data: data.averageSpeed,
+                    }]
+                }
+                spdAndNumChart.setOption(option);
+            }(data));
             myChart.hideLoading();
             var schema = [{
                 index: 0,
@@ -135,7 +216,7 @@
                     bmap: {
                         center: [106.646914, 26.635041],
                         zoom: 14,
-                        roam: false,
+                        roam: true,
                         mapStyle: {
                             'styleJson': [{
                                 'featureType': 'water',
@@ -319,28 +400,16 @@
                         type: 'lines',
                         coordinateSystem: 'bmap',
                         polyline: true,
-                        data: busLines,
-                        silent: true,
-                        lineStyle: {
-                            normal: {
-                                opacity: 0.5,
-                                width: 1
-                            }
-                        },
-                        progressiveThreshold: 500,
-                        progressive: 200
+                        data: null,
+                        zlevel: 2,
+                        silent: false,
                     }, {
                         type: 'lines',
                         coordinateSystem: 'bmap',
                         polyline: true,
-                        data: busLines,
-                        effect: {
-                            constantSpeed: 0,
-                            show: true,
-                            trailLength: 0,
-                            symbolSize: 1.5
-                        },
-                        zlevel: 1
+                        data: null,
+                        zlevel: 1,
+                        silent: true
                     }],
                     animationDurationUpdate: 0,
                     animation: false
@@ -368,7 +437,6 @@
             if (!app.inNode) {
                 // 添加百度地图插件
                 var bmap = myChart.getModel().getComponent('bmap').getBMap();
-                bmap.addControl(new BMap.MapTypeControl());
                 bmap.addControl(new BMap.NavigationControl({
                     anchor: BMAP_ANCHOR_TOP_RIGHT,
                     type: BMAP_NAVIGATION_CONTROL_ZOOM
@@ -376,7 +444,7 @@
             }
 
             function fillOptions(identifier) {
-                option.options = [];
+                option.options.length = 0;
                 for (var n = 0; n < data.timelines.length; n++) {
                     var timelineString = data.timelines[n].toString();
                     option.options.push({
@@ -423,19 +491,25 @@
                                             var lineStyle = {
                                                 normal: {
                                                     opacity: 0.2,
-                                                    width: 2,
+                                                    width: 1.5,
                                                     curvness: 1
                                                 }
                                             };
 
-                                            if (data.series[n][i][2] == 3)
-                                                lineStyle.normal.color = 'rgba(255,0,0,1)';
-                                            else if (data.series[n][i][2] == 1)
-                                                lineStyle.normal.color = 'rgba(0,255,0,1)';
-                                            else if (data.series[n][i][2] == 2)
-                                                lineStyle.normal.color = 'rgba(255,255,0,1)';
-                                            else if (data.series[n][i][2] == 4)
-                                                lineStyle.normal.color = 'rgba(144,144,144,1)';
+                                            switch (data.series[n][i][2]) {
+                                                case 1: //绿色
+                                                    lineStyle.normal.color = 'green';
+                                                    break;
+                                                case 2: //黄色
+                                                    lineStyle.normal.color = 'yellow';
+                                                    break;
+                                                case 3: //红色
+                                                    lineStyle.normal.color = 'red';
+                                                    break;
+                                                case 4: //灰色
+                                                    lineStyle.normal.color = 'gray';
+                                                    break;
+                                            }
 
                                             busLines_new[i] = {};
                                             busLines_new[i].name = name;
@@ -466,10 +540,10 @@
                                                 polyline: true,
                                                 data: line,
                                                 effect: {
-                                                    constantSpeed: Math.round(data.series[n][i][1]*118/2000) + Math.random() * 5,
+                                                    constantSpeed: Math.round(data.series[n][i][1] * 118 / 1000) + Math.random() * 10,
                                                     show: true,
                                                     trailLength: 0,
-                                                    symbolSize: 3,
+                                                    symbolSize: 2,
                                                     animation: false
                                                 },
                                                 zlevel: 1,
@@ -495,21 +569,7 @@
                                     }
                                 }
                             } else {
-                                var series = [{
-                                    type: 'lines',
-                                    coordinateSystem: 'bmap',
-                                    polyline: true,
-                                    data: null,
-                                    zlevel: 2,
-                                    silent: false,
-                                }, {
-                                    type: 'lines',
-                                    coordinateSystem: 'bmap',
-                                    polyline: true,
-                                    data: null,
-                                    zlevel: 1,
-                                    silent: true
-                                }];
+                                var series = [];
                             }
                             return series;
                         })(busLines)
@@ -517,90 +577,13 @@
                 }
             }
 
-            bindEvent();
+            myChart.on('timelinechanged', function(param) {
+                identifier = param.currentIndex;
+                fillOptions(identifier);
+                myChart.setOption(option);
+            });
 
-            function bindEvent(){
-                myChart.on('timelinechanged', function(param) {
-                    //console.log(manual);
-                    if (manual){
-                        manual = false;
-                        return;
-                    }
-
-                    identifier = param.currentIndex;
-                    counter++;
-                    if (counter >= 3){
-                        counter = 0;
-
-                        setTimeout(function(){
-                            console.log("echarts refresh");
-
-                            myChart.dispose();
-                            delete dom;
-                            myChart = echarts.init(document.getElementById("main_map"));
-
-                            bindEvent();
-
-                            fillOptions(identifier);
-                            manual = true;
-                            myChart.setOption(option,true);
-                            myChart.dispatchAction({
-                                type: 'timelineChange',
-                                // 时间点的 index
-                                currentIndex: identifier
-                            });
-                        },1000);
-                        return;
-                    }
-                    //console.log("normal update");
-                    fillOptions(identifier);
-
-                    //manual = true; //人为dispatch_action,故不激发event
-
-                    myChart.setOption(option);
-//                    myChart.dispatchAction({
-//                        type: 'timelineChange',
-//                        // 时间点的 index
-//                        currentIndex: identifier
-//                    });
-                });
-            }
-
-            //        bindEvent();
-//        function bindEvent(){
-//            myChart.on('timelinechanged', function(param) {
-//                if (manual){
-//                    manual = false;
-//                    return;
-//                }
-//                identifier = param.currentIndex;
-//                counter++;
-//                if (counter >= 5){
-//                    counter = 0;
-//                    setTimeout(function(){
-//                        console.log("echarts refresh");
-//                        myChart.dispose();
-//                        delete dom;
-//                        myChart = echarts.init(document.getElementById("main_map"));
-//                        bindEvent();
-//                        fillOptions(identifier);
-//                        manual = true;
-//                        myChart.setOption(option);
-//                        myChart.dispatchAction({
-//                            type: 'timelineChange',
-//                            // 时间点的 index
-//                            currentIndex: identifier
-//                        });
-//                    },1000);
-//                    return;
-//                }
-//                fillOptions(identifier);
-//                myChart.setOption(option);
-//            });
-//        }
         });
-
-
     </script>
 </body>
 

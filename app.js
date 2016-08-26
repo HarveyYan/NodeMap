@@ -38,6 +38,10 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     res.send('ISCAS Traffic Group presents!');
   });
 
+  app.get('/test',(req,res)=>{
+    res.sendFile(__dirname+"/content/views/test.html");
+  });
+
   app.get('/', function(req, res){
     console.log("req: %j", req);
     res.sendFile(__dirname+"/content/views/2016-03-12.html");
