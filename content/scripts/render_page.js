@@ -120,7 +120,7 @@
                 bmap: {
                     center: [106.646914, 26.635041],
                     zoom: 14,
-                    roam: move,
+                    roam: 'move',
                     mapStyle: {
                         'styleJson': [{
                             'featureType': 'water',
