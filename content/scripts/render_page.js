@@ -7,8 +7,8 @@
     var roadColorChart=echarts.init(document.getElementById('roadColor_chart'));
     var carsColorChart=echarts.init(document.getElementById('carsColor_chart'));
 
-    roadColorChart.style.height = (screen.height/2) + "px";
-    carsColorChart.style.height = (screen.height/2) + "px";
+    document.getElementById('roadColor_chart').style.height = (screen.height/2) + "px";
+    document.getElementById('carsColor_chart').style.height = (screen.height/2) + "px";
 
     var ratio = 60 / 600;
     var app = {};
