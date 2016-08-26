@@ -51,16 +51,46 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     res.sendFile(__dirname+"/content/views/css/styles.css");
   });
 
+
   app.get('/material.cyan-light_blue.min.css',function(req,res){
     res.sendFile(__dirname+"/content/views/css/material.cyan-light_blue.min.css");
   });
 
+  app.get('/MaterialIcons.css',function(req,res){
+    res.sendFile(__dirname+"/content/views/css/MaterialIcons.css");
+  });
+
+  app.get('/RobotoFonts.css',function(req,res){
+    res.sendFile(__dirname+"/content/views/css/RobotoFonts.css");
+  });
+
+
   app.get('/2fcrYFNaTjcS6g4U3t-Y5RV6cRhDpPC5P4GCEJpqGoc.woff',function(req,res){
     res.sendFile(__dirname+"/content/views/css/2fcrYFNaTjcS6g4U3t-Y5RV6cRhDpPC5P4GCEJpqGoc.woff");
   });
-
-  app.get('/MaterialIcons.css',function(req,res){
-    res.sendFile(__dirname+"/content/views/css/MaterialIcons.css");
+  app.get('/Hgo13k-tfSpn0qi1SFdUfbO3LdcAZYWl9Si6vvxL-qU.woff',function(req,res){
+    res.sendFile(__dirname+"/content/views/css/Hgo13k-tfSpn0qi1SFdUfbO3LdcAZYWl9Si6vvxL-qU.woff");
+  });
+  app.get('/vzIUHo9z-oJ4WgkpPOtg13YhjbSpvc47ee6xR_80Hnw.woff',function(req,res){
+    res.sendFile(__dirname+"/content/views/css/vzIUHo9z-oJ4WgkpPOtg13YhjbSpvc47ee6xR_80Hnw.woff");
+  });
+  app.get('/CrYjSnGjrRCn0pd9VQsnFOvvDin1pK8aKteLpeZ5c0A.woff',function(req,res){
+    res.sendFile(__dirname+"/content/views/css/CrYjSnGjrRCn0pd9VQsnFOvvDin1pK8aKteLpeZ5c0A.woff");
+  });
+  app.get('/RxZJdnzeo3R5zSexge8UUbO3LdcAZYWl9Si6vvxL-qU.woff',function(req,res){
+    res.sendFile(__dirname+"/content/views/css/RxZJdnzeo3R5zSexge8UUbO3LdcAZYWl9Si6vvxL-qU.woff");
+  });
+  app.get('/d-6IYplOFocCacKzxwXSOLO3LdcAZYWl9Si6vvxL-qU.woff',function(req,res){
+    res.sendFile(__dirname+"/content/views/css/d-6IYplOFocCacKzxwXSOLO3LdcAZYWl9Si6vvxL-qU.woff");
+  });
+  app.get('/mnpfi9pxYH-Go5UiibESIrO3LdcAZYWl9Si6vvxL-qU.woff',function(req,res){
+    res.sendFile(__dirname+"/content/views/css/mnpfi9pxYH-Go5UiibESIrO3LdcAZYWl9Si6vvxL-qU.woff");
+  });
+  app.get('/1pO9eUAp8pSF8VnRTP3xnnYhjbSpvc47ee6xR_80Hnw.woff',function(req,res){
+    res.sendFile(__dirname+"/content/views/css/1pO9eUAp8pSF8VnRTP3xnnYhjbSpvc47ee6xR_80Hnw.woff");
+  });
+  app.get('/t6Nd4cfPRhZP44Q5QAjcC7rIa-7acMAeDBVuclsi6Gc.woff',function(req,res){
+    res.sendFile(__dirname+"/content/views/css/t6Nd4cfPRhZP44Q5QAjcC7rIa-7acMAeDBVuclsi6Gc.woff");
   });
 
   app.get('/user.jpg',function(req,res){
@@ -70,7 +100,6 @@ fs.open("log.txt","a",0x0644, function(err, fd){
   app.get('/echarts.min.js',function(req,res){
     res.sendFile(__dirname+"/content/scripts/echarts/dist/echarts.min.js");
   });
-
 
   app.get('/dataTool.min.js',function(req,res){
     res.sendFile(__dirname+"/content/scripts/echarts/dist/extension/dataTool.min.js");
