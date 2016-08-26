@@ -20,9 +20,6 @@
         (function setSpdAndNum(data) {
             spdAndNumChart.hideLoading();
             option = {
-                grid: {
-                    bottom: 80
-                },
                 toolbox: {
                     feature: {
                         dataZoom: {
@@ -344,7 +341,6 @@
         if (!app.inNode) {
             // 添加百度地图插件
             var bmap = myChart.getModel().getComponent('bmap').getBMap();
-            bmap.addControl(new BMap.MapTypeControl());
             bmap.addControl(new BMap.NavigationControl({
                 anchor: BMAP_ANCHOR_TOP_RIGHT,
                 type: BMAP_NAVIGATION_CONTROL_ZOOM
