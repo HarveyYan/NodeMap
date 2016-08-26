@@ -1,14 +1,12 @@
     var dom = document.getElementById('main_map');
     var speedAndNumber = document.getElementById('speedAndNumber_chart');
-    dom.style.height = (screen.height/2) + "px";
-    speedAndNumber.style.height = (screen.height/2) + "px";
+    dom.style.height = (screen.height-100) + "px";
     var myChart = echarts.init(dom);
     var spdAndNumChart = echarts.init(speedAndNumber);
     var roadColorChart=echarts.init(document.getElementById('roadColor_chart'));
     var carsColorChart=echarts.init(document.getElementById('carsColor_chart'));
-
-    document.getElementById('roadColor_chart').style.height = (screen.height/2) + "px";
-    document.getElementById('carsColor_chart').style.height = (screen.height/2) + "px";
+    // document.getElementById('carsColor_chart').style.height = (screen.height/2) + "px";
+    // document.getElementById('roadColor_chart').style.height = (screen.height/2) + "px";
 
     var ratio = 60 / 600;
     var app = {};
