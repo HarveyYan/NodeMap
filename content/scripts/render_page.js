@@ -1,6 +1,6 @@
     var dom = document.getElementById('main_map');
     var speedAndNumber = document.getElementById('speedAndNumber_chart');
-    dom.style.height = (screen.height-100) + "px";
+    //dom.style.height = (screen.height-100) + "px";
     var myChart = echarts.init(dom);
     var spdAndNumChart = echarts.init(speedAndNumber);
     var roadColorChart=echarts.init(document.getElementById('roadColor_chart'));
