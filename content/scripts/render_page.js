@@ -3,6 +3,9 @@
     dom.style.height = (screen.height-100) + "px";
     var myChart = echarts.init(dom);
     var spdAndNumChart = echarts.init(speedAndNumber);
+    var roadColorChart=echarts.init(document.getElementById('roadColor_chart'));
+    var carsColorChart=echarts.init(document.getElementById('carsColor_chart'));
+
     var ratio = 60 / 600;
     var app = {};
     var manual = false;
@@ -334,9 +337,132 @@
             }
         }
 
+        var roadPieOption={
+            title : {
+                text: '道路拥堵状况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{b}的道路 : {c}条 <br/> ({d}%)"
+            },
+            legend: {
+                x : 'center',
+                y : 'bottom',
+                data:['rose1','rose2','rose3','rose4','rose5']
+            },
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {
+                        show: true,
+                        type: ['pie', 'funnel']
+                    },
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
+            calculable : true,
+            series : {
+                type:'pie',
+                radius : [40, 110],
+                center : ['50%', '50%'],
+                roseType : 'radius',
+                label: {
+                    normal: {
+                        show: false
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                lableLine: {
+                    normal: {
+                        show: false
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                data:[]
+            }
+        }
+        var carsPieOption={
+            title : {
+                text: '车辆拥堵状况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{b}的车辆总数 : {c}辆 <br/> ({d}%)"
+            },
+            legend: {
+                x : 'center',
+                y : 'bottom',
+                data:['rose1','rose2','rose3','rose4','rose5']
+            },
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {
+                        show: true,
+                        type: ['pie', 'funnel']
+                    },
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
+            calculable : true,
+            series : {
+                type:'pie',
+                radius : [40, 110],
+                center : ['50%', '50%'],
+                roseType : 'radius',
+                label: {
+                    normal: {
+                        show: false
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                lableLine: {
+                    normal: {
+                        show: false
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                data:[]
+            }
+        }
+        function fillPieOption(identifier){
+            roadPieOption.series.data.length=0;
+            carsPieOption.series.data.length=0;
+            roadPieOption.series.data.push(
+                {value:data.roadColor[identifier][0],name:"畅通",itemStyle:{normal: {color: '#00CC33'}}},
+                {value:data.roadColor[identifier][1],name:"缓行",itemStyle:{normal: {color: '#FF9900'}}},
+                {value:data.roadColor[identifier][2],name:"拥挤",itemStyle:{normal: {color: '#FF0000'}}},
+                {value:data.roadColor[identifier][3],name:"无数据",itemStyle:{normal: {color: '#CCCCCC '}}}
+            );
+            carsPieOption.series.data.push(
+                {value:data.carsColor[identifier][0],name:"畅通",itemStyle:{normal: {color: '#00CC33'}}},
+                {value:data.carsColor[identifier][1],name:"缓行",itemStyle:{normal: {color: '#FF9900'}}},
+                {value:data.carsColor[identifier][2],name:"拥挤",itemStyle:{normal: {color: '#FF0000'}}}
+            );
+        }
         fillOptions(0);
+        fillPieOption(0);
+        roadColorChart.setOption(roadPieOption);
+        carsColorChart.setOption(carsPieOption);
 
         myChart.setOption(option);
+
 
         if (!app.inNode) {
             // 添加百度地图插件
@@ -485,7 +611,10 @@
         myChart.on('timelinechanged', function(param) {
             identifier = param.currentIndex;
             fillOptions(identifier);
+            fillPieOption(identifier);
             myChart.setOption(option);
+            roadColorChart.setOption(roadPieOption);
+            carsColorChart.setOption(carsPieOption);
         });
 
     });
