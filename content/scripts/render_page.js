@@ -442,22 +442,6 @@
                 radius : [40, 110],
                 center : ['50%', '50%'],
                 roseType : 'radius',
-                label: {
-                    normal: {
-                        show: false
-                    },
-                    emphasis: {
-                        show: true
-                    }
-                },
-                lableLine: {
-                    normal: {
-                        show: false
-                    },
-                    emphasis: {
-                        show: true
-                    }
-                },
                 data:[]
             }
         }
@@ -494,22 +478,6 @@
                 radius : [40, 110],
                 center : ['50%', '50%'],
                 roseType : 'radius',
-                label: {
-                    normal: {
-                        show: false
-                    },
-                    emphasis: {
-                        show: true
-                    }
-                },
-                lableLine: {
-                    normal: {
-                        show: false
-                    },
-                    emphasis: {
-                        show: true
-                    }
-                },
                 data:[]
             }
         }
