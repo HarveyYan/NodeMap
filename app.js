@@ -77,9 +77,11 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
         }
         $('nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800').append('<div class="mdl-layout-spacer"></div>');
         $('#key').attr('res',date);
-        res.sendFile(window.document.documentElement.outerHTML);
+        fs.writeFileSync('out.html', window.document.documentElement.outerHTML);
         window.close();
     });
+
+    res.sendFile('out.html');
 
   }
 
