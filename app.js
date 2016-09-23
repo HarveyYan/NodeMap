@@ -38,7 +38,7 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
     next();
   });
 
-  function check_entries(date){
+  function check_entries(date,res){
       var processed_files = fs.readdirSync(__dirname+'/content/snaptoroads');
       var raw_files = fs.readdirSync(__dirname+'/Java_modules/excels_data');
       var new_entries = [];
@@ -58,7 +58,7 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
         javac.on('close', function () {
           var javaa  = spawn('java', ['-cp','Java_modules:Java_modules/lib/\*','src.Change'], opts);
             javaa.on('close',function(){
-              send_html(date);
+              send_html(date,res);
             });
         });
         //execSync('javac -cp Java_modules/lib/\* Java_modules/src/*.java',{stdio:[0,1,2]});
@@ -66,7 +66,7 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
       }
   }
 
-  function send_html(date){
+  function send_html(date,res){
     var processed_files = fs.readdirSync(__dirname+'/content/snaptoroads');
     jsdom.env(__dirname+"/content/views/template.html", ['http://222.85.139.245:64154/jquery-3.1.0.min.js'], function(errors, window) {
       $ = window.jQuery;
@@ -167,7 +167,7 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
   });
 
   app.get('/:year-:month-:day',function(req,res){
-    check_entries(req.params.year+"-"+req.params.month+"-"+req.params.day);
+    check_entries(req.params.year+"-"+req.params.month+"-"+req.params.day,res);
     //res.sendFile(__dirname+"/content/views/"+req.params.year+"-"+req.params.month+"-"+req.params.day+".html");
   });
 
