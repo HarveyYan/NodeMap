@@ -14,8 +14,7 @@ public class Change {
 			 //遍历files[]数组
 			 if (files == null) {
 				 System.out.println("...............................");
-				 return;
-			 }
+				 return;/
 			 for (File f : files) {
 				 //递归
 				 listfile(f, strs);
@@ -137,14 +136,14 @@ public class Change {
     	
     }
 	public static void main(String[] args) throws IOException{
-		String path ="Java_modules/excels_data";
-		String outFolder = "content/snaptoroads";
+		String path ="/usr/local/nodejsapp/app/Java_modules/excels_data";
+		String outFolder = "/usr/local/nodejsapp/app/content/snaptoroads";
 		new File(outFolder).mkdirs();
 		ArrayList<String> strs=onDirectName(path);	//日期
 		ArrayList<String> lineList=new ArrayList<String> ();
 		for(String s:strs){
 			ArrayList<String> fileNameList=new ArrayList<String> ();
-			String linePath="Java_modules/snappedPoints",statePath=path+"/"+s+"/avg_speed";
+			String linePath="/usr/local/nodejsapp/app/Java_modules/snappedPoints",statePath=path+"/"+s+"/avg_speed";
 		   	if(fileNameList.isEmpty()){
 			   	fileNameList=saveSame(linePath,statePath);	//道路json和状态xls共同的部分, a.k.a 需要parse的路段
 				if (fileNameList.size()==0) {
@@ -189,7 +188,7 @@ public class Change {
 			bufferWriter.write("\"timelines\":[");
 			bufferWriter.newLine();
 			
-			ArrayList<String>  strs1=StuService.getAllByExcel("Java_modules/#6-#10.xls");	//获取timeline
+			ArrayList<String>  strs1=StuService.getAllByExcel("/usr/local/nodejsapp/app/Java_modules/#6-#10.xls");	//获取timeline
 
 			String strtemp=s;//.replaceAll("-","")
 			
@@ -213,13 +212,13 @@ public class Change {
 			bufferWriter.newLine();	
 			bufferWriter.write("\"series\":[");
 			bufferWriter.newLine();
-			int rows=StuService.getRows("Java_modules/#6-#10.xls");
+			int rows=StuService.getRows("/usr/local/nodejsapp/app/Java_modules/#6-#10.xls");
 			ArrayList<String> strstem=new ArrayList<String>(),calculate=new ArrayList<String>();
 			for(int j=0;j<rows-1;j++){
 				strstem.add("[");
 				calculate.add("[");
 			}
-			String pathtemp ="Java_modules/speedLimit.json";
+			String pathtemp ="/usr/local/nodejsapp/app/Java_modules/speedLimit.json";
 			String strSpeedLimit=ReadFile(pathtemp);
 			JSONObject jo=JSONObject.fromObject(strSpeedLimit);
 			for(int j=0;j<fileNameList.size();j++){
