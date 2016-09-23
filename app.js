@@ -76,7 +76,7 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
             '<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>'+processed_files[i]+'</a>');
         }
         $('nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800').append('<div class="mdl-layout-spacer"></div>');
-        $('#key').attr('res',date);
+        $('#key').attr('res',date+".json");
         fs.writeFileSync(__dirname+'/out.html', window.document.documentElement.outerHTML);
         window.close();
     });
