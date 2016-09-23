@@ -1,10 +1,9 @@
-package com.mapView.main;
+package src;
 
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.HashMap;
-import java.util.Map;
+
 
 import org.apache.commons.lang.StringUtils;
 
@@ -19,43 +18,37 @@ public class BaiduApi {
 			out.flush();
 			out.close();
 			String res;
-			InputStream urlStream;
-			urlStream=connection.getInputStream();
+			InputStream urlStream = null;
+			while(urlStream == null) {
+				try {
+					urlStream = connection.getInputStream();
+				} catch (java.io.IOException e) {
+
+				}
+			}
 			BufferedReader in = new BufferedReader(new InputStreamReader(urlStream,"utf-8"));
 			StringBuilder sb=new  StringBuilder("");
 			while((res= in.readLine())!=null){
 				sb.append(res.trim());		       
 			}
 			String str=sb.toString();
-			if(StringUtils.isNotEmpty(str)){
-				
-				str=str.substring(str.indexOf("[{\"x\"")+1, str.length()-3);
+			if(StringUtils.isNotEmpty(str)){				
+				str=str.substring(str.indexOf("[{\"x\"")+1, str.length()-3);				
 				StringBuilder strB=new  StringBuilder("");
 	      		String[] strArray = null;   
-	      		strArray = str.split(","); //²ğ·Ö×Ö·ûÎª"," ,È»ºó°Ñ½á¹û½»¸øÊı×éstrArray 
-	      		int j=0;
+	      		strArray = str.split(","); //æ‹†åˆ†å­—ç¬¦ä¸º"," ,ç„¶åæŠŠç»“æœäº¤ç»™æ•°ç»„strArray 
+	      		
 	      		String strX=null,strY=null;
 	      		for(int i=0;i<strArray.length;i+=2){
 	      			strX=strArray[i];strY=strArray[i+1];
-	      			if(strX.contains(".")==false)
-	      				strX=strX+".0000";
-	      			if(strY.contains(".")==false)
-	      				strY+=".0000";
-	      			int dot1=strX.indexOf("x"),dot2=strX.indexOf("."),dot3=strY.indexOf("y"),dot4=strY.indexOf(".");
-	      			//Ğ¡ÊıµãºóÈç¹ûÃ»ÓĞ4Î»£¬ĞèÒª¸Ä½ø¡£
-		      		strB.append(String.format("%s%s,%s%s,",strY.substring(dot3+3,dot4),strY.substring(dot4+1, dot4+5),strX.substring(dot1+3,dot2),strX.substring(dot2+1,dot2+5)));		
-	      			j++;
-	      			
+	      			int dot1=strX.indexOf("x"),dot3=strY.indexOf("y");
+	      			//å°æ•°ç‚¹åå¦‚æœæ²¡æœ‰4ä½ï¼Œéœ€è¦æ”¹è¿›ã€‚
+		      		strB.append(String.format("%s,%s,",strY.substring(dot3+3,strY.length()-1),strX.substring(dot1+3)));			
       			}
 	      		str=strB.toString();
 	      		str=str.substring(0,str.length()-1);
-	      	
-			 return str;
-					
+			 return str;		
 			}
-			
-		
-
 		return null;
 		}
 

@@ -1,0 +1,305 @@
+{
+  "snappedPoints": [
+    {
+      "location": {
+        "latitude": 26.59465521413054,
+        "longitude": 106.64936273140704
+      },
+      "originalIndex": 0,
+      "placeId": "ChIJKQqrziNnvzYRoy5y4lpw7TE"
+    },
+    {
+      "location": {
+        "latitude": 26.5949116,
+        "longitude": 106.6494014
+      },
+      "placeId": "ChIJKQqrziNnvzYRoy5y4lpw7TE"
+    },
+    {
+      "location": {
+        "latitude": 26.5949116,
+        "longitude": 106.6494014
+      },
+      "placeId": "ChIJc6UH0iNnvzYRdlb4kL3u024"
+    },
+    {
+      "location": {
+        "latitude": 26.5952991,
+        "longitude": 106.64945999999999
+      },
+      "placeId": "ChIJc6UH0iNnvzYRdlb4kL3u024"
+    },
+    {
+      "location": {
+        "latitude": 26.5952991,
+        "longitude": 106.64945999999999
+      },
+      "placeId": "ChIJS5KmdiFnvzYRgjvYpGn6UW0"
+    },
+    {
+      "location": {
+        "latitude": 26.59539,
+        "longitude": 106.6494737
+      },
+      "placeId": "ChIJS5KmdiFnvzYRgjvYpGn6UW0"
+    },
+    {
+      "location": {
+        "latitude": 26.5962495,
+        "longitude": 106.6495681
+      },
+      "placeId": "ChIJS5KmdiFnvzYRgjvYpGn6UW0"
+    },
+    {
+      "location": {
+        "latitude": 26.5968788,
+        "longitude": 106.6495807
+      },
+      "placeId": "ChIJS5KmdiFnvzYRgjvYpGn6UW0"
+    },
+    {
+      "location": {
+        "latitude": 26.597202034483445,
+        "longitude": 106.64954871231701
+      },
+      "originalIndex": 1,
+      "placeId": "ChIJS5KmdiFnvzYRgjvYpGn6UW0"
+    },
+    {
+      "location": {
+        "latitude": 26.5973891,
+        "longitude": 106.6495302
+      },
+      "placeId": "ChIJS5KmdiFnvzYRgjvYpGn6UW0"
+    },
+    {
+      "location": {
+        "latitude": 26.597872100000004,
+        "longitude": 106.6494384
+      },
+      "placeId": "ChIJS5KmdiFnvzYRgjvYpGn6UW0"
+    },
+    {
+      "location": {
+        "latitude": 26.5984314,
+        "longitude": 106.64932929999999
+      },
+      "placeId": "ChIJS5KmdiFnvzYRgjvYpGn6UW0"
+    },
+    {
+      "location": {
+        "latitude": 26.5984314,
+        "longitude": 106.64932929999999
+      },
+      "placeId": "ChIJaYNpAiFnvzYRdY2zP8PES6U"
+    },
+    {
+      "location": {
+        "latitude": 26.598555700000002,
+        "longitude": 106.64930509999999
+      },
+      "placeId": "ChIJaYNpAiFnvzYRdY2zP8PES6U"
+    },
+    {
+      "location": {
+        "latitude": 26.5987958,
+        "longitude": 106.6492232
+      },
+      "placeId": "ChIJaYNpAiFnvzYRdY2zP8PES6U"
+    },
+    {
+      "location": {
+        "latitude": 26.5987958,
+        "longitude": 106.6492232
+      },
+      "placeId": "ChIJy2Gg7yBnvzYRBgQpdipnjKs"
+    },
+    {
+      "location": {
+        "latitude": 26.599063968219365,
+        "longitude": 106.64913040014918
+      },
+      "originalIndex": 2,
+      "placeId": "ChIJy2Gg7yBnvzYRBgQpdipnjKs"
+    },
+    {
+      "location": {
+        "latitude": 26.599170599999997,
+        "longitude": 106.64909349999999
+      },
+      "placeId": "ChIJy2Gg7yBnvzYRBgQpdipnjKs"
+    },
+    {
+      "location": {
+        "latitude": 26.599819,
+        "longitude": 106.6487683
+      },
+      "placeId": "ChIJy2Gg7yBnvzYRBgQpdipnjKs"
+    },
+    {
+      "location": {
+        "latitude": 26.600402999999996,
+        "longitude": 106.64844269999999
+      },
+      "placeId": "ChIJy2Gg7yBnvzYRBgQpdipnjKs"
+    },
+    {
+      "location": {
+        "latitude": 26.600402999999996,
+        "longitude": 106.64844269999999
+      },
+      "placeId": "ChIJH0bApiBnvzYRv_7qOfDpFic"
+    },
+    {
+      "location": {
+        "latitude": 26.6006741,
+        "longitude": 106.6482916
+      },
+      "placeId": "ChIJH0bApiBnvzYRv_7qOfDpFic"
+    },
+    {
+      "location": {
+        "latitude": 26.60099723454198,
+        "longitude": 106.64810321235146
+      },
+      "originalIndex": 3,
+      "placeId": "ChIJH0bApiBnvzYRv_7qOfDpFic"
+    },
+    {
+      "location": {
+        "latitude": 26.602078199999998,
+        "longitude": 106.64747299999999
+      },
+      "placeId": "ChIJH0bApiBnvzYRv_7qOfDpFic"
+    },
+    {
+      "location": {
+        "latitude": 26.602471100000002,
+        "longitude": 106.6472648
+      },
+      "placeId": "ChIJH0bApiBnvzYRv_7qOfDpFic"
+    },
+    {
+      "location": {
+        "latitude": 26.602471100000002,
+        "longitude": 106.6472648
+      },
+      "placeId": "ChIJ_xNsTN9mvzYRkPQeiuPJsMc"
+    },
+    {
+      "location": {
+        "latitude": 26.602555499999998,
+        "longitude": 106.64721999999999
+      },
+      "placeId": "ChIJ_xNsTN9mvzYRkPQeiuPJsMc"
+    },
+    {
+      "location": {
+        "latitude": 26.602726905171917,
+        "longitude": 106.64712197986128
+      },
+      "originalIndex": 4,
+      "placeId": "ChIJ_xNsTN9mvzYRkPQeiuPJsMc"
+    },
+    {
+      "location": {
+        "latitude": 26.602753099999997,
+        "longitude": 106.64710699999999
+      },
+      "placeId": "ChIJ_xNsTN9mvzYRkPQeiuPJsMc"
+    },
+    {
+      "location": {
+        "latitude": 26.603108,
+        "longitude": 106.64691459999999
+      },
+      "placeId": "ChIJ_xNsTN9mvzYRkPQeiuPJsMc"
+    },
+    {
+      "location": {
+        "latitude": 26.603186599999994,
+        "longitude": 106.64688009999999
+      },
+      "placeId": "ChIJ_xNsTN9mvzYRkPQeiuPJsMc"
+    },
+    {
+      "location": {
+        "latitude": 26.603186599999994,
+        "longitude": 106.64688009999999
+      },
+      "placeId": "ChIJZWFj0thmvzYRmZ44V9dGl-c"
+    },
+    {
+      "location": {
+        "latitude": 26.603668499999998,
+        "longitude": 106.6466686
+      },
+      "placeId": "ChIJZWFj0thmvzYRmZ44V9dGl-c"
+    },
+    {
+      "location": {
+        "latitude": 26.6042006,
+        "longitude": 106.6464931
+      },
+      "placeId": "ChIJZWFj0thmvzYRmZ44V9dGl-c"
+    },
+    {
+      "location": {
+        "latitude": 26.60453398518631,
+        "longitude": 106.64641749812978
+      },
+      "originalIndex": 5,
+      "placeId": "ChIJZWFj0thmvzYRmZ44V9dGl-c"
+    },
+    {
+      "location": {
+        "latitude": 26.6047893,
+        "longitude": 106.6463596
+      },
+      "placeId": "ChIJZWFj0thmvzYRmZ44V9dGl-c"
+    },
+    {
+      "location": {
+        "latitude": 26.604957600000002,
+        "longitude": 106.6463368
+      },
+      "placeId": "ChIJZWFj0thmvzYRmZ44V9dGl-c"
+    },
+    {
+      "location": {
+        "latitude": 26.604957600000002,
+        "longitude": 106.6463368
+      },
+      "placeId": "ChIJa_U9KdlmvzYREef1CcBw8oM"
+    },
+    {
+      "location": {
+        "latitude": 26.605119199999997,
+        "longitude": 106.6463149
+      },
+      "placeId": "ChIJa_U9KdlmvzYREef1CcBw8oM"
+    },
+    {
+      "location": {
+        "latitude": 26.605119199999997,
+        "longitude": 106.6463149
+      },
+      "placeId": "ChIJ01BKMNlmvzYRyZgfaYYQtLY"
+    },
+    {
+      "location": {
+        "latitude": 26.6055704,
+        "longitude": 106.6462538
+      },
+      "placeId": "ChIJ01BKMNlmvzYRyZgfaYYQtLY"
+    },
+    {
+      "location": {
+        "latitude": 26.605909378517584,
+        "longitude": 106.6462041516389
+      },
+      "originalIndex": 6,
+      "placeId": "ChIJ01BKMNlmvzYRyZgfaYYQtLY"
+    }
+  ]
+}
