@@ -36,8 +36,8 @@ fs.open("log.txt","a",0x0644, function(err, fd){
 
   app.get('/list_entries',(req,res)=>{
     try {
-      var processed_files = fs.readdirSync('content/snaptoroads');
-      var raw_files = fs.readdirSync('Java_modules/excels_data');
+      var processed_files = fs.readdirSync(__dirname+'/content/snaptoroads');
+      var raw_files = fs.readdirSync(__dirname+'/Java_modules/excels_data');
     }catch(err){
       console.log(err)
       return;
