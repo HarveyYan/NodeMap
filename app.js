@@ -6,8 +6,8 @@ const http         = require('http'),
       MongoClient  = require('mongodb').MongoClient,
       bodyParser   = require('body-parser'),
       express      = require('express'),
-      exec         = require('child_process').exec,
       jsdom = require('jsdom');
+require('shelljs/global');
 
 var   app          = express();
 var   port         = "64154";
@@ -17,7 +17,7 @@ app.use(express.static( __dirname + '/content'));
 app.set('views', path.join(__dirname, 'content/views'));
 app.set('view engine', 'jade');
 
-fs.open("log.txt","a",0x0644, function(err, fd){
+fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
   fs.write(fd, `application ${process.pid} initiated \r\n`,'utf8',function(e){
     if(e) throw e;
   });
@@ -49,6 +49,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
           }
         }
       }
+      fs.write(fd, new_entries);
       if (new_entries.length!=0) {
         //全部的json重新生成，在此可以进行一些优化
         exec('javac -cp Java_modules/lib/\* Java_modules/src/*.java');
