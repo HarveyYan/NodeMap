@@ -38,7 +38,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     next();
   });
 
-  function check_entries(){
+  function check_entries(date){
       var processed_files = fs.readdirSync(__dirname+'/content/snaptoroads');
       var raw_files = fs.readdirSync(__dirname+'/Java_modules/excels_data');
       var new_entries = [];
@@ -54,6 +54,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
         exec('javac -cp Java_modules/lib/\* Java_modules/src/*.java');
         exec('java -cp Java_modules:Java_modules/lib/\* src.Change');
       }
+      send_html(date);
   }
 
   function send_html(date){
@@ -157,8 +158,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
   });
 
   app.get('/:year-:month-:day',function(req,res){
-    check_entries();
-    send_html(req.params.year+"-"+req.params.month+"-"+req.params.day);
+    check_entries(req.params.year+"-"+req.params.month+"-"+req.params.day);
     //res.sendFile(__dirname+"/content/views/"+req.params.year+"-"+req.params.month+"-"+req.params.day+".html");
   });
 
