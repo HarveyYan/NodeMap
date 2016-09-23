@@ -42,13 +42,13 @@ fs.open("log.txt","a",0x0644, function(err, fd){
       console.log(err)
       return;
     }
-    var to_append = [];
+    var new_entries = [];
     for (var raw in raw_files){
       if(processed_files.indexOf(raw) == -1){
-        to_append.add(raw)
+        new_entries.push(raw)
       }
     }
-    res.send(to_append);
+    res.send(new_entries);
   });
 
   app.get('/about',(req,res)=>{
