@@ -35,7 +35,6 @@ fs.open("log.txt","a",0x0644, function(err, fd){
   });
 
   app.get('/list_entries',(req,res)=>{
-    try {
       var processed_files = fs.readdirSync(__dirname+'/content/snaptoroads');
       var raw_files = fs.readdirSync(__dirname+'/Java_modules/excels_data');
       var new_entries = [];
@@ -47,10 +46,6 @@ fs.open("log.txt","a",0x0644, function(err, fd){
         }
       }
       res.send(new_entries);
-    }catch(err) {
-      fs.write(fd, err);
-      return;
-    }
   });
 
   app.get('/about',(req,res)=>{
