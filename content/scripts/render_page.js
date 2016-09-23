@@ -26,6 +26,10 @@
         text: '加载中..'
     });
 
+    $.get('list_entries',function(data){
+        alert(data);
+    });
+
     $.get('http://222.85.139.245:64154/'+lastScript.getAttribute('res'), function(data) {
         (function setSpdAndNum(data) {
             spdAndNumChart.hideLoading();
