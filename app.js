@@ -38,12 +38,11 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     try {
       var processed_files = fs.readdirSync(__dirname+'/content/snaptoroads');
       var raw_files = fs.readdirSync(__dirname+'/Java_modules/excels_data');
-      res.send(raw_files);
       var new_entries = [];
-      for (var raw in raw_files){
-        if (fs.lstatSync(__dirname+'/Java_modules/excels_data/'+raw).isDirectory()) {
-          if (processed_files.indexOf(raw + ".json") == -1) {
-            new_entries.push(raw)
+      for (var i = 0;i < raw_files.length; i++){
+        if (fs.lstatSync(__dirname+'/Java_modules/excels_data/'+raw_files[i]).isDirectory()) {
+          if (processed_files.indexOf(raw_files[i] + ".json") == -1) {
+            new_entries.push(raw_files[i])
           }
         }
       }
