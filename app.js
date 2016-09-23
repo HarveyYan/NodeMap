@@ -34,7 +34,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     next();
   });
 
-  app.get('list_entries',(req,res)=>{
+  app.get('/list_entries',(req,res)=>{
     res.send(__dirname+"/content/views/test.html");
   });
 
