@@ -5,13 +5,17 @@ const http         = require('http'),
       env          = process.env,
       MongoClient  = require('mongodb').MongoClient,
       bodyParser   = require('body-parser'),
-      express      = require('express');
+      express      = require('express'),
+      exec         = require('child_process').exec,
+      jsdom = require('jsdom');
 
 var   app          = express();
 var   port         = "64154";
 var   ip           = "192.168.100.20";
 
 app.use(express.static( __dirname + '/content'));
+app.set('views', path.join(__dirname, 'content/views'));
+app.set('view engine', 'jade');
 
 fs.open("log.txt","a",0x0644, function(err, fd){
   fs.write(fd, `application ${process.pid} initiated \r\n`,'utf8',function(e){
@@ -34,8 +38,7 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     next();
   });
 
-  app.get('/list_entries',(req,res)=>{
-    try {
+  function check_entries(){
       var processed_files = fs.readdirSync(__dirname+'/content/snaptoroads');
       var raw_files = fs.readdirSync(__dirname+'/Java_modules/excels_data');
       var new_entries = [];
@@ -46,11 +49,28 @@ fs.open("log.txt","a",0x0644, function(err, fd){
           }
         }
       }
-      res.send(new_entries);
-    }catch(err) {
-      res.send(err);
-    }
-  });
+      if (new_entries.length!=0) {
+        //全部的json重新生成，在此可以进行一些优化
+        exec('javac -cp Java_modules/lib/\* Java_modules/src/*.java');
+        exec('java -cp .:Java_modules/lib/\* src.Change');
+      }
+  }
+
+  function send_html(date){
+    var processed_files = fs.readdirSync(__dirname+'/content/snaptoroads');
+    jsdom.env(__dirname+"/content/views/template.html", ['content/scripts/jquery-3.1.0.min.js'], function(errors, window) {
+      $ = window.jQuery;
+      $('nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800').html("");
+      for (var i = 0 ; i < processed_files.length; i++) {
+        $('nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800').append('<a class="mdl-navigation__link" href='+processed_files[i]+'>' +
+            '<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>'+processed_files[i]+'</a>');
+      }
+      $('nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800').append('<div class="mdl-layout-spacer"></div>');
+      $('#key').attr('res',date);
+      window.close();
+    });
+    res.sendFile(__dirname+"/content/views/template.html");
+  }
 
   app.get('/about',(req,res)=>{
     res.send('ISCAS Traffic Group presents!');
@@ -132,11 +152,14 @@ fs.open("log.txt","a",0x0644, function(err, fd){
   });
 
   app.get('/:year-:month-:day.json',function(req,res){
+
     res.sendFile(__dirname+"/content/snaptoroads/"+req.params.year+"-"+req.params.month+"-"+req.params.day+".json");
   });
 
   app.get('/:year-:month-:day',function(req,res){
-    res.sendFile(__dirname+"/content/views/"+req.params.year+"-"+req.params.month+"-"+req.params.day+".html");
+    check_entries();
+    send_html(req.params.year+"-"+req.params.month+"-"+req.params.day);
+    //res.sendFile(__dirname+"/content/views/"+req.params.year+"-"+req.params.month+"-"+req.params.day+".html");
   });
 
   var listener = app.listen(port,ip, function (err) {
