@@ -69,17 +69,18 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
   function send_html(date,res){
     var processed_files = fs.readdirSync(__dirname+'/content/snaptoroads');
     jsdom.env(__dirname+"/content/views/template.html", ['http://222.85.139.245:64154/jquery-3.1.0.min.js'], function(errors, window) {
-      $ = window.jQuery;
-      $('nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800').html("");
-      for (var i = 0 ; i < processed_files.length; i++) {
-        $('nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800').append('<a class="mdl-navigation__link" href='+processed_files[i]+'>' +
+        $ = window.jQuery;
+        $('nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800').html("");
+        for (var i = 0 ; i < processed_files.length; i++) {
+            $('nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800').append('<a class="mdl-navigation__link" href='+processed_files[i]+'>' +
             '<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>'+processed_files[i]+'</a>');
-      }
-      $('nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800').append('<div class="mdl-layout-spacer"></div>');
-      $('#key').attr('res',date);
-      window.close();
+        }
+        $('nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800').append('<div class="mdl-layout-spacer"></div>');
+        $('#key').attr('res',date);
+        res.sendFile(window.document.documentElement.outerHTML);
+        window.close();
     });
-    res.sendFile(__dirname+"/content/views/template.html");
+
   }
 
   app.get('/about',(req,res)=>{
