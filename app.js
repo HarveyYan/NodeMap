@@ -53,7 +53,8 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
       if (new_entries.length!=0) {
         //全部的json重新生成，在此可以进行一些优化
         var opts = {stdio: 'inherit'} ;
-        var javac = spawn('sh', ['-c', ' javac -cp Java_modules/lib/\* Java_modules/src/*.java'], opts);
+        var javac = spawn('sh', ['-c', ' pwd'], opts);
+        // var javac = spawn('sh', ['-c', ' javac -cp Java_modules/lib/\* Java_modules/src/*.java'], opts);
 
         javac.on('close', function (code) {
           if (code === 0) {
