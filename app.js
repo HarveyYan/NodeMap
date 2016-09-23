@@ -6,8 +6,8 @@ const http         = require('http'),
       MongoClient  = require('mongodb').MongoClient,
       bodyParser   = require('body-parser'),
       express      = require('express'),
-      jsdom = require('jsdom');
-require('shelljs/global');
+      jsdom        = require('jsdom'),
+      execSync     = require('child_process').execSync;;
 
 var   app          = express();
 var   port         = "64154";
@@ -52,8 +52,8 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
       fs.write(fd, new_entries);
       if (new_entries.length!=0) {
         //全部的json重新生成，在此可以进行一些优化
-        exec('javac -cp Java_modules/lib/\* Java_modules/src/*.java');
-        exec('java -cp Java_modules:Java_modules/lib/\* src.Change');
+        execSync('javac -cp Java_modules/lib/\* Java_modules/src/*.java');
+        execSync('java -cp Java_modules:Java_modules/lib/\* src.Change');
       }
       send_html(date);
   }
