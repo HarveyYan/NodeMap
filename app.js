@@ -56,7 +56,7 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
         var javac = spawn('javac', ['-cp', '/usr/local/nodejsapp/app/Java_modules/lib/\*', '/usr/local/nodejsapp/app/Java_modules/src/Change.java','/usr/local/nodejsapp/app/Java_modules/src/BaiduApi.java','/usr/local/nodejsapp/app/Java_modules/src/StuService.java'], opts);
 
         javac.on('close', function () {
-          var javaa  = spawn('java', ['-cp','Java_modules:Java_modules/lib/\*','src.Change'], opts);
+          var javaa  = spawn('java', ['-cp','/usr/local/nodejsapp/app/Java_modules:/usr/local/nodejsapp/app/Java_modules/lib/\*','src.Change'], opts);
             javaa.on('close',function(){
               send_html(date,res);
             });
