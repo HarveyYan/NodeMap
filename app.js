@@ -7,7 +7,7 @@ const http         = require('http'),
       bodyParser   = require('body-parser'),
       express      = require('express'),
       jsdom        = require('jsdom'),
-      execSync     = require('child_process').execSync;;
+      spawn     = require('child_process').spawn;
 
 var   app          = express();
 var   port         = "64154";
@@ -52,8 +52,16 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
       fs.write(fd, new_entries);
       if (new_entries.length!=0) {
         //全部的json重新生成，在此可以进行一些优化
-        execSync('javac -cp Java_modules/lib/\* Java_modules/src/*.java');
-        execSync('java -cp Java_modules:Java_modules/lib/\* src.Change');
+        var opts = {stdio: 'inherit'} ;
+        var javac = spawn('javac', [' -cp Java_modules/lib/\* Java_modules/src/*.java'], opts);
+
+        javac.on('close', function (code) {
+          if (code === 0) {
+            var javaa  = spawn('java', [' -cp Java_modules:Java_modules/lib/\* src.Change'], opts);
+          }
+        });
+        //execSync('javac -cp Java_modules/lib/\* Java_modules/src/*.java',{stdio:[0,1,2]});
+        //execSync('java -cp Java_modules:Java_modules/lib/\* src.Change',{stdio:[0,1,2]});
       }
       send_html(date);
   }
