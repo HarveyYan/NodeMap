@@ -38,20 +38,20 @@ fs.open("log.txt","a",0x0644, function(err, fd){
     try {
       var processed_files = fs.readdirSync(__dirname+'/content/snaptoroads');
       var raw_files = fs.readdirSync(__dirname+'/Java_modules/excels_data');
+      var new_entries = [];
+      for (var raw in raw_files){
+        if (!fs.lstatSync(__dirname+'/Java_modules/excels_data'+raw).isDirectory()){
+          continue;
+        }
+        if (processed_files.indexOf(raw+".json") == -1){
+          new_entries.push(raw)
+        }
+      }
+      res.send(new_entries);
     }catch(err) {
-      console.log(err)
+      fs.write(fd, err);
       return;
     }
-    var new_entries = [];
-    for (var raw in raw_files){
-      if (!fs.lstatSync(__dirname+'/Java_modules/excels_data'+raw).isDirectory()){
-        continue;
-      }
-      if (processed_files.indexOf(raw+".json") == -1){
-        new_entries.push(raw)
-      }
-    }
-    res.send(new_entries);
   });
 
   app.get('/about',(req,res)=>{
