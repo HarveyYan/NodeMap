@@ -35,7 +35,15 @@ fs.open("log.txt","a",0x0644, function(err, fd){
   });
 
   app.get('/list_entries',(req,res)=>{
-    res.send(__dirname+"/content/views/test.html");
+    var processed_files = fs.readdirSync('content/snaptoroads');
+    var raw_files = fs.readdirSync('Java_modules/excels_data');
+    var to_append = [];
+    for (var raw in raw_files){
+      if(processed_files.indexOf(raw) == -1){
+        to_append.add(raw)
+      }
+    }
+    res.send(to_append);
   });
 
   app.get('/about',(req,res)=>{
