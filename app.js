@@ -35,8 +35,13 @@ fs.open("log.txt","a",0x0644, function(err, fd){
   });
 
   app.get('/list_entries',(req,res)=>{
-    var processed_files = fs.readdirSync('content/snaptoroads');
-    var raw_files = fs.readdirSync('Java_modules/excels_data');
+    try {
+      var processed_files = fs.readdirSync('content/snaptoroads');
+      var raw_files = fs.readdirSync('Java_modules/excels_data');
+    }catch(err){
+      console.log(err)
+      return;
+    }
     var to_append = [];
     for (var raw in raw_files){
       if(processed_files.indexOf(raw) == -1){
