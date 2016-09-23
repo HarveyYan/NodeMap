@@ -14,7 +14,8 @@ public class Change {
 			 //遍历files[]数组
 			 if (files == null) {
 				 System.out.println("...............................");
-				 return;/
+				 return;
+			 }
 			 for (File f : files) {
 				 //递归
 				 listfile(f, strs);
