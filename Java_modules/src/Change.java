@@ -2,6 +2,7 @@ package src;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import net.sf.json.JSONObject;
 
@@ -143,6 +144,9 @@ public class Change {
 		ArrayList<String> strs=onDirectName(path);	//日期
 		ArrayList<String> lineList=new ArrayList<String> ();
 		for(String s:strs){
+		    if (!Arrays.asList(args).contains(s)){
+		        continue;
+		    }
 			ArrayList<String> fileNameList=new ArrayList<String> ();
 			String linePath="/usr/local/nodejsapp/app/Java_modules/snappedPoints",statePath=path+"/"+s+"/avg_speed";
 		   	if(fileNameList.isEmpty()){
