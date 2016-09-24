@@ -98,8 +98,7 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
   });
 
   app.get('/', function(req, res){
-    console.log("req: %j", req);
-    res.sendFile(__dirname+"/content/views/2016-03-12.html");
+    check_entries("2016-03-12",res);
   });
 
   app.get('/jquery-3.1.0.min.js',function(req,res){
