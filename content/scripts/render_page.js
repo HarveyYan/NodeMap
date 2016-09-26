@@ -614,7 +614,8 @@
                                                 show: true,
                                                 trailLength: 0,
                                                 symbolSize: 3,
-                                                animation: false
+                                                animation: false,
+                                                color: 'rgb(0, 0, 0)'
                                             },
                                             zlevel: 1,
                                             silent: true
@@ -631,7 +632,8 @@
                                                 show: true,
                                                 trailLength: 0,
                                                 symbolSize: 0,
-                                                animation: false
+                                                animation: false,
+                                                color: 'rgb(0, 0, 0)'
                                             },
                                             zlevel: 1
                                         });
