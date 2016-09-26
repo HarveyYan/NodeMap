@@ -561,7 +561,7 @@
                                         var lineStyle = {
                                             normal: {
                                                 opacity: 0.3,
-                                                width: 1.5,
+                                                width: 3,
                                                 curvness: 1
                                             }
                                         };
