@@ -421,12 +421,12 @@
                 data:['rose1','rose2','rose3','rose4','rose5']
             },
             calculable : true,
-            series: {
+            series: [{
                 itemStyle: {
                     normal: {
                         label: {
                             show: true,
-                            formatter: "{b}的道路:{c}条 <br/> ({d}%)"
+                            formatter: "{b}的道路:{c}条({d}%)"
                         },
                         labelLine: { show: true }
                     }
@@ -436,7 +436,7 @@
                 center : ['50%', '50%'],
                 roseType : 'radius',
                 data:[]
-            }
+            }]
         }
         var carsPieOption={
             title : {
@@ -450,12 +450,12 @@
             },
            
             calculable : true,
-            series: {
+            series: [{
                 itemStyle: {
                     normal: {
                         label: {
                             show: true,
-                            formatter: "{b}的车辆总数:{c}辆 <br/> ({d}%)"
+                            formatter: "{b}的车辆总数:{c}辆({d}%)"
                         },
                         labelLine: { show: true }
                     }
@@ -465,18 +465,18 @@
                 center : ['50%', '50%'],
                 roseType : 'radius',
                 data:[]
-            }
+            }]
         }
         function fillPieOption(identifier){
-            roadPieOption.series.data.length=0;
-            carsPieOption.series.data.length=0;
-            roadPieOption.series.data.push(
+            roadPieOption.series[0].data.length = 0;
+            carsPieOption.series[0].data.length = 0;
+            roadPieOption.series[0].data.push(
                 {value:data.roadColor[identifier][0],name:"畅通",itemStyle:{normal: {color: '#00CC33'}}},
                 {value:data.roadColor[identifier][1],name:"缓行",itemStyle:{normal: {color: '#FF9900'}}},
                 {value:data.roadColor[identifier][2],name:"拥挤",itemStyle:{normal: {color: '#FF0000'}}},
                 {value:data.roadColor[identifier][3],name:"无数据",itemStyle:{normal: {color: '#CCCCCC '}}}
             );
-            carsPieOption.series.data.push(
+            carsPieOption.series[0].data.push(
                 {value:data.carsColor[identifier][0],name:"畅通",itemStyle:{normal: {color: '#00CC33'}}},
                 {value:data.carsColor[identifier][1],name:"缓行",itemStyle:{normal: {color: '#FF9900'}}},
                 {value:data.carsColor[identifier][2],name:"拥挤",itemStyle:{normal: {color: '#FF0000'}}}
