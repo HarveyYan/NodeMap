@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Traffic Pattern</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="stylesheet" href="RobotoFonts.css">
+    <link rel="stylesheet" href="MaterialIcons.css">
+    <link rel="stylesheet" href="material.cyan-light_blue.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+    <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout-title">GuiYang Traffic Pattern</span>
+            <div class="mdl-layout-spacer"></div>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+                <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+                <li class="mdl-menu__item" onclick="alert('ISCAS Interns Group Presents');">About</li>
+                <li class="mdl-menu__item" onclick="alert('With special thanks to echarts of Baidu and, Google Maps API, Snap To Roads feature and material design lite of Google');">Acknowledgements</li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid demo-content">
+            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-grid" id="main_map_before" style="height:700px;border:1px solid #ccc;padding:10px;"></div>
+            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-grid" id="main_map_after" style="height:700px;border:1px solid #ccc;padding:10px;"></div>
+            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-grid" style="height:700px;border:1px solid #ccc;padding:10px;">
+                <div class="demo-charts mdl-cell--12-col" id="roadColor_chart_before" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
+                <div class="demo-charts mdl-cell--12-col" id="carsColor_chart_before" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
+            </div>
+            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-grid" style="height:700px;border:1px solid #ccc;padding:10px;">
+                <div class="demo-charts mdl-cell--12-col" id="roadColor_chart_after" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
+                <div class="demo-charts mdl-cell--12-col" id="carsColor_chart_after" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
+            </div>
+            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" id="speedAndNumber_chart" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
+        </div>
+    </main>
+
+</div>
+<script type="text/javascript" src="../mdl/material.min.js"></script>
+<script type="text/javascript" src="../scripts/echarts/dist/echarts.min.js"></script>
+<script type="text/javascript" src="../scripts/echarts/dist/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+<script type="text/javascript" src="../scripts/echarts/dist/extension/bmap.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../scripts/double_render_page.js" id="key" res_before="" res_after=""></script>
+</body>
+
+</html>

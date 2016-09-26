@@ -51,14 +51,13 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
       }
       fs.write(fd, new_entries);
       if (new_entries.length!=0) {
-        //全部的json重新生成，在此可以进行一些优化
         var opts = {stdio: 'inherit'} ;
         var javac = spawn('javac', ['-cp', '/usr/local/nodejsapp/app/Java_modules/lib/\*', '/usr/local/nodejsapp/app/Java_modules/src/Change.java','/usr/local/nodejsapp/app/Java_modules/src/BaiduApi.java','/usr/local/nodejsapp/app/Java_modules/src/StuService.java'], opts);
 
         javac.on('close', function () {
           var params = ['-cp','/usr/local/nodejsapp/app/Java_modules:/usr/local/nodejsapp/app/Java_modules/lib/\*','src.Change'];
           for (var i = 0 ; i < new_entries.length; i++){
-            //注意new_entries没有'.json'
+            //注意new_entries没有'.json'，只更新new_entries的内容,PS空文件夹很Annoying
             params.push(new_entries[i])
           }
           var javaa  = spawn('java', params, opts);
@@ -82,8 +81,8 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
         }
         $('nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800').append('<div class="mdl-layout-spacer"></div>');
         $('#key').attr('res',date.concat(".json"));
-        fs.writeFileSync(__dirname+'/out.html', window.document.documentElement.outerHTML);
-        res.sendFile(__dirname + '/out.html');
+        fs.writeFileSync(__dirname+'/content/views/out.html', window.document.documentElement.outerHTML);
+        res.sendFile(__dirname + '/content/views/out.html');
         window.close();
     });
 
@@ -177,6 +176,22 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
     //res.sendFile(__dirname+"/content/views/"+req.params.year+"-"+req.params.month+"-"+req.params.day+".html");
   });
 
+  app.get('/compare',function(req,res){
+    console.log("Note");
+    var before = req.query.res_before;
+    var after = req.query.res_after;
+    jsdom.env(__dirname+"/content/views/template.html", ['http://222.85.139.245:64154/jquery-3.1.0.min.js'], function(errors, window) {
+      $ = window.jQuery;
+
+      $('#key').attr('res_before',before.concat(".json"));
+      $('#key').attr('res_after',after.concat(".json"));
+      fs.writeFileSync(__dirname+'/content/views/compare.html', window.document.documentElement.outerHTML);
+      res.sendFile(__dirname + '/content/views/compare.html');
+      window.close();
+    });
+    //res.sendFile(__dirname+"/content/views/"+req.params.year+"-"+req.params.month+"-"+req.params.day+".html");
+  });
+
   var listener = app.listen(port,ip, function (err) {
     if (err)  console.log(err);
     else console.log("listenting at: %j",listener.address());
@@ -187,60 +202,6 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
         });
   });
 
-  // var networkInterfaces = os.networkInterfaces();
-  // console.log( networkInterfaces );
-  // var server = http.createServer(function (req, res) {
-  //   var url = req.url;
-  //   if (url == '/') {
-  //     res.statusCode = 200;
-  //     res.setHeader('Content-Type', 'text/plain');
-  //     res.end("Under Development");
-  //   }
-  //
-  //
-  //   IMPORTANT: Your application HAS to respond to GET /health with status 200
-  //              for OpenShift health monitoring
-  //
-  //   if (url == '/health') { //检查健康状态
-  //     res.writeHead(200);
-  //     res.end();
-  //   } else if (url == '/info/gen' || url == '/info/poll') {
-  //     res.setHeader('Content-Type', 'application/json');
-  //     res.setHeader('Cache-Control', 'no-cache, no-store');
-  //     res.end(JSON.stringify(sysInfo[url.slice(6)]()));
-  //   } else {
-  //     fs.readFile('./static' + url, function (err, data) {
-  //       if (err) {
-  //         res.writeHead(404);
-  //         res.end('Not found');
-  //       } else {
-  //         var ext = path.extname(url).slice(1);
-  //         res.setHeader('Content-Type', contentTypes[ext]);
-  //         if (ext === 'html') {
-  //           res.setHeader('Cache-Control', 'no-cache, no-store');
-  //         }
-  //         res.end(data);
-  //       }
-  //     });
-  //   }
-  // });
-  // server.listen(port,ip, function (err) {
-  //   if (err)  console.log(err);
-  //   else console.log("listenting at: %j",server.address());
-  //
-  //   fs.write(fd, `server on application ${process.pid} started, running at ip ${ip} port ${port}\r\n`,
-  //       0,'utf8',function(e){
-  //     if(e) throw e;
-  //   });
-  // });
-
-//   var connection_string = '127.0.0.1:27017/coordinates';
-//   var i= 0 ,j = 0;
-//   //the client db connection scope is wrapped in a callback:
-//   MongoClient.connect('mongodb://'+connection_string, function(err, db) {
-//     if(err) throw err;
-//     var collection = db.collection('coordinates').insert({"lat": i, "lng": j});
-//   })
 
 });
 
