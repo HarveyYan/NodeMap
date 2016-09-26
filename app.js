@@ -180,7 +180,7 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
     console.log("Note");
     var before = req.query.res_before;
     var after = req.query.res_after;
-    jsdom.env(__dirname+"/content/views/template.html", ['http://222.85.139.245:64154/jquery-3.1.0.min.js'], function(errors, window) {
+    jsdom.env(__dirname+"/content/views/template_compare.html", ['http://222.85.139.245:64154/jquery-3.1.0.min.js'], function(errors, window) {
       $ = window.jQuery;
 
       $('#key').attr('res_before',before.concat(".json"));
