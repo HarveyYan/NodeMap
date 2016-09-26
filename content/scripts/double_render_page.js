@@ -690,7 +690,7 @@
                     yAxisIndex: 1,
                     data: data_before.averageSpeed,
                 },{
-                    name: lastScript.getAttribute('res+after')+'总通过车辆',
+                    name: lastScript.getAttribute('res_after')+'总通过车辆',
                     type: 'bar',
                     animation: false,
                     data: data.totalNumber,
