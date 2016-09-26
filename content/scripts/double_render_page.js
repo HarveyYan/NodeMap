@@ -1136,7 +1136,8 @@
                                                 show: true,
                                                 trailLength: 0,
                                                 symbolSize: 3,
-                                                animation: false
+                                                animation: false,
+                                                color: (data.series[n][i][2] == 1)? 'green': (data.series[n][i][2] == 2) ? 'yellow' : (data.series[n][i][2] == 3)? 'red': 'gray'
                                             },
                                             zlevel: 1,
                                             silent: true
@@ -1153,8 +1154,7 @@
                                                 show: true,
                                                 trailLength: 0,
                                                 symbolSize: 0,
-                                                animation: false,
-                                                color: (data.series[n][i][2] == 1)? 'green': (data.series[n][i][2] == 2) ? 'yellow' : (data.series[n][i][2] == 3)? 'red': 'gray'
+                                                animation: false
                                             },
                                             zlevel: 1
                                         });
