@@ -439,7 +439,7 @@
         roadColorChart_before.setOption(roadPieOption);
         carsColorChart_before.setOption(carsPieOption);
 
-        myChart.setOption(option);
+        myChart_before.setOption(option);
 
 
         if (!app.inNode) {
@@ -1008,10 +1008,10 @@
         }
         fillOptions(0);
         fillPieOption(0);
-        roadColorChart.setOption(roadPieOption);
-        carsColorChart.setOption(carsPieOption);
+        roadColorChart_after.setOption(roadPieOption);
+        carsColorChart_after.setOption(carsPieOption);
 
-        myChart.setOption(option);
+        myChart_after.setOption(option);
 
 
         if (!app.inNode) {
