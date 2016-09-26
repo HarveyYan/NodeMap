@@ -414,6 +414,15 @@
                 text: '道路拥堵状况',
                 x:'center'
             },
+            itemStyle:{
+                normal:{
+                    label:{
+                        show: true,
+                        formatter: "{b}的道路 : {c}条 <br/> ({d}%)"
+                    },
+                    labelLine:{show:true}
+                }
+            },
             tooltip : {
                 trigger: 'item',
                 formatter: "{b}的道路 : {c}条 <br/> ({d}%)"
