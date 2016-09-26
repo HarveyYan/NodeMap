@@ -39,6 +39,7 @@
     var scripts = document.getElementsByTagName('script');
     var lastScript = scripts[scripts.length - 1];
 
+    var data_before;
     spdAndNumChart.showLoading();
     // eachSpdAndNumChart.showLoading();
     myChart_before.showLoading('default', {
@@ -50,81 +51,7 @@
     });
 
     $.get('http://222.85.139.245:64154/' + lastScript.getAttribute('res_before'), function(data) {
-        (function setSpdAndNum(data) {
-            spdAndNumChart.hideLoading();
-            option = {
-                toolbox: {
-                    feature: {
-                        dataZoom: {
-                            yAxisIndex: 'none'
-                        },
-                        restore: {},
-                        saveAsImage: {}
-                    }
-                },
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        animation: false
-                    }
-                },
-                dataZoom: [{
-                    show: true,
-                    realtime: true,
-                    start: 65,
-                    end: 85
-                }, {
-                    type: 'inside',
-                    realtime: true,
-                    start: 65,
-                    end: 85
-                }],
-                xAxis: [{
-                    type: 'category',
-                    data: data.timelines.map(function(timelines) {
-                        var list = [];
-                        var value = timelines.toString();
-                        var texts = [value.slice(-4, -2), value.slice(-2)];
-                        return texts.join(':');
-                    })
-                }],
-                yAxis: [{
-                    type: 'value',
-                    name: '总通过车辆',
-                    axisLabel: {
-                        formatter: '{value} 辆'
-                    }
-                }, {
-                    type: 'value',
-                    name: '平均速度',
-                    min: 25,
-                    axisLabel: {
-                        formatter: '{value} km/h'
-                    }
-                }],
-                legend: {
-                    data: ['平均车速', '总通过车辆']
-                },
-                series: [{
-                    name: '总通过车辆',
-                    type: 'bar',
-                    animation: false,
-                    data: data.totalNumber,
-                }, {
-                    name: '平均车速',
-                    type: 'line',
-                    animation: false,
-                    lineStyle: {
-                        normal: {
-                            width: 2
-                        }
-                    },
-                    yAxisIndex: 1,
-                    data: data.averageSpeed,
-                }]
-            }
-            spdAndNumChart.setOption(option);
-        }(data));
+        data_before = JSON.parse(JSON.stringify(data));
 
         /*
         (function setEachSpdAndNum(data) {
@@ -677,6 +604,110 @@
     });
 
     $.get('http://222.85.139.245:64154/' + lastScript.getAttribute('res_after'), function(data) {
+        (function setSpdAndNum(data) {
+            spdAndNumChart.hideLoading();
+            option = {
+                toolbox: {
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        animation: false
+                    }
+                },
+                dataZoom: [{
+                    show: true,
+                    realtime: true,
+                    start: 65,
+                    end: 85
+                }, {
+                    type: 'inside',
+                    realtime: true,
+                    start: 65,
+                    end: 85
+                }],
+                xAxis: [{
+                    type: 'category',
+                    data: data.timelines.map(function(timelines) {
+                        var list = [];
+                        var value = timelines.toString();
+                        var texts = [value.slice(-4, -2), value.slice(-2)];
+                        return texts.join(':');
+                    })
+                }],
+                yAxis: [{
+                    type: 'value',
+                    name: lastScript.getAttribute('res_before')+'总通过车辆',
+                    axisLabel: {
+                        formatter: '{value} 辆'
+                    }
+                }, {
+                    type: 'value',
+                    name: lastScript.getAttribute('res_before')+'平均速度',
+                    min: 25,
+                    axisLabel: {
+                        formatter: '{value} km/h'
+                    }
+                },{
+                    type: 'value',
+                    name: lastScript.getAttribute('res_after')+'总通过车辆',
+                    axisLabel: {
+                        formatter: '{value} 辆'
+                    }
+                }, {
+                    type: 'value',
+                    name: lastScript.getAttribute('res_after')+'平均速度',
+                    min: 25,
+                    axisLabel: {
+                        formatter: '{value} km/h'
+                    }
+                }],
+                legend: {
+                    data: [lastScript.getAttribute('res_before')+'平均车速', lastScript.getAttribute('res_before')+'总通过车辆',lastScript.getAttribute('res_after')+'平均车速', lastScript.getAttribute('res_after')+'总通过车辆']
+                },
+                series: [{
+                    name: lastScript.getAttribute('res_before')+'总通过车辆',
+                    type: 'bar',
+                    animation: false,
+                    data: data_before.totalNumber,
+                }, {
+                    name: lastScript.getAttribute('res_before')+'平均车速',
+                    type: 'line',
+                    animation: false,
+                    lineStyle: {
+                        normal: {
+                            width: 2
+                        }
+                    },
+                    yAxisIndex: 1,
+                    data: data_before.averageSpeed,
+                },{
+                    name: lastScript.getAttribute('res+after')+'总通过车辆',
+                    type: 'bar',
+                    animation: false,
+                    data: data.totalNumber,
+                }, {
+                    name: lastScript.getAttribute('res_after')+'平均车速',
+                    type: 'line',
+                    animation: false,
+                    lineStyle: {
+                        normal: {
+                            width: 2
+                        }
+                    },
+                    yAxisIndex: 1,
+                    data: data.averageSpeed,
+                }]
+            }
+            spdAndNumChart.setOption(option);
+        }(data));
         myChart_after.hideLoading();
         var schema = [{
             index: 0,
