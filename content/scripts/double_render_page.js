@@ -436,8 +436,8 @@
         }
         fillOptions(0);
         fillPieOption(0);
-        roadColorChart.setOption(roadPieOption);
-        carsColorChart.setOption(carsPieOption);
+        roadColorChart_before.setOption(roadPieOption);
+        carsColorChart_before.setOption(carsPieOption);
 
         myChart.setOption(option);
 
