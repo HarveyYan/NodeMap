@@ -162,14 +162,12 @@
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">�</span>
-            <h2>Modal Header</h2>
+            <h2>请选择日期进行比较</h2>
         </div>
         <div class="modal-body">
-            <p>Some text in the Modal Body</p>
-            <p>Some other text...</p>
-        </div>
-        <div class="modal-footer">
-            <h3>Modal Footer</h3>
+            <input type="text" id="before" value="2016-03-12">
+            <input type="text" id="after" value="2016-03-13">
+            <button id="confirm" value ="confirm"></button>
         </div>
     </div>
 
@@ -180,6 +178,7 @@
 
     // Get the button that opens the modal
     var btn = document.getElementById("myButton");
+    var confirm = document.getElementsById('confirm')
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
@@ -187,6 +186,12 @@
     // When the user clicks the button, open the modal
     btn.onclick = function() {
         modal.style.display = "block";
+    }
+
+    confirm.onclick = function(){
+        var before = document.getElementById('before').value;
+        var after = document.getElementById('before').after;
+        window.open('http://222.85.139.245:64154/compare?res_before='+before+'&res_after='+after);
     }
 
     // When the user clicks on <span> (x), close the modal
