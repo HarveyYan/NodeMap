@@ -604,6 +604,7 @@
     });
 
     $.get('http://222.85.139.245:64154/' + lastScript.getAttribute('res_after'), function(data) {
+        console.log(data_before);
         (function setSpdAndNum(data) {
             spdAndNumChart.hideLoading();
             option = {
