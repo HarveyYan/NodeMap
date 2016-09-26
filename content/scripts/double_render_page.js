@@ -656,19 +656,6 @@
                     axisLabel: {
                         formatter: '{value} km/h'
                     }
-                },{
-                    type: 'value',
-                    name: lastScript.getAttribute('res_after')+'总通过车辆',
-                    axisLabel: {
-                        formatter: '{value} 辆'
-                    }
-                }, {
-                    type: 'value',
-                    name: lastScript.getAttribute('res_after')+'平均速度',
-                    min: 25,
-                    axisLabel: {
-                        formatter: '{value} km/h'
-                    }
                 }],
                 legend: {
                     data: [lastScript.getAttribute('res_before')+'平均车速', lastScript.getAttribute('res_before')+'总通过车辆',lastScript.getAttribute('res_after')+'平均车速', lastScript.getAttribute('res_after')+'总通过车辆']
