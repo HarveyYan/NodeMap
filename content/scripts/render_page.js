@@ -615,7 +615,7 @@
                                                 trailLength: 0,
                                                 symbolSize: 3,
                                                 animation: false,
-                                                color: 'rgb(0, 0, 0)'
+                                                color: (data.series[n][i][2] == 1)? 'green': (data.series[n][i][2] == 2) ? 'yellow' : (data.series[n][i][2] == 3)? 'red': 'gray'
                                             },
                                             zlevel: 1,
                                             silent: true
@@ -633,7 +633,6 @@
                                                 trailLength: 0,
                                                 symbolSize: 0,
                                                 animation: false,
-                                                color: 'rgb(0, 0, 0)'
                                             },
                                             zlevel: 1
                                         });
