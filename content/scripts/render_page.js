@@ -414,39 +414,23 @@
                 text: '道路拥堵状况',
                 x:'center'
             },
-            itemStyle:{
-                normal:{
-                    label:{
-                        show: true,
-                        formatter: "{b}的道路 : {c}条 <br/> ({d}%)"
-                    },
-                    labelLine:{show:true}
-                }
-            },
-            tooltip : {
-                trigger: 'item',
-                formatter: "{b}的道路 : {c}条 <br/> ({d}%)"
-            },
+           
             legend: {
                 x : 'center',
                 y : 'bottom',
                 data:['rose1','rose2','rose3','rose4','rose5']
             },
-            toolbox: {
-                show : true,
-                feature : {
-                    mark : {show: true},
-                    dataView : {show: true, readOnly: false},
-                    magicType : {
-                        show: true,
-                        type: ['pie', 'funnel']
-                    },
-                    restore : {show: true},
-                    saveAsImage : {show: true}
-                }
-            },
             calculable : true,
-            series : {
+            series: {
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: "{b}的道路:{c}条 <br/> ({d}%)"
+                        },
+                        labelLine: { show: true }
+                    }
+                },
                 type:'pie',
                 radius : [40, 110],
                 center : ['50%', '50%'],
@@ -459,30 +443,23 @@
                 text: '车辆拥堵状况',
                 x:'center'
             },
-            tooltip : {
-                trigger: 'item',
-                formatter: "{b}的车辆总数 : {c}辆 <br/> ({d}%)"
-            },
             legend: {
                 x : 'center',
                 y : 'bottom',
                 data:['rose1','rose2','rose3','rose4','rose5']
             },
-            toolbox: {
-                show : true,
-                feature : {
-                    mark : {show: true},
-                    dataView : {show: true, readOnly: false},
-                    magicType : {
-                        show: true,
-                        type: ['pie', 'funnel']
-                    },
-                    restore : {show: true},
-                    saveAsImage : {show: true}
-                }
-            },
+           
             calculable : true,
-            series : {
+            series: {
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: "{b}的车辆总数:{c}辆 <br/> ({d}%)"
+                        },
+                        labelLine: { show: true }
+                    }
+                },
                 type:'pie',
                 radius : [40, 110],
                 center : ['50%', '50%'],
