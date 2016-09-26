@@ -51,7 +51,7 @@
     });
 
     $.get('http://222.85.139.245:64154/' + lastScript.getAttribute('res_before'), function(data) {
-        data_before = Object.assign({}, data);
+        data_before = $.extend(true, {}, data);
 
         /*
         (function setEachSpdAndNum(data) {
