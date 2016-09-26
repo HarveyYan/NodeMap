@@ -39,7 +39,7 @@
     var scripts = document.getElementsByTagName('script');
     var lastScript = scripts[scripts.length - 1];
 
-    var data_before;
+    var data_before={};
     spdAndNumChart.showLoading();
     // eachSpdAndNumChart.showLoading();
     myChart_before.showLoading('default', {
@@ -51,7 +51,7 @@
     });
 
     $.get('http://222.85.139.245:64154/' + lastScript.getAttribute('res_before'), function(data) {
-        data_before = JSON.parse(JSON.stringify(data));
+        data_before = Object.assign({}, data);
 
         /*
         (function setEachSpdAndNum(data) {
