@@ -645,28 +645,28 @@
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: lastScript.getAttribute('res_before')+'总通过车辆',
+                    name: '总通过车辆',
                     axisLabel: {
                         formatter: '{value} 辆'
                     }
                 }, {
                     type: 'value',
-                    name: lastScript.getAttribute('res_before')+'平均速度',
+                    name: '平均速度',
                     min: 25,
                     axisLabel: {
                         formatter: '{value} km/h'
                     }
                 }],
                 legend: {
-                    data: [lastScript.getAttribute('res_before')+'平均车速', lastScript.getAttribute('res_before')+'总通过车辆',lastScript.getAttribute('res_after')+'平均车速', lastScript.getAttribute('res_after')+'总通过车辆']
+                    data: [lastScript.getAttribute('res_before').substring(0,10)+'平均车速', lastScript.getAttribute('res_before').substring(0,10)+'总通过车辆',lastScript.getAttribute('res_after').substring(0,10)+'平均车速', lastScript.getAttribute('res_after').substring(0,10)+'总通过车辆']
                 },
                 series: [{
-                    name: lastScript.getAttribute('res_before')+'总通过车辆',
+                    name: lastScript.getAttribute('res_before').substring(0,10)+'总通过车辆',
                     type: 'bar',
                     animation: false,
                     data: data_before.totalNumber,
                 }, {
-                    name: lastScript.getAttribute('res_before')+'平均车速',
+                    name: lastScript.getAttribute('res_before').substring(0,10)+'平均车速',
                     type: 'line',
                     animation: false,
                     lineStyle: {
@@ -677,12 +677,12 @@
                     yAxisIndex: 1,
                     data: data_before.averageSpeed,
                 },{
-                    name: lastScript.getAttribute('res_after')+'总通过车辆',
+                    name: lastScript.getAttribute('res_after').substring(0,10)+'总通过车辆',
                     type: 'bar',
                     animation: false,
                     data: data.totalNumber,
                 }, {
-                    name: lastScript.getAttribute('res_after')+'平均车速',
+                    name: lastScript.getAttribute('res_after').substring(0,10)+'平均车速',
                     type: 'line',
                     animation: false,
                     lineStyle: {
