@@ -366,86 +366,80 @@
                 text: '道路拥堵状况',
                 x: 'center'
             },
-            tooltip: {
-                trigger: 'item',
-                formatter: "{b}的道路 : {c}条 <br/> ({d}%)"
-            },
+
             legend: {
                 x: 'center',
                 y: 'bottom',
                 data: ['rose1', 'rose2', 'rose3', 'rose4', 'rose5']
             },
-            toolbox: {
-                show: true,
-                feature: {
-                    mark: { show: true },
-                    dataView: { show: true, readOnly: false },
-                    magicType: {
-                        show: true,
-                        type: ['pie', 'funnel']
-                    },
-                    restore: { show: true },
-                    saveAsImage: { show: true }
-                }
-            },
             calculable: true,
-            series: {
+            series: [{
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: "{b}的道路:{c}条({d}%)"
+                        },
+                        labelLine: { show: true }
+                    }
+                },
                 type: 'pie',
                 radius: [40, 110],
                 center: ['50%', '50%'],
                 roseType: 'radius',
                 data: []
-            }
+            }]
         }
         var carsPieOption = {
             title: {
                 text: '车辆拥堵状况',
                 x: 'center'
             },
-            tooltip: {
-                trigger: 'item',
-                formatter: "{b}的车辆总数 : {c}辆 <br/> ({d}%)"
-            },
             legend: {
                 x: 'center',
                 y: 'bottom',
                 data: ['rose1', 'rose2', 'rose3', 'rose4', 'rose5']
             },
-            toolbox: {
-                show: true,
-                feature: {
-                    mark: { show: true },
-                    dataView: { show: true, readOnly: false },
-                    magicType: {
-                        show: true,
-                        type: ['pie', 'funnel']
-                    },
-                    restore: { show: true },
-                    saveAsImage: { show: true }
-                }
-            },
+
             calculable: true,
-            series: {
+            series: [{
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: "{b}的车辆总数:{c}辆({d}%)"
+                        },
+                        labelLine: { show: true }
+                    }
+                },
                 type: 'pie',
                 radius: [40, 110],
                 center: ['50%', '50%'],
                 roseType: 'radius',
                 data: []
-            }
+            }]
         }
-
         function fillPieOption(identifier) {
-            roadPieOption.series.data.length = 0;
-            carsPieOption.series.data.length = 0;
-            roadPieOption.series.data.push({ value: data.roadColor[identifier][0], name: "畅通", itemStyle: { normal: { color: '#00CC33' } } }, { value: data.roadColor[identifier][1], name: "缓行", itemStyle: { normal: { color: '#FF9900' } } }, { value: data.roadColor[identifier][2], name: "拥挤", itemStyle: { normal: { color: '#FF0000' } } }, { value: data.roadColor[identifier][3], name: "无数据", itemStyle: { normal: { color: '#CCCCCC ' } } });
-            carsPieOption.series.data.push({ value: data.carsColor[identifier][0], name: "畅通", itemStyle: { normal: { color: '#00CC33' } } }, { value: data.carsColor[identifier][1], name: "缓行", itemStyle: { normal: { color: '#FF9900' } } }, { value: data.carsColor[identifier][2], name: "拥挤", itemStyle: { normal: { color: '#FF0000' } } });
+            roadPieOption.series[0].data.length = 0;
+            carsPieOption.series[0].data.length = 0;
+            roadPieOption.series[0].data.push(
+                { value: data.roadColor[identifier][0], name: "畅通", itemStyle: { normal: { color: '#00CC33' } } },
+                { value: data.roadColor[identifier][1], name: "缓行", itemStyle: { normal: { color: '#FF9900' } } },
+                { value: data.roadColor[identifier][2], name: "拥挤", itemStyle: { normal: { color: '#FF0000' } } },
+                { value: data.roadColor[identifier][3], name: "无数据", itemStyle: { normal: { color: '#CCCCCC ' } } }
+            );
+            carsPieOption.series[0].data.push(
+                { value: data.carsColor[identifier][0], name: "畅通", itemStyle: { normal: { color: '#00CC33' } } },
+                { value: data.carsColor[identifier][1], name: "缓行", itemStyle: { normal: { color: '#FF9900' } } },
+                { value: data.carsColor[identifier][2], name: "拥挤", itemStyle: { normal: { color: '#FF0000' } } }
+            );
         }
         fillOptions(0);
         fillPieOption(0);
-        roadColorChart_before.setOption(roadPieOption);
-        carsColorChart_before.setOption(carsPieOption);
+        roadColorChart.setOption(roadPieOption);
+        carsColorChart.setOption(carsPieOption);
 
-        myChart_before.setOption(option);
+        myChart.setOption(option);
 
 
         if (!app.inNode) {
@@ -606,7 +600,6 @@
 
     $.get('http://222.85.139.245:64154/' + lastScript.getAttribute('res_after'), function(data) {
         $.get('http://222.85.139.245:64154/' + lastScript.getAttribute('res_before'), function(data_before) {
-        console.log(data_before);
         (function setSpdAndNum(data) {
             spdAndNumChart.hideLoading();
             option = {
@@ -945,86 +938,80 @@
                 text: '道路拥堵状况',
                 x: 'center'
             },
-            tooltip: {
-                trigger: 'item',
-                formatter: "{b}的道路 : {c}条 <br/> ({d}%)"
-            },
+
             legend: {
                 x: 'center',
                 y: 'bottom',
                 data: ['rose1', 'rose2', 'rose3', 'rose4', 'rose5']
             },
-            toolbox: {
-                show: true,
-                feature: {
-                    mark: { show: true },
-                    dataView: { show: true, readOnly: false },
-                    magicType: {
-                        show: true,
-                        type: ['pie', 'funnel']
-                    },
-                    restore: { show: true },
-                    saveAsImage: { show: true }
-                }
-            },
             calculable: true,
-            series: {
+            series: [{
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: "{b}的道路:{c}条({d}%)"
+                        },
+                        labelLine: { show: true }
+                    }
+                },
                 type: 'pie',
                 radius: [40, 110],
                 center: ['50%', '50%'],
                 roseType: 'radius',
                 data: []
-            }
+            }]
         }
         var carsPieOption = {
             title: {
                 text: '车辆拥堵状况',
                 x: 'center'
             },
-            tooltip: {
-                trigger: 'item',
-                formatter: "{b}的车辆总数 : {c}辆 <br/> ({d}%)"
-            },
             legend: {
                 x: 'center',
                 y: 'bottom',
                 data: ['rose1', 'rose2', 'rose3', 'rose4', 'rose5']
             },
-            toolbox: {
-                show: true,
-                feature: {
-                    mark: { show: true },
-                    dataView: { show: true, readOnly: false },
-                    magicType: {
-                        show: true,
-                        type: ['pie', 'funnel']
-                    },
-                    restore: { show: true },
-                    saveAsImage: { show: true }
-                }
-            },
+
             calculable: true,
-            series: {
+            series: [{
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: "{b}的车辆总数:{c}辆({d}%)"
+                        },
+                        labelLine: { show: true }
+                    }
+                },
                 type: 'pie',
                 radius: [40, 110],
                 center: ['50%', '50%'],
                 roseType: 'radius',
                 data: []
-            }
+            }]
         }
-
         function fillPieOption(identifier) {
-            roadPieOption.series.data.length = 0;
-            carsPieOption.series.data.length = 0;
-            roadPieOption.series.data.push({ value: data.roadColor[identifier][0], name: "畅通", itemStyle: { normal: { color: '#00CC33' } } }, { value: data.roadColor[identifier][1], name: "缓行", itemStyle: { normal: { color: '#FF9900' } } }, { value: data.roadColor[identifier][2], name: "拥挤", itemStyle: { normal: { color: '#FF0000' } } }, { value: data.roadColor[identifier][3], name: "无数据", itemStyle: { normal: { color: '#CCCCCC ' } } });
-            carsPieOption.series.data.push({ value: data.carsColor[identifier][0], name: "畅通", itemStyle: { normal: { color: '#00CC33' } } }, { value: data.carsColor[identifier][1], name: "缓行", itemStyle: { normal: { color: '#FF9900' } } }, { value: data.carsColor[identifier][2], name: "拥挤", itemStyle: { normal: { color: '#FF0000' } } });
+            roadPieOption.series[0].data.length = 0;
+            carsPieOption.series[0].data.length = 0;
+            roadPieOption.series[0].data.push(
+                { value: data.roadColor[identifier][0], name: "畅通", itemStyle: { normal: { color: '#00CC33' } } },
+                { value: data.roadColor[identifier][1], name: "缓行", itemStyle: { normal: { color: '#FF9900' } } },
+                { value: data.roadColor[identifier][2], name: "拥挤", itemStyle: { normal: { color: '#FF0000' } } },
+                { value: data.roadColor[identifier][3], name: "无数据", itemStyle: { normal: { color: '#CCCCCC ' } } }
+            );
+            carsPieOption.series[0].data.push(
+                { value: data.carsColor[identifier][0], name: "畅通", itemStyle: { normal: { color: '#00CC33' } } },
+                { value: data.carsColor[identifier][1], name: "缓行", itemStyle: { normal: { color: '#FF9900' } } },
+                { value: data.carsColor[identifier][2], name: "拥挤", itemStyle: { normal: { color: '#FF0000' } } }
+            );
         }
         fillOptions(0);
         fillPieOption(0);
-        roadColorChart_after.setOption(roadPieOption);
-        carsColorChart_after.setOption(carsPieOption);
+        roadColorChart.setOption(roadPieOption);
+        carsColorChart.setOption(carsPieOption);
 
-        myChart_after.setOption(option);
+        myChart.setOption(option);
 
 
         if (!app.inNode) {
