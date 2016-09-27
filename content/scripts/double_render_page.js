@@ -587,7 +587,7 @@
         myChart_before.dispatchAction({
             type: 'timelineChange',
             // 时间点的 index
-            currentIndex: 45
+            currentIndex: 48
         });
 
 
@@ -1074,7 +1074,7 @@
         myChart_after.dispatchAction({
             type: 'timelineChange',
             // 时间点的 index
-            currentIndex: 45
+            currentIndex: 48
         });
 
         myChart_after.on('timelinechanged', function(param) {
