@@ -852,6 +852,7 @@
                     width: null,
                     height: 55,
                     inverse: false,
+                    currentIndex:45,
                     label: {
                         position: 10,
                         normal: {
@@ -1007,8 +1008,8 @@
                 { value: data.carsColor[identifier][2], name: "拥挤", itemStyle: { normal: { color: '#FF0000' } } }
             );
         }
-        fillOptions(0);
-        fillPieOption(0);
+        fillOptions(45);
+        fillPieOption(45);
         roadColorChart_after.setOption(roadPieOption);
         carsColorChart_after.setOption(carsPieOption);
 
