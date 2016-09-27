@@ -278,7 +278,6 @@
                     bottom: 0,
                     width: null,
                     height: 55,
-                    currentIndex:45,
                     inverse: false,
                     label: {
                         position: 10,
@@ -435,8 +434,8 @@
                 { value: data.carsColor[identifier][2], name: "速度小于30km/h", itemStyle: { normal: { color: '#FF0000' } } }
             );
         }
-        fillOptions(45);
-        fillPieOption(45);
+        fillOptions(0);
+        fillPieOption(0);
         roadColorChart_before.setOption(roadPieOption);
         carsColorChart_before.setOption(carsPieOption);
 
@@ -586,6 +585,12 @@
                 });
             }
         }
+
+        myChart_before.dispatchAction({
+            type: 'timelineChange',
+            // 时间点的 index
+            currentIndex: 45
+        });
 
 
         myChart_before.on('timelinechanged', function(param) {
@@ -852,7 +857,6 @@
                     width: null,
                     height: 55,
                     inverse: false,
-                    currentIndex:45,
                     label: {
                         position: 10,
                         normal: {
@@ -1008,8 +1012,8 @@
                 { value: data.carsColor[identifier][2], name: "拥挤", itemStyle: { normal: { color: '#FF0000' } } }
             );
         }
-        fillOptions(45);
-        fillPieOption(45);
+        fillOptions(0);
+        fillPieOption(0);
         roadColorChart_after.setOption(roadPieOption);
         carsColorChart_after.setOption(carsPieOption);
 
@@ -1160,6 +1164,11 @@
             }
         }
 
+        myChart_after.dispatchAction({
+            type: 'timelineChange',
+            // 时间点的 index
+            currentIndex: 45
+        });
 
         myChart_after.on('timelinechanged', function(param) {
             identifier = param.currentIndex;
