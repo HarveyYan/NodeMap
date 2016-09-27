@@ -640,6 +640,12 @@
             currentIndex: 48
         });
 
+        fillOptions(48);
+        fillPieOption(48);
+        myChart.setOption(option);
+        roadColorChart.setOption(roadPieOption);
+        carsColorChart.setOption(carsPieOption);
+
         myChart.on('timelinechanged', function(param) {
             identifier = param.currentIndex;
             fillOptions(identifier);
