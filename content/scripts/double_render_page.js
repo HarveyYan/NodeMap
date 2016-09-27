@@ -956,7 +956,7 @@
                     normal: {
                         label: {
                             show: true,
-                            formatter: "{b}的道路:{c}条({d}%)"
+                            formatter: "{b}的道路:"+"\n"+"{c}条({d}%)"
                         },
                         labelLine: { show: true }
                     }
@@ -985,7 +985,7 @@
                     normal: {
                         label: {
                             show: true,
-                            formatter: "{b}的车辆总数:{c}辆({d}%)"
+                            formatter: "{b}的车辆总数:"+"\n"+"{c}辆({d}%)"
                         },
                         labelLine: { show: true }
                     }
