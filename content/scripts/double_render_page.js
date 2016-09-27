@@ -16,10 +16,13 @@
     var speedAndNumber = document.getElementById('speedAndNumber_chart');
     //dom.style.height = (screen.height-100) + "px";
     var myChart_before = echarts.init(dom_before);
+    var roadColorChart_before = echarts.init(document.getElementById('roadColor_chart_before'));
+    var carsColorChart_before = echarts.init(document.getElementById('carsColor_chart_before'));
 
     var myChart_after = echarts.init(dom_after);
+    var roadColorChart_after = echarts.init(document.getElementById('roadColor_chart_after'));
+    var carsColorChart_after = echarts.init(document.getElementById('carsColor_chart_after'));
 
-    var spdAndNumChart = echarts.init(speedAndNumber);
     // document.getElementById('carsColor_chart').style.height = (screen.height/2) + "px";
     // document.getElementById('roadColor_chart').style.height = (screen.height/2) + "px";
     // var eachSpeedAndNumber = document.getElementById('eachSpeedAndNumber_chart');
@@ -36,7 +39,6 @@
     var lastScript = scripts[scripts.length - 1];
 
     //var data_before={};
-    spdAndNumChart.showLoading();
     // eachSpdAndNumChart.showLoading();
     myChart_before.showLoading('default', {
         text: '加载中..'
@@ -357,7 +359,83 @@
             }
         }
 
+        var roadPieOption = {
+            title: {
+                text: '道路拥堵状况',
+                x: 'center'
+            },
+
+            legend: {
+                x: 'center',
+                y: 'bottom',
+                data: ['rose1', 'rose2', 'rose3', 'rose4', 'rose5']
+            },
+            calculable: true,
+            series: [{
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: "{b}的道路:" + "\n" + "{c}条({d}%)"
+                        },
+                        labelLine: { show: true }
+                    }
+                },
+                type: 'pie',
+                radius: [40, 110],
+                center: ['50%', '50%'],
+                roseType: 'radius',
+                data: []
+            }]
+        }
+        var carsPieOption = {
+            title: {
+                text: '车辆拥堵状况',
+                x: 'center'
+            },
+            legend: {
+                x: 'center',
+                y: 'bottom',
+                data: ['rose1', 'rose2', 'rose3', 'rose4', 'rose5']
+            },
+
+            calculable: true,
+            series: [{
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: "{b}的车辆总数:" + "\n" + "{c}辆({d}%)"
+                        },
+                        labelLine: { show: true }
+                    }
+                },
+                type: 'pie',
+                radius: [40, 110],
+                center: ['50%', '50%'],
+                roseType: 'radius',
+                data: []
+            }]
+        }
+        function fillPieOption(identifier) {
+            roadPieOption.series[0].data.length = 0;
+            carsPieOption.series[0].data.length = 0;
+            roadPieOption.series[0].data.push(
+            { value: data.roadColor[identifier][0], name: "速度大于36km/h", itemStyle: { normal: { color: '#00CC33' } } },
+                { value: data.roadColor[identifier][1], name: "速度在30和36km/h之间", itemStyle: { normal: { color: '#FF9900' } } },
+                { value: data.roadColor[identifier][2], name: "速度小于30km/h", itemStyle: { normal: { color: '#FF0000' } } },
+                { value: data.roadColor[identifier][3], name: "无数据", itemStyle: { normal: { color: '#CCCCCC ' } } }
+            );
+            carsPieOption.series[0].data.push(
+                { value: data.carsColor[identifier][0], name: "速度大于36km/h", itemStyle: { normal: { color: '#00CC33' } } },
+                { value: data.carsColor[identifier][1], name: "速度在30和36km/h之间", itemStyle: { normal: { color: '#FF9900' } } },
+                { value: data.carsColor[identifier][2], name: "速度小于30km/h", itemStyle: { normal: { color: '#FF0000' } } }
+            );
+        }
         fillOptions(0);
+        fillPieOption(0);
+        roadColorChart_before.setOption(roadPieOption);
+        carsColorChart_before.setOption(carsPieOption);
 
         myChart_before.setOption(option);
 
@@ -509,7 +587,7 @@
         myChart_before.dispatchAction({
             type: 'timelineChange',
             // 时间点的 index
-            currentIndex: 48
+            currentIndex: 45
         });
 
 
@@ -525,98 +603,7 @@
     });
 
     $.get('http://222.85.139.245:64154/' + lastScript.getAttribute('res_after'), function(data) {
-        $.get('http://222.85.139.245:64154/' + lastScript.getAttribute('res_before'), function(data_before) {
-        (function setSpdAndNum(data) {
-            spdAndNumChart.hideLoading();
-            option = {
-                toolbox: {
-                    feature: {
-                        dataZoom: {
-                            yAxisIndex: 'none'
-                        },
-                        restore: {},
-                        saveAsImage: {}
-                    }
-                },
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        animation: false
-                    }
-                },
-                dataZoom: [{
-                    show: true,
-                    realtime: true,
-                    start: 65,
-                    end: 85
-                }, {
-                    type: 'inside',
-                    realtime: true,
-                    start: 65,
-                    end: 85
-                }],
-                xAxis: [{
-                    type: 'category',
-                    data: data.timelines.map(function(timelines) {
-                        var list = [];
-                        var value = timelines.toString();
-                        var texts = [value.slice(-4, -2), value.slice(-2)];
-                        return texts.join(':');
-                    })
-                }],
-                yAxis: [{
-                    type: 'value',
-                    name: '总通过车辆',
-                    axisLabel: {
-                        formatter: '{value} 辆'
-                    }
-                }, {
-                    type: 'value',
-                    name: '平均速度',
-                    min: 25,
-                    axisLabel: {
-                        formatter: '{value} km/h'
-                    }
-                }],
-                legend: {
-                    data: [lastScript.getAttribute('res_before').substring(0,10)+'平均车速', lastScript.getAttribute('res_before').substring(0,10)+'总通过车辆',lastScript.getAttribute('res_after').substring(0,10)+'平均车速', lastScript.getAttribute('res_after').substring(0,10)+'总通过车辆']
-                },
-                series: [{
-                    name: lastScript.getAttribute('res_before').substring(0,10)+'总通过车辆',
-                    type: 'bar',
-                    animation: false,
-                    data: data_before.totalNumber,
-                }, {
-                    name: lastScript.getAttribute('res_before').substring(0,10)+'平均车速',
-                    type: 'line',
-                    animation: false,
-                    lineStyle: {
-                        normal: {
-                            width: 2
-                        }
-                    },
-                    yAxisIndex: 1,
-                    data: data_before.averageSpeed,
-                },{
-                    name: lastScript.getAttribute('res_after').substring(0,10)+'总通过车辆',
-                    type: 'bar',
-                    animation: false,
-                    data: data.totalNumber,
-                }, {
-                    name: lastScript.getAttribute('res_after').substring(0,10)+'平均车速',
-                    type: 'line',
-                    animation: false,
-                    lineStyle: {
-                        normal: {
-                            width: 2
-                        }
-                    },
-                    yAxisIndex: 1,
-                    data: data.averageSpeed,
-                }]
-            }
-            spdAndNumChart.setOption(option);
-        }(data));
+
         myChart_after.hideLoading();
         var schema = [{
             index: 0,
@@ -859,7 +846,83 @@
             }
         }
 
+        var roadPieOption = {
+            title: {
+                text: '道路拥堵状况',
+                x: 'center'
+            },
+
+            legend: {
+                x: 'center',
+                y: 'bottom',
+                data: ['rose1', 'rose2', 'rose3', 'rose4', 'rose5']
+            },
+            calculable: true,
+            series: [{
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: "{b}的道路:"+"\n"+"{c}条({d}%)"
+                        },
+                        labelLine: { show: true }
+                    }
+                },
+                type: 'pie',
+                radius: [40, 110],
+                center: ['50%', '50%'],
+                roseType: 'radius',
+                data: []
+            }]
+        }
+        var carsPieOption = {
+            title: {
+                text: '车辆拥堵状况',
+                x: 'center'
+            },
+            legend: {
+                x: 'center',
+                y: 'bottom',
+                data: ['rose1', 'rose2', 'rose3', 'rose4', 'rose5']
+            },
+
+            calculable: true,
+            series: [{
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: "{b}的车辆总数:"+"\n"+"{c}辆({d}%)"
+                        },
+                        labelLine: { show: true }
+                    }
+                },
+                type: 'pie',
+                radius: [40, 110],
+                center: ['50%', '50%'],
+                roseType: 'radius',
+                data: []
+            }]
+        }
+        function fillPieOption(identifier) {
+            roadPieOption.series[0].data.length = 0;
+            carsPieOption.series[0].data.length = 0;
+            roadPieOption.series[0].data.push(
+                { value: data.roadColor[identifier][0], name: "畅通", itemStyle: { normal: { color: '#00CC33' } } },
+                { value: data.roadColor[identifier][1], name: "缓行", itemStyle: { normal: { color: '#FF9900' } } },
+                { value: data.roadColor[identifier][2], name: "拥挤", itemStyle: { normal: { color: '#FF0000' } } },
+                { value: data.roadColor[identifier][3], name: "无数据", itemStyle: { normal: { color: '#CCCCCC ' } } }
+            );
+            carsPieOption.series[0].data.push(
+                { value: data.carsColor[identifier][0], name: "畅通", itemStyle: { normal: { color: '#00CC33' } } },
+                { value: data.carsColor[identifier][1], name: "缓行", itemStyle: { normal: { color: '#FF9900' } } },
+                { value: data.carsColor[identifier][2], name: "拥挤", itemStyle: { normal: { color: '#FF0000' } } }
+            );
+        }
         fillOptions(0);
+        fillPieOption(0);
+        roadColorChart_after.setOption(roadPieOption);
+        carsColorChart_after.setOption(carsPieOption);
 
         myChart_after.setOption(option);
 
@@ -1011,7 +1074,7 @@
         myChart_after.dispatchAction({
             type: 'timelineChange',
             // 时间点的 index
-            currentIndex: 48
+            currentIndex: 45
         });
 
         myChart_after.on('timelinechanged', function(param) {
@@ -1023,4 +1086,4 @@
             carsColorChart_after.setOption(carsPieOption);
         });
 
-    });});
+    });
