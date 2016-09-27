@@ -484,8 +484,8 @@
                 {value:data.carsColor[identifier][2],name:"拥挤",itemStyle:{normal: {color: '#FF0000'}}}
             );
         }
-        fillOptions(45);
-        fillPieOption(45);
+        fillOptions(0);
+        fillPieOption(0);
         roadColorChart.setOption(roadPieOption);
         carsColorChart.setOption(carsPieOption);
 
