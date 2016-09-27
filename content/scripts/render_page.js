@@ -483,8 +483,8 @@
                 { value: data.carsColor[identifier][2], name: "速度小于30km/h", itemStyle: { normal: { color: '#FF0000' } } }
             );
         }
-        fillOptions(45);
-        fillPieOption(45);
+        fillOptions(0);
+        fillPieOption(0);
         roadColorChart.setOption(roadPieOption);
         carsColorChart.setOption(carsPieOption);
 
@@ -638,8 +638,8 @@
 
         myChart.on('timelinechanged', function(param) {
             identifier = param.currentIndex;
-            fillOptions(identifier+1);
-            fillPieOption(identifier+1);
+            fillOptions(identifier);
+            fillPieOption(identifier);
             myChart.setOption(option);
             roadColorChart.setOption(roadPieOption);
             carsColorChart.setOption(carsPieOption);
