@@ -397,7 +397,7 @@
         };
 
         //timeline美化
-        for (var n = 45; n < data.timelines.length; n++) {
+        for (var n = 0; n < data.timelines.length; n++) {
             if (n % 6 === 0) {
                 var time = {
                     value: data.timelines[n],
@@ -482,8 +482,8 @@
                 { value: data.carsColor[identifier][2], name: "速度小于30km/h", itemStyle: { normal: { color: '#FF0000' } } }
             );
         }
-        fillOptions(45);
-        fillPieOption(45);
+        fillOptions(0);
+        fillPieOption(0);
         roadColorChart.setOption(roadPieOption);
         carsColorChart.setOption(carsPieOption);
 
@@ -501,7 +501,7 @@
 
         function fillOptions(identifier) {
             option.options.length = 0;
-            for (var n = 45; n < data.timelines.length; n++) {
+            for (var n = 0; n < data.timelines.length; n++) {
                 var timelineString = data.timelines[n].toString();
                 option.options.push({
                     title: {
@@ -634,6 +634,11 @@
             }
         }
 
+        myChart.dispatchAction({
+            type: 'timelineChange',
+            // 时间点的 index
+            currentIndex: 45
+        });
 
         myChart.on('timelinechanged', function(param) {
             identifier = param.currentIndex;
