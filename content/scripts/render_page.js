@@ -638,8 +638,8 @@
 
         myChart.on('timelinechanged', function(param) {
             identifier = param.currentIndex;
-            fillOptions(identifier);
-            fillPieOption(identifier);
+            fillOptions(identifier+1);
+            fillPieOption(identifier+1);
             myChart.setOption(option);
             roadColorChart.setOption(roadPieOption);
             carsColorChart.setOption(carsPieOption);
