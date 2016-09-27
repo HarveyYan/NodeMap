@@ -327,6 +327,7 @@
                     width: null,
                     height: 55,
                     inverse: false,
+                    currentIndex: 46,
                     label: {
                         position: 10,
                         normal: {
