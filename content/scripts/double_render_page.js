@@ -590,6 +590,12 @@
             currentIndex: 48
         });
 
+        fillOptions(48);
+        fillPieOption(48);
+        myChart_before.setOption(option);
+        roadColorChart_before.setOption(roadPieOption);
+        carsColorChart_before.setOption(carsPieOption);
+
 
         myChart_before.on('timelinechanged', function(param) {
             identifier = param.currentIndex;
@@ -1076,6 +1082,12 @@
             // 时间点的 index
             currentIndex: 48
         });
+
+        fillOptions(48);
+        fillPieOption(48);
+        myChart_after.setOption(option);
+        roadColorChart_after.setOption(roadPieOption);
+        carsColorChart_after.setOption(carsPieOption);
 
         myChart_after.on('timelinechanged', function(param) {
             identifier = param.currentIndex;
