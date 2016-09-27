@@ -426,7 +426,7 @@
                     normal: {
                         label: {
                             show: true,
-                            formatter: "{b}的道路:" + "\n" + "{c}条({d}%)"
+                            formatter: "{b}:" + "\n" + "{c}条({d}%)"
                         },
                         labelLine: { show: true }
                     }
@@ -455,7 +455,7 @@
                     normal: {
                         label: {
                             show: true,
-                            formatter: "{b}的车辆总数:" + "\n" + "{c}辆({d}%)"
+                            formatter: "{b}:" + "\n" + "{c}辆({d}%)"
                         },
                         labelLine: { show: true }
                     }
@@ -471,15 +471,15 @@
             roadPieOption.series[0].data.length = 0;
             carsPieOption.series[0].data.length = 0;
             roadPieOption.series[0].data.push(
-                {value:data.roadColor[identifier][0],name:"速度大于36km/h",itemStyle:{normal: {color: '#00CC33'}}},
-                { value: data.roadColor[identifier][1], name: "速度在30和36km/h之间", itemStyle: { normal: { color: '#FF9900' } } },
-                { value: data.roadColor[identifier][2], name: "速度小于30km/h", itemStyle: { normal: { color: '#FF0000' } } },
+                {value:data.roadColor[identifier][0],name:"速度>36km/h",itemStyle:{normal: {color: '#00CC33'}}},
+                { value: data.roadColor[identifier][1], name: "30~36km/h", itemStyle: { normal: { color: '#FF9900' } } },
+                { value: data.roadColor[identifier][2], name: "速度<30km/h", itemStyle: { normal: { color: '#FF0000' } } },
                 {value:data.roadColor[identifier][3],name:"无数据",itemStyle:{normal: {color: '#CCCCCC '}}}
             );
             carsPieOption.series[0].data.push(
-                { value: data.carsColor[identifier][0], name: "速度大于36km/h", itemStyle: { normal: { color: '#00CC33' } } },
-                { value: data.carsColor[identifier][1], name: "速度在30和36km/h之间", itemStyle: { normal: { color: '#FF9900' } } },
-                { value: data.carsColor[identifier][2], name: "速度小于30km/h", itemStyle: { normal: { color: '#FF0000' } } }
+                { value: data.carsColor[identifier][0], name: "速度>36km/h", itemStyle: { normal: { color: '#00CC33' } } },
+                { value: data.carsColor[identifier][1], name: "30~36km/h", itemStyle: { normal: { color: '#FF9900' } } },
+                { value: data.carsColor[identifier][2], name: "速度<30km/h", itemStyle: { normal: { color: '#FF0000' } } }
             );
         }
         fillOptions(0);
@@ -637,7 +637,7 @@
         myChart.dispatchAction({
             type: 'timelineChange',
             // 时间点的 index
-            currentIndex: 45
+            currentIndex: 48
         });
 
         myChart.on('timelinechanged', function(param) {
