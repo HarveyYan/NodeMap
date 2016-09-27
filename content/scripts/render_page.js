@@ -421,6 +421,7 @@
                 data:['rose1','rose2','rose3','rose4','rose5']
             },
             calculable : true,
+            currentIndex: 46,
             series: [{
                 itemStyle: {
                     normal: {
@@ -450,6 +451,7 @@
             },
            
             calculable : true,
+            currentIndex: 46,
             series: [{
                 itemStyle: {
                     normal: {
@@ -482,8 +484,8 @@
                 {value:data.carsColor[identifier][2],name:"拥挤",itemStyle:{normal: {color: '#FF0000'}}}
             );
         }
-        fillOptions(0);
-        fillPieOption(0);
+        fillOptions(45);
+        fillPieOption(45);
         roadColorChart.setOption(roadPieOption);
         carsColorChart.setOption(carsPieOption);
 
