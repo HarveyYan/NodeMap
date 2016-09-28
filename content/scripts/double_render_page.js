@@ -2,12 +2,11 @@
      * @Author: tmc
      * @TODO: 
      * √ 去掉多道路柱状图
-     * 排版更改
+     * √ 排版更改
      * √ 添加新地图
      * √ 添加新饼图
-     * 更改道路宽度
-     * 更改tooltip
-     * 去掉运动的点
+     * √ 更改道路宽度
+     * x 更改tooltip
      */
 
     var myChart_before = echarts.init(document.getElementById('main_map_before'));
@@ -72,6 +71,7 @@
                     coords: points
                 };
             }));
+
             //map before option init
             option_before = {
                 baseOption: {
@@ -485,7 +485,7 @@
                 options: []
             };
 
-            //timeline美化
+            //timeline美化, data_before和data的timeline会不会不一样长？所以这里两个暂时不写到一块
             for (var n = 0; n < data_before.timelines.length; n++) {
                 if (n % 6 === 0) {
                     var time = {
