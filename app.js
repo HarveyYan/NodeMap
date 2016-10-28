@@ -30,7 +30,7 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
   app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
   app.use(function(req,res,next){
-    fs.write(fd,JSON.stringify(req, null, 4),'utf8',function(e){
+    fs.write(fd,JSON.stringify(req.body, null, 4),'utf8',function(e){
       if (e) throw e;
     });
     next();
