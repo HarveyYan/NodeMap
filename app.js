@@ -18,9 +18,6 @@ app.set('views', path.join(__dirname, 'content/views'));
 app.set('view engine', 'jade');
 
 fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
-  fs.write(fd, `application ${process.pid} initiated \r\n`,'utf8',function(e){
-    if(e) throw e;
-  });
 
   //parse application/x-www-form-urlencoded
   app.use(bodyParser.urlencoded({ extended: false }))
@@ -30,6 +27,7 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
   app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
   app.use(function(req,res,next){
+    console.log(JSON.stringify(req.body, null, 4));
     fs.write(fd,JSON.stringify(req.body, null, 4),'utf8',function(e){
       if (e) throw e;
     });
@@ -178,7 +176,6 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
   });
 
   app.get('/compare',function(req,res){
-    console.log("Note");
     var before = req.query.res_before;
     var after = req.query.res_after;
     jsdom.env(__dirname+"/content/views/template_compare.html", ['http://222.85.139.245:64154/jquery-3.1.0.min.js'], function(errors, window) {
@@ -195,12 +192,11 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
 
   var listener = app.listen(port,ip, function (err) {
     if (err)  console.log(err);
-    else console.log("listenting at: %j",listener.address());
 
     fs.write(fd, `server on application ${process.pid} started, running at ip ${ip} port ${port}\r\n`,
         0,'utf8',function(e){
           if(e) throw e;
-        });
+    });
   });
 
 
