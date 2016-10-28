@@ -410,7 +410,7 @@
                 text: '道路拥堵状况',
                 x:'center'
             },
-           
+
             legend: {
                 x : 'center',
                 y : 'bottom',
@@ -444,7 +444,7 @@
                 y : 'bottom',
                 data:['rose1','rose2','rose3','rose4','rose5']
             },
-           
+
             calculable : true,
             series: [{
                 itemStyle: {
@@ -539,7 +539,7 @@
                                     var busLines_new = [];
 
                                     for (var i = 0; i < busLines.length; i++) {
-                                        var name = schema[1].text + '：' + data.series[n][i][1] + schema[1].unit;
+                                        var name = schema[0].text + '：' + data.series[n][i][1] + schema[0].unit;
                                         var lineStyle = {
                                             normal: {
                                                 opacity: 0.3,
