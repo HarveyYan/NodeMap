@@ -22,17 +22,15 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
     if(e) throw e;
   });
 
-  // parse application/x-www-form-urlencoded
+  //parse application/x-www-form-urlencoded
   app.use(bodyParser.urlencoded({ extended: false }))
-
-// parse application/json
+  //parse application/json
   app.use(bodyParser.json())
-
-// parse application/vnd.api+json as json
+  //parse application/vnd.api+json as json
   app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
   app.use(function(req,res,next){
-    fs.write(fd,req.body,'utf8',function(e){
+    fs.write(fd,JSON.stringify(req, null, 4),'utf8',function(e){
       if (e) throw e;
     });
     next();
