@@ -27,10 +27,11 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
   app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
   app.use(function(req,res,next){
-    console.log(JSON.stringify(req.body, null, 4));
+    /*
     fs.write(fd,JSON.stringify(req.body, null, 4),'utf8',function(e){
       if (e) throw e;
     });
+    */
     next();
   });
 
@@ -45,7 +46,7 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
           }
         }
       }
-      fs.write(fd, new_entries);
+      fs.write(fd, new_entries+'\r\n');
       if (new_entries.length!=0) {
         var opts = {stdio: 'inherit'} ;
         var javac = spawn('javac', ['-cp', '/usr/local/nodejsapp/app/Java_modules/lib/\*', '/usr/local/nodejsapp/app/Java_modules/src/Change.java','/usr/local/nodejsapp/app/Java_modules/src/BaiduApi.java','/usr/local/nodejsapp/app/Java_modules/src/StuService.java'], opts);
@@ -61,8 +62,10 @@ fs.open(__dirname+"/log.txt","a",0x0644, function(err, fd){
             send_html(date,res);
           });
         });
-        //execSync('javac -cp Java_modules/lib/\* Java_modules/src/*.java',{stdio:[0,1,2]});
-        //execSync('java -cp Java_modules:Java_modules/lib/\* src.Change',{stdio:[0,1,2]});
+        /*
+          execSync('javac -cp Java_modules/lib/\* Java_modules/src/*.java',{stdio:[0,1,2]});
+          execSync('java -cp Java_modules:Java_modules/lib/\* src.Change',{stdio:[0,1,2]});
+        */
       }else{
         send_html(date,res);
       }

@@ -1,3 +1,6 @@
+/**
+ * cluster是nodejs的多线程模块，一下是其标准的使用方法。
+ */
 const cluster = require('cluster'),
       os      = require('os'),
       stopSignals = [
@@ -6,8 +9,7 @@ const cluster = require('cluster'),
       ],
       production = process.env.NODE_ENV == 'production';
 
-console.log(`starting with production: ${production}`);
-var stopping = false;
+var stopping = false;   //阻塞状态：否
 
 cluster.on('disconnect', function(worker) {
   if (production) {
@@ -18,10 +20,9 @@ cluster.on('disconnect', function(worker) {
     process.exit(1);
   }
 })
+//主线程负责开启其他的线程单元
 if (cluster.isMaster) {
-
-  const workerCount = os.cpus().length - 4;  //numOfCPUs, denpending on the environment
-  console.log(`Starting ${workerCount} workers...`);
+  const workerCount = os.cpus().length/2;  //numOfCPUs, denpending on the environment
   for (var i = 0; i < workerCount; i++) {
     cluster.fork();
   }
@@ -38,5 +39,5 @@ if (cluster.isMaster) {
     });
   }
 } else {
-  require('./app.js');
+  require('./app.js');  //nodejs express http响应模块调用
 }
