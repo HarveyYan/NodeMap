@@ -169,10 +169,6 @@
 
         myChart.hideLoading();
         var schema = [{
-            index: 0,
-            text: '通过车辆',
-            unit: '辆'
-        }, {
             index: 1,
             text: '平均车速',
             unit: 'km/h'
@@ -543,7 +539,7 @@
                                     var busLines_new = [];
 
                                     for (var i = 0; i < busLines.length; i++) {
-                                        var name = schema[0].text + '：' + data.series[n][i][0] + schema[0].unit + '<br>' + schema[1].text + '：' + data.series[n][i][1] + schema[1].unit;
+                                        var name = schema[1].text + '：' + data.series[n][i][1] + schema[1].unit;
                                         var lineStyle = {
                                             normal: {
                                                 opacity: 0.3,
