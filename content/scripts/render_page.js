@@ -10,6 +10,7 @@
     var eachSpeedAndNumber = document.getElementById('eachSpeedAndNumber_chart');
     var eachSpdAndNumChart = echarts.init(eachSpeedAndNumber);
 
+    //一些参数
     var ratio = 60 / 600;
     var app = {};
     var manual = false;
@@ -17,6 +18,7 @@
     var limitOfCars = 20;
     option = null;
 
+    //获取到html内最后一个script标签
     var scripts = document.getElementsByTagName('script');
     var lastScript = scripts[scripts.length-1];
 
@@ -25,8 +27,9 @@
     myChart.showLoading('default', {
         text: '加载中..'
     });
-
+    //获取到html中最后一个script标签内的res属性值，也就是选择的日期
     $.get('http://222.85.139.245:64154/'+lastScript.getAttribute('res'), function(data) {
+        //仅调用一次，设置并初始化车辆车速折线柱状图
         (function setSpdAndNum(data) {
             spdAndNumChart.hideLoading();
             option = {
@@ -102,7 +105,7 @@
             }
             spdAndNumChart.setOption(option);
         }(data));
-
+        //仅调用一次，设置并初始化"分道路"的车辆车速折线柱状图
         (function setEachSpdAndNum(data) {
             eachSpdAndNumChart.hideLoading();
             var eachOption = {
@@ -168,6 +171,7 @@
         }(data));
 
         myChart.hideLoading();
+        //地图中会用的tooltips显示内容
         var schema = [{
             index: 1,
             text: '平均车速',
@@ -185,7 +189,7 @@
                 coords: points
             };
         }));
-
+        //地图的option，这里先初始化；相关字段的含义可参考ECharts API
         option = {
             baseOption: {
                 bmap: {
@@ -404,7 +408,7 @@
                 option.baseOption.timeline.data.push(data.timelines[n]);
             }
         }
-
+        //道路饼状图option初始化，相关字段含义可参考官方API
         var roadPieOption={
             title : {
                 text: '道路拥堵状况',
@@ -434,6 +438,7 @@
                 data:[]
             }]
         }
+        //车辆饼状图option初始化，相关字段含义可参考官方API
         var carsPieOption={
             title : {
                 text: '车辆拥堵状况',
@@ -463,31 +468,17 @@
                 data:[]
             }]
         }
-        function fillPieOption(identifier){
-            roadPieOption.series[0].data.length = 0;
-            carsPieOption.series[0].data.length = 0;
-            roadPieOption.series[0].data.push(
-                {value:data.roadColor[identifier][0],name:"速度>36km/h",itemStyle:{normal: {color: '#00CC33'}}},
-                { value: data.roadColor[identifier][1], name: "30~36km/h", itemStyle: { normal: { color: '#FF9900' } } },
-                { value: data.roadColor[identifier][2], name: "速度<30km/h", itemStyle: { normal: { color: '#FF0000' } } },
-                {value:data.roadColor[identifier][3],name:"无数据",itemStyle:{normal: {color: '#CCCCCC '}}}
-            );
-            carsPieOption.series[0].data.push(
-                { value: data.carsColor[identifier][0], name: "速度>36km/h", itemStyle: { normal: { color: '#00CC33' } } },
-                { value: data.carsColor[identifier][1], name: "30~36km/h", itemStyle: { normal: { color: '#FF9900' } } },
-                { value: data.carsColor[identifier][2], name: "速度<30km/h", itemStyle: { normal: { color: '#FF0000' } } }
-            );
-        }
+
+        /*此处含义是饼图和地图从index = 0处开始加载；index相对于timeline 中的时刻而言，
+          e.g. index=0时对应00:00, index=48时对应08:00*/
         fillOptions(0);
         fillPieOption(0);
         roadColorChart.setOption(roadPieOption);
         carsColorChart.setOption(carsPieOption);
-
         myChart.setOption(option);
 
-
+        // 添加百度地图插件
         if (!app.inNode) {
-            // 添加百度地图插件
             var bmap = myChart.getModel().getComponent('bmap').getBMap();
             bmap.addControl(new BMap.NavigationControl({
                 anchor: BMAP_ANCHOR_TOP_RIGHT,
@@ -495,10 +486,12 @@
             }));
         }
 
+        //设置地图的option, 使其成功加载在网页上面(当然，还得等到setoption之后); 随着时间更新会重复调用此函数。
         function fillOptions(identifier) {
             option.options.length = 0;
             for (var n = 0; n < data.timelines.length; n++) {
                 var timelineString = data.timelines[n].toString();
+                //往地图的option中循环添加对应timeline中各个时刻的数据
                 option.options.push({
                     title: {
                         show: true,
@@ -534,7 +527,7 @@
                                 type: 'lines',
                                 coordinateSystem: 'bmap',
                                 polyline: true,
-                                data: (function(busLines) { //busLines路分段
+                                data: (function(busLines) { //添加道路
 
                                     var busLines_new = [];
 
@@ -576,7 +569,7 @@
                                 progressiveThreshold: 50,
                                 progressive: 20
                             }];
-                            //下面是加effect
+                            //下面是加添加道路上点移动的effect，Note: 每条道路的effect多次添加等同于车辆的数目的次数
                             for (var i = 0; i < busLines.length; i++) {
 
                                 //每条道路速度不同
@@ -603,7 +596,7 @@
                                             silent: true
                                         });
                                     } else {
-                                        //清除多余的点
+                                        //清除多余的点，降低浏览器前段资源占用
                                         series.push({
                                             type: 'lines',
                                             coordinateSystem: 'bmap',
@@ -622,6 +615,7 @@
                                 }
                             }
                         } else {
+                            //当前timeline显示的时间不是正在添加的时间，于是将series置成空，避免消耗资源
                             var series = [];
                         }
                         return series;
@@ -629,19 +623,23 @@
                 });
             }
         }
-
-        myChart.dispatchAction({
-            type: 'timelineChange',
-            // 时间点的 index
-            currentIndex: 48
-        });
-
-        fillOptions(48);
-        fillPieOption(48);
-        myChart.setOption(option);
-        roadColorChart.setOption(roadPieOption);
-        carsColorChart.setOption(carsPieOption);
-
+        //设置两个饼状图的option, 使其成功加载在网页上面（当然，还得等到setoption之后）; 随着时间更新会重复调用此函数。
+        function fillPieOption(identifier){
+            roadPieOption.series[0].data.length = 0;
+            carsPieOption.series[0].data.length = 0;
+            roadPieOption.series[0].data.push(
+                {value:data.roadColor[identifier][0],name:"速度>36km/h",itemStyle:{normal: {color: '#00CC33'}}},
+                { value: data.roadColor[identifier][1], name: "30~36km/h", itemStyle: { normal: { color: '#FF9900' } } },
+                { value: data.roadColor[identifier][2], name: "速度<30km/h", itemStyle: { normal: { color: '#FF0000' } } },
+                {value:data.roadColor[identifier][3],name:"无数据",itemStyle:{normal: {color: '#CCCCCC '}}}
+            );
+            carsPieOption.series[0].data.push(
+                { value: data.carsColor[identifier][0], name: "速度>36km/h", itemStyle: { normal: { color: '#00CC33' } } },
+                { value: data.carsColor[identifier][1], name: "30~36km/h", itemStyle: { normal: { color: '#FF9900' } } },
+                { value: data.carsColor[identifier][2], name: "速度<30km/h", itemStyle: { normal: { color: '#FF0000' } } }
+            );
+        }
+        //时间监听。当timeline时刻发生变化时，调用更新函数fillOptions和fillPieOption
         myChart.on('timelinechanged', function(param) {
             identifier = param.currentIndex;
             fillOptions(identifier);
@@ -650,5 +648,19 @@
             roadColorChart.setOption(roadPieOption);
             carsColorChart.setOption(carsPieOption);
         });
+
+        //特殊情况：应展示的需要，初始化时将时间设置为08：00。
+        myChart.dispatchAction({
+            type: 'timelineChange',
+            // 时间点的 index
+            currentIndex: 48
+        });
+        fillOptions(48);
+        fillPieOption(48);
+        myChart.setOption(option);
+        roadColorChart.setOption(roadPieOption);
+        carsColorChart.setOption(carsPieOption);
+
+
 
     });
