@@ -1,4 +1,5 @@
-    /* @last_update_time: 2016-09-26
+    /**
+     * @last_update_time: 2016-09-26
      * @Author: tmc
      * @TODO: 
      * √ 去掉多道路柱状图
@@ -6,7 +7,9 @@
      * √ 添加新地图
      * √ 添加新饼图
      * √ 更改道路宽度
-     * x 更改tooltip
+     * √ 更改tooltip
+     *
+     * @note: 注释请参考render_page.js，因为原理完全相同。
      */
 
     var myChart_before = echarts.init(document.getElementById('main_map_before'));
@@ -683,7 +686,7 @@
                                         var busLines_new = [];
 
                                         for (var i = 0; i < busLines.length; i++) {
-                                            var name = schema[0].text + '：' + data_before.series[n][i][0] + schema[0].unit;
+                                            var name = schema[0].text + '：' + data_before.series[n][i][1] + schema[0].unit;
                                             var lineStyle = {
                                                 normal: {
                                                     opacity: 0.3,
@@ -832,7 +835,7 @@
                                         var busLines_new = [];
 
                                         for (var i = 0; i < busLines.length; i++) {
-                                            var name = schema[0].text + '：' + data.series[n][i][0] + schema[0].unit;
+                                            var name = schema[0].text + '：' + data.series[n][i][1] + schema[0].unit;
                                             var lineStyle = {
                                                 normal: {
                                                     opacity: 0.3,
